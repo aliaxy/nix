@@ -54,6 +54,7 @@
 
             taps = [
               "nikitabobko/tap"
+              "farion1231/ccswitch"
             ];
 
             brews = [
@@ -61,6 +62,7 @@
 
             casks = [
               "aerospace"
+              "cc-switch"
               "orbstack"
               "qq"
               "wechat"
@@ -82,6 +84,8 @@
             ];
 
             masApps = {
+              "Pages" = 361309726;
+              "Keynote" = 361285480;
               "Numbers" = 361304891;
             };
           };
@@ -146,6 +150,11 @@
                 "/Applications/Orbstack.app"
                 "/Applications/App Cleaner 9.app"
               ];
+
+              wvous-tr-corner = 1;
+              wvous-tl-corner = 1;
+              wvous-bl-corner = 1;
+              wvous-br-corner = 1;
             };
           };
         };
@@ -206,6 +215,9 @@
                   eza = cfg // {
                     accent = "lavender";
                   };
+                  yazi = cfg // {
+                    accent = "lavender";
+                  };
                 };
 
                 home.sessionVariables = {
@@ -232,6 +244,17 @@
                 '';
 
                 programs = {
+                  ssh = {
+                    enable = true;
+                    enableDefaultConfig = false;
+                    matchBlocks = {
+                      "github.com" = {
+                        hostname = "github.com";
+                        user = "git";
+                        identityFile = "~/.ssh/id_ed25519_github";
+                      };
+                    };
+                  };
                   git = {
                     enable = true;
                     settings.user.name = "aliaxy";
@@ -245,6 +268,22 @@
                     options = [
                       "--cmd cd"
                     ];
+                  };
+
+                  yazi = {
+                    enable = true;
+                    enableFishIntegration = true;
+                    shellWrapperName = "y";
+                    settings = {
+                      mgr = {
+                        ratio = [
+                          1
+                          2
+                          4
+                        ];
+                        show_hidden = true;
+                      };
+                    };
                   };
 
                   go = {
@@ -276,6 +315,13 @@
                       vim = "nvim";
                       cat = "bat";
                       jy = "fastfetch";
+                    };
+
+                    functions = {
+                      drb = {
+                        description = "Rebuild Darwin with the air flake";
+                        body = "sudo darwin-rebuild switch --flake ~/nix#air";
+                      };
                     };
                   };
 
@@ -327,6 +373,14 @@
                   fastfetch = {
                     enable = true;
                     settings = { };
+                  };
+
+                  codex = {
+                    enable = true;
+                  };
+
+                  claude-code = {
+                    enable = true;
                   };
 
                   bat = {
@@ -715,8 +769,8 @@
 
                       window-decoration = true;
                       window-title-font-family = "";
-                      window-padding-x = 5;
-                      window-padding-y = 5;
+                      window-padding-x = 12;
+                      window-padding-y = 10;
                       window-padding-balance = true;
                       window-step-resize = true;
                       window-save-state = "default";
@@ -757,6 +811,7 @@
                         "7"
                         "8"
                         "9"
+                        "10"
                         "A"
                       ];
 
@@ -799,6 +854,7 @@
                         alt-7 = "workspace 7";
                         alt-8 = "workspace 8";
                         alt-9 = "workspace 9";
+                        alt-0 = "workspace A";
 
                         # Uncomment this if need more workspace
                         # alt-a = "workspace A";
@@ -824,19 +880,50 @@
                         # alt-y = "workspace Y";
                         # alt-z = "workspace Z";
 
-                        alt-shift-1 = "move-node-to-workspace 1";
-                        alt-shift-2 = "move-node-to-workspace 2";
-                        alt-shift-3 = "move-node-to-workspace 3";
-                        alt-shift-4 = "move-node-to-workspace 4";
-                        alt-shift-5 = "move-node-to-workspace 5";
-                        alt-shift-6 = "move-node-to-workspace 6";
-                        alt-shift-7 = "move-node-to-workspace 7";
-                        alt-shift-8 = "move-node-to-workspace 8";
-                        alt-shift-9 = "move-node-to-workspace 9";
+                        alt-shift-1 = [
+                          "move-node-to-workspace 1"
+                          "workspace 1"
+                        ];
+                        alt-shift-2 = [
+                          "move-node-to-workspace 2"
+                          "workspace 2"
+                        ];
+                        alt-shift-3 = [
+                          "move-node-to-workspace 3"
+                          "workspace 3"
+                        ];
+                        alt-shift-4 = [
+                          "move-node-to-workspace 4"
+                          "workspace 4"
+                        ];
+                        alt-shift-5 = [
+                          "move-node-to-workspace 5"
+                          "workspace 5"
+                        ];
+                        alt-shift-6 = [
+                          "move-node-to-workspace 6"
+                          "workspace 6"
+                        ];
+                        alt-shift-7 = [
+                          "move-node-to-workspace 7"
+                          "workspace 7"
+                        ];
+                        alt-shift-8 = [
+                          "move-node-to-workspace 8"
+                          "workspace 8"
+                        ];
+                        alt-shift-9 = [
+                          "move-node-to-workspace 9"
+                          "workspace 9"
+                        ];
+                        alt-shift-0 = [
+                          "move-node-to-workspace A"
+                          "workspace A"
+                        ];
 
                         # Uncomment this if need more workspace
 
-                        # alt-shift-a = "move-node-to-workspace A";
+                        # alt-shift-a = "move-node-to-workspace A";ß
                         # alt-shift-b = "move-node-to-workspace B";
                         # alt-shift-c = "move-node-to-workspace C";
                         # alt-shift-d = "move-node-to-workspace D";
@@ -869,12 +956,12 @@
 
                         # alt-e = 'exec-and-forget open -a finder'
 
-                        # # Disable "hide application" and "hide others"
-                        # cmd-h = []
-                        # cmd-alt-h = []
+                        # Disable "hide application" and "hide others"
+                        cmd-h = [ ];
+                        cmd-alt-h = [ ];
 
-                        # # Toggle between floating and tiling layout
-                        # alt-backslash = 'layout floating tiling'
+                        # Toggle between floating and tiling layout
+                        alt-backslash = "layout floating tiling";
 
                         # alt-f = 'fullscreen'
 
@@ -939,6 +1026,10 @@
                           "if".app-id = "com.tencent.xinWeChat";
                           run = [ "layout floating" ];
                         }
+                        {
+                          "if".app-id = "com.tencent.WeWorkMac";
+                          run = [ "layout floating" ];
+                        }
                       ];
                     };
                   };
@@ -949,7 +1040,7 @@
                   settings = {
                     style = "round";
                     width = 6.0;
-                    blur_radius = 0.0;
+                    blur_radius = 12.0;
                     active_color = "0xffb7bdf8";
                     inactive_color = "0xff6e738d";
                     background_color = "0x00000000";
