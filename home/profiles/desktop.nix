@@ -2,8 +2,8 @@
 { ... }:
 {
   imports = [
-    ../programs/terminal/ghostty.nix
-    ../programs/editor/zed.nix
-    ../programs/tools/aerospace.nix
+    ../programs/ghostty.nix
+    ../programs/zed.nix
+    ../programs/aerospace.nix
   ];
 }

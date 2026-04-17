@@ -40,6 +40,13 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = { inherit inputs username hostname; };
-    users.${username} = import ../../home;
+    users.${username} = {
+      imports = [
+        ../../home
+        ../../home/profiles/base.nix
+        ../../home/profiles/dev.nix
+        ../../home/profiles/desktop.nix
+      ];
+    };
   };
 }
