@@ -1,5 +1,5 @@
 # Fish shell 配置
-{ ... }:
+{ hostname, ... }:
 {
   programs.fish = {
     enable = true;
@@ -23,8 +23,8 @@
 
     functions = {
       drb = {
-        description = "Rebuild Darwin with the air flake";
-        body = "sudo darwin-rebuild switch --flake ~/nix#air";
+        description = "Rebuild Darwin with the ${hostname} flake";
+        body = "sudo darwin-rebuild switch --flake ~/nix#${hostname}";
       };
     };
   };

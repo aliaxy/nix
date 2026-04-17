@@ -1,18 +1,18 @@
 # macOS 系统偏好：用户、Shell、Finder、Dock
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 {
-  users.users."aliaxy" = {
-    home = "/Users/aliaxy";
+  users.users.${username} = {
+    home = "/Users/${username}";
     shell = pkgs.fish;
   };
 
   # 确保 fish 被设为默认 Shell（dscl 方式）
   system.activationScripts.setDefaultShell.text = ''
     fish=/run/current-system/sw/bin/fish
-    current=$(dscl . -read /Users/aliaxy UserShell 2>/dev/null | awk '{print $2}')
+    current=$(dscl . -read /Users/${username} UserShell 2>/dev/null | awk '{print $2}')
     if [ "$current" != "$fish" ]; then
-      echo "Setting default shell for aliaxy to fish"
-      dscl . -create /Users/aliaxy UserShell "$fish"
+      echo "Setting default shell for ${username} to fish"
+      dscl . -create /Users/${username} UserShell "$fish"
     fi
   '';
 

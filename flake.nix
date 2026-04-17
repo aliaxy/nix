@@ -26,9 +26,10 @@
     in
     {
       # Build darwin flake using:
-      # $ darwin-rebuild build --flake .#air
-      darwinConfigurations."air" = lib.mkDarwinHost {
-        hostname = "macbook-air";
+      # $ darwin-rebuild build --flake .#air-m4
+      darwinConfigurations."air-m4" = lib.mkDarwinSystem {
+        hostname = "air-m4";
+        username = "aliaxy";
       };
     };
 }

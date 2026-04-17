@@ -1,6 +1,12 @@
 # MacBook Air (M 系列) 主机入口
 # 组合各模块，设置主机特有选项
-{ inputs, self, ... }:
+{
+  inputs,
+  self,
+  username,
+  hostname,
+  ...
+}:
 {
   imports = [
     ./hardware.nix
@@ -10,7 +16,7 @@
     ../../modules/darwin/homebrew.nix
   ];
 
-  system.primaryUser = "aliaxy";
+  system.primaryUser = username;
   system.configurationRevision = self.rev or self.dirtyRev or null;
   nixpkgs.config.allowUnfree = true;
 
@@ -25,7 +31,7 @@
   nix-homebrew = {
     enable = true;
     enableRosetta = true; # Apple Silicon: 同时安装 Intel 前缀
-    user = "aliaxy";
+    user = username;
     autoMigrate = true;
   };
 
@@ -33,7 +39,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit inputs; };
-    users.aliaxy = import ../../home;
+    extraSpecialArgs = { inherit inputs username hostname; };
+    users.${username} = import ../../home;
   };
 }

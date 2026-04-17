@@ -1,5 +1,5 @@
 # home-manager 配置入口
-# 由 hosts/macbook-air/default.nix 通过 home-manager.users.aliaxy 引用
+# 由 hosts/air-m4/default.nix 通过 home-manager.users.aliaxy 引用
 { inputs, ... }:
 {
   imports = [

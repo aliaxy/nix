@@ -1,11 +1,11 @@
 # Go 语言工具链
-{ ... }:
+{ config, ... }:
 {
   programs.go = {
     enable = true;
     env = {
-      GOPATH = "/Users/aliaxy/go";
-      GOBIN = "/Users/aliaxy/go/bin";
+      GOPATH = "${config.home.homeDirectory}/go";
+      GOBIN = "${config.home.homeDirectory}/go/bin";
     };
   };
 }
