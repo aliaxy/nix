@@ -1,16 +1,19 @@
-# base profile — 最小通用配置，所有主机都用
+# base profile - minimal common configuration for all hosts
 { ... }:
 {
   imports = [
+    # Shell configuration and alias definitions
     ../programs/fish.nix
+    # Cross-shell customizable prompt
     ../programs/starship.nix
+    # Blazing fast terminal file manager
     ../programs/yazi.nix
   ];
 
-  # bat — 带语法高亮的 cat 替代
+  # bat - cat replacement with syntax highlighting
   programs.bat.enable = true;
 
-  # eza — 现代 ls 替代
+  # eza - modern ls replacement
   programs.eza = {
     enable = true;
     enableFishIntegration = true;
@@ -24,22 +27,24 @@
     ];
   };
 
-  # zoxide — 智能 cd 替代
+  # zoxide - smart cd replacement
   programs.zoxide = {
     enable = true;
     enableFishIntegration = true;
     options = [ "--cmd cd" ];
   };
 
-  # fastfetch — 系统信息展示
+  # fastfetch - system information display
   programs.fastfetch = {
     enable = true;
     settings = { };
   };
 
+  # Custom session variables for the base environment
   home.sessionVariables = {
     EZA_CONFIG_DIR = "$HOME/.config/eza";
   };
 
+  # Disable the default login message on macOS/Linux
   home.file.".hushlogin".text = "";
 }

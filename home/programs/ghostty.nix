@@ -1,10 +1,10 @@
-# Ghostty 终端模拟器
+# Ghostty terminal emulator
 { ... }:
 {
   programs.ghostty = {
     enable = true;
     enableFishIntegration = true;
-    package = null; # 由 Homebrew cask 管理
+    package = null; # Managed by Homebrew cask
     settings = {
       language = "en";
 

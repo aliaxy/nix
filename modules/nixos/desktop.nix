@@ -1,2 +1,2 @@
-# NixOS 桌面环境（占位，待配置）
+# NixOS desktop environment (placeholder, to be configured)
 { ... }: { }

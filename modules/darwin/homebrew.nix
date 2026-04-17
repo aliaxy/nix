@@ -1,4 +1,4 @@
-# Homebrew 软件包管理（由 nix-homebrew 模块驱动）
+# Homebrew package management (driven by nix-homebrew module)
 { ... }:
 {
   homebrew = {

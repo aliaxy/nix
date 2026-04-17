@@ -1,4 +1,4 @@
-# Nix 守护进程 / 核心设置（跨平台通用）
+# Nix daemon / Core settings (Cross-platform common)
 { ... }:
 {
   nix.settings.experimental-features = "nix-command flakes";

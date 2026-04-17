@@ -1,4 +1,4 @@
-# dev profile — 开发环境：版本控制、语言工具链、国内镜像
+# dev profile - development environment: VCS, toolchains, mirrors
 { config, pkgs, ... }:
 {
   home.packages = with pkgs; [
@@ -32,7 +32,7 @@
     };
   };
 
-  # Python uv 国内镜像（清华 TUNA）
+  # Python uv domestic mirror (Tsinghua TUNA)
   programs.uv = {
     enable = true;
     settings = {
@@ -45,11 +45,11 @@
     };
   };
 
-  # AI 编码助手
+  # AI coding assistants
   programs.codex.enable = true;
   programs.claude-code.enable = true;
 
-  # Rust 国内镜像（rsproxy）
+  # Rust domestic mirror (rsproxy)
   home.file.".cargo/config.toml".text = ''
     [source.crates-io]
     replace-with = 'rsproxy-sparse'

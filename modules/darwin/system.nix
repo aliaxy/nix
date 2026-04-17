@@ -1,4 +1,4 @@
-# macOS 系统偏好：用户、Shell、Finder、Dock
+# macOS system preferences: User, Shell, Finder, Dock
 { pkgs, username, ... }:
 {
   users.users.${username} = {
@@ -6,7 +6,7 @@
     shell = pkgs.fish;
   };
 
-  # 确保 fish 被设为默认 Shell（dscl 方式）
+  # Ensure fish is set as the default shell (via dscl)
   system.activationScripts.setDefaultShell.text = ''
     fish=/run/current-system/sw/bin/fish
     current=$(dscl . -read /Users/${username} UserShell 2>/dev/null | awk '{print $2}')

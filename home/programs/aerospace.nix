@@ -1,10 +1,10 @@
-# AeroSpace 窗口管理器 + JankyBorders 边框美化
+# AeroSpace Window Manager + JankyBorders aesthetic borders
 { ... }:
 {
   programs.aerospace = {
     enable = true;
     launchd.enable = false;
-    package = null; # 由 Homebrew cask 管理
+    package = null; # Managed by Homebrew cask
     settings = {
       config-version = 2;
 

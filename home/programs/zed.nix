@@ -1,9 +1,9 @@
-# Zed 编辑器完整配置
+# Zed editor complete configuration
 { ... }:
 {
   programs.zed-editor = {
     enable = true;
-    package = null; # 由 Homebrew cask 管理
+    package = null; # Managed by Homebrew cask
 
     extensions = [
       "nix"

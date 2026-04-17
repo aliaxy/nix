@@ -1,4 +1,4 @@
-# Yazi — 终端文件管理器
+# Yazi - terminal file manager
 { pkgs, ... }:
 {
   programs.yazi = {

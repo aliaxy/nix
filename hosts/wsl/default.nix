@@ -1,2 +1,2 @@
-# WSL 环境（占位，待配置）
+# WSL environment (placeholder, to be configured)
 { ... }: { }

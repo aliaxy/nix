@@ -1,4 +1,4 @@
-# NixOS 桌面主机（占位，待配置）
+# NixOS desktop host (placeholder, to be configured)
 { ... }:
 {
   imports = [

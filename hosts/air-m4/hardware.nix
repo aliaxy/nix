@@ -1,4 +1,4 @@
-# 硬件 / 平台特定配置
+# Hardware / Platform-specific configuration
 { ... }:
 {
   nixpkgs.hostPlatform = "aarch64-darwin";

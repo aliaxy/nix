@@ -1,2 +1,2 @@
-# NixOS 引导配置（占位，待配置）
+# NixOS bootloader configuration (placeholder, to be configured)
 { ... }: { }

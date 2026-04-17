@@ -1,14 +1,20 @@
-# home-manager 配置入口
-# 由 hosts/air-m4/default.nix 通过 home-manager.users.${username} 引用
+# home-manager configuration entry point
+# Referenced by hosts/... via home-manager.users.*
 { inputs, ... }:
 {
   imports = [
-    # Catppuccin home-manager 模块（由 inputs 注入）
+    # Catppuccin home-manager module (injected by inputs)
     inputs.catppuccin.homeModules.catppuccin
-    # 主题变量
+    # Theme variables
     ../themes/catppuccin.nix
-
   ];
 
+  # This value determines the Home Manager release that your configuration is
+  # compatible with. This helps avoid breakage when a new Home Manager release
+  # introduces backwards incompatible changes.
+  #
+  # You should not change this value, even if you update Home Manager. If you do
+  # want to update the value, then make sure to first check the Home Manager
+  # release notes.
   home.stateVersion = "25.11";
 }

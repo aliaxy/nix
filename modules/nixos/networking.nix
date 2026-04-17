@@ -1,2 +1,2 @@
-# NixOS 网络配置（占位，待配置）
+# NixOS networking configuration (placeholder, to be configured)
 { ... }: { }

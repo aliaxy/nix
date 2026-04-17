@@ -1,4 +1,4 @@
-# macOS 系统级软件包、Shell 及字体
+# macOS system-level packages, shells, and fonts
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
@@ -16,6 +16,6 @@
     pkgs.nerd-fonts.jetbrains-mono
   ];
 
-  # 让 nix-darwin 管理 fish（注册到 /etc/shells 等）
+  # Let nix-darwin manage fish (register to /etc/shells, etc.)
   programs.fish.enable = true;
 }

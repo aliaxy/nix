@@ -1,4 +1,4 @@
-# Starship — 跨 Shell 提示符
+# Starship - cross-shell prompt
 { lib, ... }:
 {
   programs.starship = {

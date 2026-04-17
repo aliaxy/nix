@@ -1,6 +1,7 @@
 {
   description = "aliaxy nix-darwin system flake";
 
+  # Flake inputs (dependencies)
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
@@ -12,6 +13,7 @@
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
+  # Flake outputs (configurations, packages, etc.)
   outputs =
     inputs@{
       self,
@@ -22,9 +24,11 @@
       catppuccin,
     }:
     let
+      # Import custom helper functions for building systems (mkDarwinSystem, mkNixosSystem)
       lib = import ./lib { inherit inputs self; };
     in
     {
+      # macOS system configurations
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#air-m4
       darwinConfigurations."air-m4" = lib.mkDarwinSystem {

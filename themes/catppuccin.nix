@@ -1,7 +1,7 @@
-# Catppuccin 主题统一配置
-# 在此集中管理 flavor 和 accent，各程序模块只需 import 本文件
-# flavor 可选：latte | frappe | macchiato | mocha
-# accent 可选：blue | flamingo | green | lavender | maroon | mauve | peach | pink | red | rosewater | sapphire | sky | teal | yellow
+# Catppuccin theme unified configuration
+# Centralized management of flavor and accent, program modules only need to import this file
+# flavor options:latte | frappe | macchiato | mocha
+# accent options:blue | flamingo | green | lavender | maroon | mauve | peach | pink | red | rosewater | sapphire | sky | teal | yellow
 { ... }:
 let
   base = {

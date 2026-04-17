@@ -1,10 +1,10 @@
-# Fish shell 配置
+# Fish shell configuration
 { hostname, ... }:
 {
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
-      set fish_greeting # 禁用欢迎信息
+      set fish_greeting # Disable greeting message
       fnm env --use-on-cd --shell fish | source
     '';
 
