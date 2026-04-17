@@ -24,6 +24,12 @@
     };
   };
 
+  programs.direnv = {
+    enable = true;
+    enableFishIntegration = true;
+    nix-direnv.enable = true;
+  };
+
   programs.go = {
     enable = true;
     env = {
