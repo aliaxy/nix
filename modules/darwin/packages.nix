@@ -7,8 +7,6 @@
     ghostty-bin
     nixd
     nil
-    uv
-    rustup
     fnm
   ];
 

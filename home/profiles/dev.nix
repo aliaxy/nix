@@ -1,6 +1,10 @@
 # dev profile — 开发环境：版本控制、语言工具链、国内镜像
-{ config, ... }:
+{ config, pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    rustup
+  ];
+
   programs.git = {
     enable = true;
     settings.user.name = "aliaxy";
@@ -28,6 +32,19 @@
     };
   };
 
+  # Python uv 国内镜像（清华 TUNA）
+  programs.uv = {
+    enable = true;
+    settings = {
+      index = [
+        {
+          url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple/";
+          default = true;
+        }
+      ];
+    };
+  };
+
   # AI 编码助手
   programs.codex.enable = true;
   programs.claude-code.enable = true;
@@ -46,10 +63,4 @@
     git-fetch-with-cli = true
   '';
 
-  # Python uv 国内镜像（清华 TUNA）
-  home.file.".config/uv/uv.toml".text = ''
-    [[index]]
-    url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple/"
-    default = true
-  '';
 }
