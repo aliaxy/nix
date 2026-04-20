@@ -2,6 +2,9 @@
 { config, pkgs, ... }:
 {
   home.packages = with pkgs; [
+    nil
+    nixd
+    fnm
     rustup
   ];
 

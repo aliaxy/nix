@@ -6,7 +6,7 @@
     enableFishIntegration = true;
     onActivation = {
       autoUpdate = false;
-      upgrade = false;
+      upgrade = true;
       cleanup = "zap";
     };
     greedyCasks = true;
@@ -20,27 +20,31 @@
 
     casks = [
       "aerospace"
+      "google-chrome"
+      "app-cleaner"
+
+      "clash-verge-rev"
       "cc-switch"
+
+      "typora"
+      "notion"
+      "sublime-text"
+      "zed"
+      "antigravity"
       "orbstack"
+
       "qq"
       "wechat"
       "wechatwork"
-      "tencent-meeting"
-      "google-chrome"
-      "zed"
-      "antigravity"
-      "notion"
-      "typora"
-      "sublime-text"
-      "clash-verge-rev"
-      "app-cleaner"
       "feishu"
-      "sf-symbols"
-      "font-sf-pro"
-      "font-sf-mono"
+      "tencent-meeting"
       "microsoft-word"
       "microsoft-excel"
       "microsoft-powerpoint"
+
+      "sf-symbols"
+      "font-sf-pro"
+      "font-sf-mono"
     ];
 
     masApps = {

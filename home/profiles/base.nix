@@ -2,6 +2,8 @@
 { ... }:
 {
   imports = [
+    # Neovim configuration
+    ../programs/nvim/nvim.nix
     # Shell configuration and alias definitions
     ../programs/fish.nix
     # Cross-shell customizable prompt

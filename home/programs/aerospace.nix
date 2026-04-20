@@ -69,12 +69,12 @@
           "workspace 1"
           "exec-and-forget open -a Ghostty"
         ];
-
         alt-c = [
           "workspace 2"
           "exec-and-forget open -a 'Google Chrome'"
         ];
 
+        alt-a = "exec-and-forget open -a 'Activity Monitor'";
         alt-f = "exec-and-forget open -a Finder";
         alt-s = "exec-and-forget open -a 'System Settings'";
         alt-z = "exec-and-forget open -a Zed";
@@ -89,19 +89,33 @@
         alt-8 = "workspace 8";
         alt-9 = "workspace 9";
 
-        alt-e = [
-          "workspace E"
-          "exec-and-forget open -a Feishu"
-        ];
-
         alt-q = [
           "workspace Q"
           "exec-and-forget open -a QQ"
         ];
-
         alt-w = [
           "workspace W"
           "exec-and-forget open -a Wechat"
+        ];
+        alt-e = [
+          "workspace E"
+          "exec-and-forget open -a Feishu"
+        ];
+        alt-i = [
+          "workspace I"
+          "exec-and-forget open -a 'Microsoft Word'"
+        ];
+        alt-o = [
+          "workspace O"
+          "exec-and-forget open -a 'Microsoft Excel'"
+        ];
+        alt-p = [
+          "workspace P"
+          "exec-and-forget open -a 'Microsoft PowerPoint'"
+        ];
+        alt-v = [
+          "workspace V"
+          "exec-and-forget open -a 'Clash Verge'"
         ];
 
         alt-shift-1 = [
@@ -141,19 +155,37 @@
           "workspace 9"
         ];
 
-        alt-shift-e = [
-          "move-node-to-workspace E"
-          "workspace E"
-        ];
-
         alt-shift-q = [
           "move-node-to-workspace Q"
           "workspace Q"
         ];
-
         alt-shift-w = [
           "move-node-to-workspace W"
           "workspace W"
+        ];
+        alt-shift-e = [
+          "move-node-to-workspace E"
+          "workspace E"
+        ];
+        alt-shift-i = [
+          "move-node-to-workspace I"
+          "workspace I"
+        ];
+        alt-shift-o = [
+          "move-node-to-workspace O"
+          "workspace O"
+        ];
+        alt-shift-p = [
+          "move-node-to-workspace P"
+          "workspace P"
+        ];
+        alt-shift-a = [
+          "move-node-to-workspace A"
+          "workspace A"
+        ];
+        alt-shift-v = [
+          "move-node-to-workspace V"
+          "workspace V"
         ];
 
         alt-shift-f = "fullscreen";
@@ -213,6 +245,10 @@
         }
         {
           "if".app-id = "com.apple.systempreferences";
+          run = [ "layout floating" ];
+        }
+        {
+          "if".app-id = "com.apple.ActivityMonitor";
           run = [ "layout floating" ];
         }
         {

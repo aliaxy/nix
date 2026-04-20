@@ -5,12 +5,7 @@
     mas
     keka
     ghostty-bin
-    nixd
-    nil
-    fnm
   ];
-
-  environment.shells = [ pkgs.fish ];
 
   fonts.packages = [
     pkgs.nerd-fonts.jetbrains-mono
@@ -18,4 +13,7 @@
 
   # Let nix-darwin manage fish (register to /etc/shells, etc.)
   programs.fish.enable = true;
+
+  environment.shells = [ pkgs.fish ];
+
 }
