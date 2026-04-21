@@ -8,13 +8,6 @@
     rustup
   ];
 
-  programs.git = {
-    enable = true;
-    settings.user.name = "aliaxy";
-    settings.user.email = "aruvelut00@163.com";
-    settings.init.defaultBranch = "main";
-  };
-
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
@@ -25,6 +18,18 @@
         identityFile = "~/.ssh/id_ed25519_github";
       };
     };
+  };
+
+  programs.git = {
+    enable = true;
+    settings.user.name = "aliaxy";
+    settings.user.email = "aruvelut00@163.com";
+    settings.init.defaultBranch = "main";
+  };
+
+  programs.lazygit = {
+    enable = true;
+    enableFishIntegration = true;
   };
 
   programs.direnv = {

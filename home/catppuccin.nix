@@ -12,6 +12,7 @@ in
 {
   catppuccin = {
     bat = base;
+    lazygit = base;
     ghostty = base;
     starship = base;
     eza = base // {
