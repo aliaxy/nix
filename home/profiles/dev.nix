@@ -72,4 +72,11 @@
     git-fetch-with-cli = true
   '';
 
+  # Domestic mirrors acceleration (Rust / Go)
+  home.sessionVariables = {
+    RUSTUP_DIST_SERVER = "https://rsproxy.cn";
+    RUSTUP_UPDATE_ROOT = "https://rsproxy.cn/rustup";
+    GOPROXY = "https://goproxy.cn,direct";
+  };
+
 }

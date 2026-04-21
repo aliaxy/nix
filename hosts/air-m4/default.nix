@@ -1,8 +1,6 @@
 # MacBook Air (M-series) host entry point
 # Combine modules and set host-specific options
 {
-  inputs,
-  self,
   username,
   hostname,
   ...
@@ -21,33 +19,63 @@
     ../../modules/darwin/homebrew.nix
   ];
 
-  # Define the primary user for the macOS system
-  system.primaryUser = username;
-  # Track the current flake revision for darwin-version
-  system.configurationRevision = self.rev or self.dirtyRev or null;
-  # Allow installation of unfree/proprietary packages
-  nixpkgs.config.allowUnfree = true;
+  # ---------------------------------------------------------
+  # 主机专属配置 (Host-specific Configurations)
+  # 这里的列表会自动与 modules/darwin/ 中的同名基础列表合并
+  # ---------------------------------------------------------
 
-  # Domestic mirrors acceleration (Rust / Go)
-  environment.variables = {
-    RUSTUP_DIST_SERVER = "https://rsproxy.cn";
-    RUSTUP_UPDATE_ROOT = "https://rsproxy.cn/rustup";
-    GOPROXY = "https://goproxy.cn,direct";
-  };
+  my = {
+    darwin = {
+      inherit hostname;
+      timeZone = "Asia/Shanghai";
 
-  # nix-homebrew options (module injected by flake.nix)
-  nix-homebrew = {
-    enable = true;
-    enableRosetta = true; # Apple Silicon: Install Intel prefix concurrently for Rosetta
-    user = username;
-    autoMigrate = true;
+      dock = {
+        position = "bottom";
+        tileSize = 64;
+        extraPersistentApps = [
+          "/System/Applications/Reminders.app"
+          "/System/Applications/iPhone Mirroring.app"
+          "/Applications/Nix Apps/Ghostty.app"
+          "/Applications/Google Chrome.app"
+          "/Applications/Notion.app"
+          "/Applications/Sublime Text.app"
+          "/Applications/Zed.app"
+          "/Applications/Orbstack.app"
+          "/Applications/App Cleaner 9.app"
+        ];
+      };
+
+      homebrew = {
+        enableRosetta = true; # Apple Silicon: install Intel prefix for Rosetta
+        extraCasks = [
+          "aerospace"
+          "typora"
+          "notion"
+          "sublime-text"
+          "zed"
+          "antigravity"
+          "orbstack"
+          "qq"
+          "wechat"
+          "wechatwork"
+          "feishu"
+          "tencent-meeting"
+          "microsoft-word"
+          "microsoft-excel"
+          "microsoft-powerpoint"
+        ];
+
+        extraMasApps = {
+          "Pages" = 361309726;
+          "Keynote" = 361285480;
+          "Numbers" = 361304891;
+        };
+      };
+    };
   };
 
   # home-manager options (module injected by flake.nix)
   home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    extraSpecialArgs = { inherit inputs username hostname; };
     users.${username} = {
       imports = [
         # Main home-manager entry point

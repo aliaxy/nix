@@ -298,7 +298,7 @@
 
       language_models = {
         anthropic = {
-          api_url = "https://api.anthropic.com";
+          api_url = "https://api.aipaibox.com";
         };
         bedrock = { };
         deepseek = {

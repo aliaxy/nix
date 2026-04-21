@@ -1,56 +1,75 @@
 # Homebrew package management (driven by nix-homebrew module)
-{ ... }:
 {
-  homebrew = {
-    enable = true;
-    enableFishIntegration = true;
-    onActivation = {
-      autoUpdate = false;
-      upgrade = true;
-      cleanup = "zap";
+  config,
+  lib,
+  username,
+  ...
+}:
+let
+  inherit (lib) mkEnableOption mkOption types;
+  cfg = config.my.darwin.homebrew;
+in
+{
+  options.my.darwin.homebrew = {
+    enableRosetta = mkEnableOption "Rosetta support for Apple Silicon Macs";
+
+    extraBrews = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      description = "Additional Homebrew formulae for this host.";
     };
-    greedyCasks = true;
 
-    taps = [
-      "nikitabobko/tap"
-      "farion1231/ccswitch"
-    ];
+    extraCasks = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      description = "Additional Homebrew casks for this host.";
+    };
 
-    brews = [ ];
+    extraMasApps = mkOption {
+      type = types.attrsOf types.int;
+      default = { };
+      description = "Additional App Store apps for this host.";
+    };
+  };
 
-    casks = [
-      "aerospace"
-      "google-chrome"
-      "app-cleaner"
+  config = {
+    # Base nix-homebrew configuration
+    nix-homebrew = {
+      enable = true;
+      user = username;
+      autoMigrate = true;
+      enableRosetta = cfg.enableRosetta;
+    };
 
-      "clash-verge-rev"
-      "cc-switch"
+    homebrew = {
+      enable = true;
+      enableFishIntegration = true;
+      onActivation = {
+        autoUpdate = false;
+        upgrade = true;
+        cleanup = "zap";
+      };
+      greedyCasks = true;
 
-      "typora"
-      "notion"
-      "sublime-text"
-      "zed"
-      "antigravity"
-      "orbstack"
+      taps = [
+        "nikitabobko/tap"
+        "farion1231/ccswitch"
+      ];
 
-      "qq"
-      "wechat"
-      "wechatwork"
-      "feishu"
-      "tencent-meeting"
-      "microsoft-word"
-      "microsoft-excel"
-      "microsoft-powerpoint"
+      brews = cfg.extraBrews;
 
-      "sf-symbols"
-      "font-sf-pro"
-      "font-sf-mono"
-    ];
+      casks = [
+        "google-chrome"
+        "app-cleaner"
+        "clash-verge-rev"
+        "cc-switch"
+        "sf-symbols"
+        "font-sf-pro"
+        "font-sf-mono"
+      ]
+      ++ cfg.extraCasks;
 
-    masApps = {
-      "Pages" = 361309726;
-      "Keynote" = 361285480;
-      "Numbers" = 361304891;
+      masApps = cfg.extraMasApps;
     };
   };
 }

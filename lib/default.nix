@@ -31,6 +31,13 @@
         inputs.nix-homebrew.darwinModules.nix-homebrew
         # Load the home-manager module for managing user environments
         inputs.home-manager.darwinModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            extraSpecialArgs = { inherit inputs username hostname; };
+          };
+        }
       ]
       ++ extraModules;
     };
@@ -63,6 +70,13 @@
         (../hosts + "/${hostname}")
         # Load the home-manager module for managing user environments
         inputs.home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            extraSpecialArgs = { inherit inputs username hostname; };
+          };
+        }
       ]
       ++ extraModules;
     };
