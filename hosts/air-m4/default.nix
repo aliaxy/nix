@@ -8,6 +8,14 @@
     ./hardware.nix
   ];
 
+  # Decrypt secrets at activation time using the user's SSH key.
+  age.identityPaths = [ "/Users/aliaxy/.ssh/id_ed25519_github" ];
+
+  age.secrets.github_token = {
+    file = ../../secrets/github_token.age;
+    owner = "aliaxy";
+  };
+
   # Host-specific option values.
   # These are merged with the base lists defined in the darwin modules.
   my = {

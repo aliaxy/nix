@@ -20,6 +20,10 @@
     # supported Home Manager programs (bat, starship, ghostty, eza, yazi …).
     catppuccin.url = "github:catppuccin/nix";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
+
+    # agenix: age-encrypted secrets management for Nix systems.
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =

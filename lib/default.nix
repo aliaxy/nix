@@ -37,6 +37,7 @@
         # Home Manager base config and opt-in profile selection
         ../modules/darwin/home.nix
         # Third-party modules
+        inputs.agenix.darwinModules.default
         inputs.nix-homebrew.darwinModules.nix-homebrew
         inputs.home-manager.darwinModules.home-manager
       ]
