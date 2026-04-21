@@ -23,14 +23,7 @@
   };
 
   outputs =
-    inputs@{
-      self,
-      nix-darwin,
-      nixpkgs,
-      nix-homebrew,
-      home-manager,
-      catppuccin,
-    }:
+    inputs@{ self, ... }:
     let
       # Import builder functions (mkDarwinSystem) from lib/
       lib = import ./lib { inherit inputs self; };
