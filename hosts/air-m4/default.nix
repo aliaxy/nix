@@ -26,7 +26,6 @@
 
   my = {
     darwin = {
-      inherit hostname;
       timeZone = "Asia/Shanghai";
 
       dock = {

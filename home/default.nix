@@ -6,7 +6,7 @@
     # Catppuccin home-manager module (injected by inputs)
     inputs.catppuccin.homeModules.catppuccin
     # Theme variables
-    ../themes/catppuccin.nix
+    ./catppuccin.nix
   ];
 
   # This value determines the Home Manager release that your configuration is

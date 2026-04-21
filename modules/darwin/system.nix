@@ -14,12 +14,6 @@ let
 in
 {
   options.my.darwin = {
-    hostname = mkOption {
-      type = types.str;
-      default = hostname;
-      description = "The host name to apply to this macOS machine.";
-    };
-
     timeZone = mkOption {
       type = types.str;
       description = "The time zone to apply to this macOS machine.";
@@ -58,7 +52,7 @@ in
       shell = pkgs.fish;
     };
 
-    networking.hostName = cfg.hostname;
+    networking.hostName = hostname;
     time.timeZone = cfg.timeZone;
 
     # Define the primary user for the macOS system
