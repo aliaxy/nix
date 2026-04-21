@@ -11,6 +11,7 @@
       "html"
       "catppuccin"
       "catppuccin-icons"
+      "lua"
     ];
 
     userSettings = {
