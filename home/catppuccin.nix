@@ -20,5 +20,8 @@ in
     yazi = base // {
       accent = "lavender";
     };
+    zed = base // {
+      icons = base;
+    };
   };
 }

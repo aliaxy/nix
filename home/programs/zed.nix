@@ -9,24 +9,11 @@
       "nix"
       "toml"
       "html"
-      "catppuccin"
-      "catppuccin-icons"
       "lua"
     ];
 
     userSettings = {
       project_name = null;
-
-      theme = {
-        mode = "system";
-        light = "Catppuccin Macchiato";
-        dark = "Catppuccin Macchiato";
-      };
-      icon_theme = {
-        mode = "system";
-        light = "Catppuccin Macchiato";
-        dark = "Zed (Default)";
-      };
 
       buffer_font_family = "JetBrainsMono Nerd Font";
       buffer_font_fallbacks = [
