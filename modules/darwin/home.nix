@@ -1,5 +1,9 @@
-# Home Manager profile selection (driven by nix-darwin module)
-# Defines my.home.profiles.* options and wires them to home-manager imports
+# modules/darwin/home.nix — Home Manager base config and opt-in profile selection.
+#
+# Defines `my.home.profiles.*` options that let each host declare which user
+# environment profiles to activate.  The module wires those options to the
+# corresponding home-manager import list, so hosts never have to touch
+# home-manager internals directly.
 {
   config,
   lib,
@@ -20,6 +24,7 @@ in
   };
 
   config = {
+    # Pass flake inputs and host identity into every Home Manager module.
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;

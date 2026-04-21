@@ -1,4 +1,7 @@
-# macOS system preferences: user, shell, Finder, Dock
+# modules/darwin/system.nix — macOS system preferences
+#
+# Defines my.darwin.* options for timezone, Dock, and user settings.
+# Wires them into nix-darwin's system.defaults and networking.
 {
   config,
   lib,
@@ -17,7 +20,8 @@ in
     timeZone = mkOption {
       type = types.str;
       default = "Asia/Shanghai";
-      description = "The time zone to apply to this macOS machine.";
+      description = "System time zone.";
+      example = "America/New_York";
     };
 
     dock = {
@@ -28,22 +32,21 @@ in
           "right"
         ];
         default = "bottom";
-        description = "Dock screen edge.";
+        description = "Edge of the screen where the Dock appears.";
       };
 
       tileSize = mkOption {
         type = types.int;
-        default = 48;
-        description = "Dock icon size.";
+        default = 64;
+        description = "Dock icon size in pixels.";
       };
 
       extraPersistentApps = mkOption {
         type = types.listOf types.str;
         default = [ ];
-        description = "Host-specific apps appended to the shared Dock entries.";
+        description = "Host-specific app paths appended to the shared Dock entries.";
       };
     };
-
   };
 
   config = {
@@ -55,12 +58,14 @@ in
     networking.hostName = hostname;
     time.timeZone = cfg.timeZone;
 
-    # Define the primary user for the macOS system
+    # Required by nix-darwin for multi-user setups.
     system.primaryUser = username;
-    # Track the current flake revision for darwin-version
+
+    # Expose the flake revision in `darwin-version --json`.
     system.configurationRevision = self.rev or self.dirtyRev or null;
 
-    # Ensure fish is set as the default shell (via dscl)
+    # Set fish as the login shell via dscl, since nix-darwin does not do this
+    # automatically when the shell binary lives outside /etc/shells defaults.
     system.activationScripts.setDefaultShell.text = ''
       fish=/run/current-system/sw/bin/fish
       current=$(dscl . -read /Users/${username} UserShell 2>/dev/null | awk '{print $2}')
@@ -73,8 +78,9 @@ in
     system.defaults = {
       finder = {
         AppleShowAllExtensions = true;
-        FXPreferredViewStyle = "clmv";
+        FXPreferredViewStyle = "clmv"; # Column view
       };
+
       dock = {
         autohide = true;
         orientation = cfg.dock.position;
@@ -85,13 +91,17 @@ in
           "/System/Applications/Mail.app"
         ]
         ++ cfg.dock.extraPersistentApps;
+        # Disable hot corners.
         wvous-tr-corner = 1;
         wvous-tl-corner = 1;
         wvous-bl-corner = 1;
         wvous-br-corner = 1;
       };
+
       NSGlobalDomain = {
+        # Allow dragging windows by holding anywhere on the title bar.
         NSWindowShouldDragOnGesture = true;
+        # Disable window open/close animations for snappier feel.
         NSAutomaticWindowAnimationsEnabled = false;
       };
     };

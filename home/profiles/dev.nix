@@ -1,4 +1,4 @@
-# dev profile - development environment: VCS, toolchains, mirrors
+# Development profile — VCS, language toolchains, and package mirrors.
 { config, pkgs, ... }:
 {
   home.packages = with pkgs; [
@@ -46,7 +46,7 @@
     };
   };
 
-  # Python uv domestic mirror (Tsinghua TUNA)
+  # PyPI mirror via Tsinghua TUNA for faster package downloads in China.
   programs.uv = {
     enable = true;
     settings = {
@@ -59,11 +59,10 @@
     };
   };
 
-  # AI coding assistants
   programs.codex.enable = true;
   programs.claude-code.enable = true;
 
-  # Rust domestic mirror (rsproxy)
+  # Cargo/Rustup mirror via rsproxy for faster downloads in China.
   home.file.".cargo/config.toml".text = ''
     [source.crates-io]
     replace-with = 'rsproxy-sparse'
@@ -77,11 +76,10 @@
     git-fetch-with-cli = true
   '';
 
-  # Domestic mirrors acceleration (Rust / Go)
+  # Rust and Go registry mirrors for faster resolution in China.
   home.sessionVariables = {
     RUSTUP_DIST_SERVER = "https://rsproxy.cn";
     RUSTUP_UPDATE_ROOT = "https://rsproxy.cn/rustup";
     GOPROXY = "https://goproxy.cn,direct";
   };
-
 }

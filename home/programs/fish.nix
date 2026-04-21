@@ -1,10 +1,10 @@
-# Fish shell configuration
+# Fish shell: interactive init, aliases, and host-specific functions
 { hostname, ... }:
 {
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
-      set fish_greeting # Disable greeting message
+      set fish_greeting # suppress the default greeting
       fnm env --use-on-cd --shell fish | source
     '';
 
@@ -23,7 +23,7 @@
 
     functions = {
       drb = {
-        description = "Rebuild Darwin with the ${hostname} flake";
+        description = "Rebuild and switch the ${hostname} nix-darwin configuration";
         body = "sudo darwin-rebuild switch --flake ~/nix#${hostname}";
       };
     };

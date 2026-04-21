@@ -1,21 +1,17 @@
-# base profile - minimal common configuration for all hosts
+# Base profile — core CLI environment shared across all hosts.
 { ... }:
 {
   imports = [
-    # Neovim configuration
     ../programs/nvim/nvim.nix
-    # Shell configuration and alias definitions
     ../programs/fish.nix
-    # Cross-shell customizable prompt
     ../programs/starship.nix
-    # Blazing fast terminal file manager
     ../programs/yazi.nix
   ];
 
-  # bat - cat replacement with syntax highlighting
+  # bat: syntax-highlighted cat replacement
   programs.bat.enable = true;
 
-  # eza - modern ls replacement
+  # eza: modern ls replacement with icons and git integration
   programs.eza = {
     enable = true;
     enableFishIntegration = true;
@@ -29,24 +25,23 @@
     ];
   };
 
-  # zoxide - smart cd replacement
+  # zoxide: frecency-based cd replacement (mapped to `cd`)
   programs.zoxide = {
     enable = true;
     enableFishIntegration = true;
     options = [ "--cmd cd" ];
   };
 
-  # fastfetch - system information display
+  # fastfetch: system information display
   programs.fastfetch = {
     enable = true;
     settings = { };
   };
 
-  # Custom session variables for the base environment
   home.sessionVariables = {
     EZA_CONFIG_DIR = "$HOME/.config/eza";
   };
 
-  # Disable the default login message on macOS/Linux
+  # Suppress the default MOTD on login
   home.file.".hushlogin".text = "";
 }

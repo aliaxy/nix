@@ -1,4 +1,8 @@
-# Homebrew package management (driven by nix-homebrew module)
+# modules/darwin/homebrew.nix
+#
+# Homebrew package management via nix-homebrew.
+# Defines `my.darwin.homebrew.*` options for host-level customisation
+# and wires them into the nix-homebrew / homebrew-nix module options.
 {
   config,
   lib,
@@ -11,29 +15,29 @@ let
 in
 {
   options.my.darwin.homebrew = {
+    # Enable Rosetta 2 so Homebrew can install x86_64 casks on Apple Silicon.
     enableRosetta = mkEnableOption "Rosetta support for Apple Silicon Macs";
 
     extraBrews = mkOption {
       type = types.listOf types.str;
       default = [ ];
-      description = "Additional Homebrew formulae for this host.";
+      description = "Additional Homebrew formulae to install on this host.";
     };
 
     extraCasks = mkOption {
       type = types.listOf types.str;
       default = [ ];
-      description = "Additional Homebrew casks for this host.";
+      description = "Additional Homebrew casks to install on this host.";
     };
 
     extraMasApps = mkOption {
       type = types.attrsOf types.int;
       default = { };
-      description = "Additional App Store apps for this host.";
+      description = "Additional Mac App Store apps to install on this host (name → Apple ID).";
     };
   };
 
   config = {
-    # Base nix-homebrew configuration
     nix-homebrew = {
       enable = true;
       user = username;
@@ -44,11 +48,15 @@ in
     homebrew = {
       enable = true;
       enableFishIntegration = true;
+
       onActivation = {
         autoUpdate = false;
         upgrade = true;
+        # Remove packages that are no longer declared.
         cleanup = "zap";
       };
+
+      # Always upgrade casks even if they self-report as up-to-date.
       greedyCasks = true;
 
       taps = [
@@ -58,6 +66,7 @@ in
 
       brews = cfg.extraBrews;
 
+      # Base casks present on every macOS host.
       casks = [
         "google-chrome"
         "app-cleaner"

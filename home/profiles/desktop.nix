@@ -1,4 +1,4 @@
-# desktop profile - GUI environment exclusive: terminal, editor, window manager
+# Desktop profile — GUI applications and window manager (macOS only).
 { ... }:
 {
   imports = [

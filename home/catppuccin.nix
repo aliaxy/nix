@@ -1,7 +1,9 @@
-# Catppuccin theme unified configuration
-# Centralized management of flavor and accent, program modules only need to import this file
-# flavor options:latte | frappe | macchiato | mocha
-# accent options:blue | flamingo | green | lavender | maroon | mauve | peach | pink | red | rosewater | sapphire | sky | teal | yellow
+# Centralized Catppuccin theme settings for Home Manager programs.
+# All programs share the same flavor; file-related tools use lavender as the accent.
+#
+# Available flavors : latte | frappe | macchiato | mocha
+# Available accents : blue | flamingo | green | lavender | maroon | mauve |
+#                     peach | pink | red | rosewater | sapphire | sky | teal | yellow
 { ... }:
 let
   base = {

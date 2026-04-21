@@ -1,4 +1,4 @@
-# Hardware / Platform-specific configuration
+# Platform and state version for MacBook Air (M-series).
 { ... }:
 {
   nixpkgs.hostPlatform = "aarch64-darwin";

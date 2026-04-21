@@ -1,20 +1,15 @@
-# home-manager configuration entry point
-# Referenced by hosts/... via home-manager.users.*
+# Home Manager entry point — imported by every host via home-manager.users.<name>
 { inputs, ... }:
 {
   imports = [
-    # Catppuccin home-manager module (injected by inputs)
+    # Register the Catppuccin Home Manager module so catppuccin.* options are available
     inputs.catppuccin.homeModules.catppuccin
-    # Theme variables
+    # Centralized Catppuccin theme settings (flavor, accent, per-program toggles)
     ./catppuccin.nix
   ];
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
+  # DO NOT change this value after the initial install, even when upgrading Home Manager.
+  # It pins the state schema version and prevents silent breakage on incompatible releases.
+  # See: https://nix-community.github.io/home-manager/release-notes.html
   home.stateVersion = "25.11";
 }

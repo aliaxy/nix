@@ -1,21 +1,20 @@
-# lib/default.nix - Wrapper functions to keep flake.nix clean
+# Builder functions that abstract away boilerplate for defining new hosts.
 { inputs, self }:
 {
-  # Build a macOS system configuration using nix-darwin
+  # Build a macOS (nix-darwin) system configuration.
   mkDarwinSystem =
     {
-      # The hostname of the machine, must match a directory in hosts/
+      # Must match a directory name under hosts/
       hostname,
-      # The primary user of the machine
+      # Primary user of the machine
       username,
-      # The target architecture, defaults to Apple Silicon
+      # Target architecture; defaults to Apple Silicon
       system ? "aarch64-darwin",
-      # Any extra modules to include in the configuration
+      # Additional modules to merge into the configuration
       extraModules ? [ ],
     }:
     inputs.nix-darwin.lib.darwinSystem {
       inherit system;
-      # Pass these arguments to all modules so they can be used anywhere
       specialArgs = {
         inherit
           inputs
@@ -25,21 +24,20 @@
           ;
       };
       modules = [
-        # Load the host-specific configuration
+        # Host-specific configuration (hardware, overrides)
         (../hosts + "/${hostname}")
-        # Cross-platform common Nix settings
+        # Shared Nix daemon settings
         ../modules/common/nix.nix
-        # macOS system-level packages and default shell
+        # System-level packages, fonts, and shell registration
         ../modules/darwin/packages.nix
-        # macOS system preferences (Dock, Finder, Users)
+        # macOS system preferences (Dock, Finder, users)
         ../modules/darwin/system.nix
         # Homebrew management via nix-homebrew
         ../modules/darwin/homebrew.nix
-        # Home Manager configuration and profile selection
+        # Home Manager base config and opt-in profile selection
         ../modules/darwin/home.nix
-        # Load the nix-homebrew module for managing Homebrew
+        # Third-party modules
         inputs.nix-homebrew.darwinModules.nix-homebrew
-        # Load the home-manager module for managing user environments
         inputs.home-manager.darwinModules.home-manager
       ]
       ++ extraModules;
