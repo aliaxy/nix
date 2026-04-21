@@ -16,8 +16,8 @@ in
   options.my.darwin = {
     timeZone = mkOption {
       type = types.str;
+      default = "Asia/Shanghai";
       description = "The time zone to apply to this macOS machine.";
-      example = "Asia/Shanghai";
     };
 
     dock = {

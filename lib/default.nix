@@ -27,17 +27,20 @@
       modules = [
         # Load the host-specific configuration
         (../hosts + "/${hostname}")
+        # Cross-platform common Nix settings
+        ../modules/common/nix.nix
+        # macOS system-level packages and default shell
+        ../modules/darwin/packages.nix
+        # macOS system preferences (Dock, Finder, Users)
+        ../modules/darwin/system.nix
+        # Homebrew management via nix-homebrew
+        ../modules/darwin/homebrew.nix
+        # Home Manager configuration and profile selection
+        ../modules/darwin/home.nix
         # Load the nix-homebrew module for managing Homebrew
         inputs.nix-homebrew.darwinModules.nix-homebrew
         # Load the home-manager module for managing user environments
         inputs.home-manager.darwinModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            extraSpecialArgs = { inherit inputs username hostname; };
-          };
-        }
       ]
       ++ extraModules;
     };
