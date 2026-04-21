@@ -8,10 +8,24 @@
 
     # Extensions to install from the Zed marketplace.
     extensions = [
+      # Config & DevOps
       "nix"
       "toml"
+      "dockerfile"
+      "make"
+
+      # Web
       "html"
+      "xml"
+      "vue"
+
+      # Languages
       "lua"
+      "fish"
+
+      # Data
+      "sql"
+      "rainbow-csv"
     ];
 
     userSettings = {
