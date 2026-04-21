@@ -1,10 +1,13 @@
-# AeroSpace Window Manager + JankyBorders aesthetic borders
+# AeroSpace tiling window manager + JankyBorders focus-aware window borders.
+# AeroSpace is installed via Homebrew cask; launchd integration is disabled
+# because AeroSpace manages its own login-item registration.
 { ... }:
 {
   programs.aerospace = {
     enable = true;
     launchd.enable = false;
-    package = null; # Managed by Homebrew cask
+    package = null; # installed via Homebrew cask, not Nix
+
     settings = {
       config-version = 2;
 
@@ -12,6 +15,8 @@
       after-startup-command = [ ];
       start-at-login = false;
 
+      # Normalisation keeps the workspace tree tidy by collapsing redundant
+      # container nesting automatically.
       enable-normalization-flatten-containers = true;
       enable-normalization-opposite-orientation-for-nested-containers = true;
 
@@ -19,9 +24,11 @@
       default-root-container-layout = "tiles";
       default-root-container-orientation = "auto";
 
+      # Warp the mouse to the centre of the newly focused monitor.
       on-focused-monitor-changed = [ "move-mouse monitor-lazy-center" ];
       automatically-unhide-macos-hidden-apps = false;
 
+      # Named workspaces: 1-9 for general use, lettered for pinned apps.
       persistent-workspaces = [
         "1"
         "2"
@@ -39,6 +46,7 @@
 
       key-mapping.preset = "qwerty";
 
+      # ── Gaps ────────────────────────────────────────────────────────────────
       gaps = {
         inner.horizontal = 10;
         inner.vertical = 10;
@@ -49,22 +57,28 @@
       };
 
       mode.main.binding = {
+        # ── Layout ────────────────────────────────────────────────────────────
         alt-slash = "layout tiles horizontal vertical";
         alt-comma = "layout accordion horizontal vertical";
+        alt-backslash = "layout floating tiling";
 
+        # ── Focus (vi-style) ──────────────────────────────────────────────────
         alt-h = "focus left";
         alt-j = "focus down";
         alt-k = "focus up";
         alt-l = "focus right";
 
+        # ── Move window ───────────────────────────────────────────────────────
         alt-shift-h = "move left";
         alt-shift-j = "move down";
         alt-shift-k = "move up";
         alt-shift-l = "move right";
 
+        # ── Resize ────────────────────────────────────────────────────────────
         alt-shift-minus = "resize smart -50";
         alt-shift-equal = "resize smart +50";
 
+        # ── App shortcuts (switch workspace + launch if not running) ──────────
         alt-enter = [
           "workspace 1"
           "exec-and-forget open -a Ghostty"
@@ -79,6 +93,7 @@
         alt-s = "exec-and-forget open -a 'System Settings'";
         alt-z = "exec-and-forget open -a Zed";
 
+        # ── Workspace switch (numeric) ────────────────────────────────────────
         alt-1 = "workspace 1";
         alt-2 = "workspace 2";
         alt-3 = "workspace 3";
@@ -89,6 +104,7 @@
         alt-8 = "workspace 8";
         alt-9 = "workspace 9";
 
+        # ── Workspace switch (lettered, pinned apps) ──────────────────────────
         alt-q = [
           "workspace Q"
           "exec-and-forget open -a QQ"
@@ -118,6 +134,7 @@
           "exec-and-forget open -a 'Clash Verge'"
         ];
 
+        # ── Move window to workspace (numeric) ────────────────────────────────
         alt-shift-1 = [
           "move-node-to-workspace 1"
           "workspace 1"
@@ -155,6 +172,7 @@
           "workspace 9"
         ];
 
+        # ── Move window to workspace (lettered) ───────────────────────────────
         alt-shift-q = [
           "move-node-to-workspace Q"
           "workspace Q"
@@ -188,20 +206,21 @@
           "workspace V"
         ];
 
+        # ── Window controls ───────────────────────────────────────────────────
         alt-shift-f = "fullscreen";
-
         alt-tab = "workspace-back-and-forth";
         alt-shift-tab = "move-workspace-to-monitor --wrap-around next";
 
+        # Enter service mode for advanced operations.
         alt-shift-semicolon = "mode service";
 
+        # Suppress macOS default hide-window shortcuts to avoid conflicts.
         cmd-h = [ ];
         cmd-alt-h = [ ];
-
-        alt-backslash = "layout floating tiling";
-
       };
 
+      # ── Service mode ────────────────────────────────────────────────────────
+      # Accessible via alt-shift-; — used for infrequent tree operations.
       mode.service.binding = {
         esc = [
           "reload-config"
@@ -238,6 +257,8 @@
         ];
       };
 
+      # ── Window rules ────────────────────────────────────────────────────────
+      # Force specific apps into floating layout; they don't benefit from tiling.
       on-window-detected = [
         {
           "if".app-id = "com.apple.finder";
@@ -267,15 +288,18 @@
     };
   };
 
+  # ── JankyBorders ────────────────────────────────────────────────────────────
+  # Draws rounded, coloured borders around windows to indicate focus state.
+  # Colours are Catppuccin Macchiato: lavender (active) / surface1 (inactive).
   services.jankyborders = {
     enable = true;
     settings = {
       style = "round";
       width = 6.0;
       blur_radius = 12.0;
-      active_color = "0xffb7bdf8";
-      inactive_color = "0xff6e738d";
-      background_color = "0x00000000";
+      active_color = "0xffb7bdf8"; # lavender
+      inactive_color = "0xff6e738d"; # surface1
+      background_color = "0x00000000"; # transparent
     };
   };
 }

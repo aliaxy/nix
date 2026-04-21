@@ -2,10 +2,10 @@
 { config, pkgs, ... }:
 {
   home.packages = with pkgs; [
-    nil
-    nixd
-    fnm
-    rustup
+    nil # Nix language server (used by editors via LSP)
+    nixd # Alternative Nix language server with better diagnostics
+    fnm # Fast Node.js version manager
+    rustup # Rust toolchain installer (manages rustc, cargo, etc.)
   ];
 
   programs.ssh = {

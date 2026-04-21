@@ -1,10 +1,12 @@
-# Zed editor complete configuration
+# Zed editor — complete user settings configuration.
+# The package is managed by Homebrew cask; Home Manager only writes the config.
 { ... }:
 {
   programs.zed-editor = {
     enable = true;
-    package = null; # Managed by Homebrew cask
+    package = null; # installed via Homebrew cask, not Nix
 
+    # Extensions to install from the Zed marketplace.
     extensions = [
       "nix"
       "toml"
@@ -15,6 +17,7 @@
     userSettings = {
       project_name = null;
 
+      # ── Buffer font ─────────────────────────────────────────────────────────
       buffer_font_family = "JetBrainsMono Nerd Font";
       buffer_font_fallbacks = [
         "JetBrainsMono Nerd Font"
@@ -24,6 +27,7 @@
       buffer_font_size = 13;
       buffer_font_weight = 400;
 
+      # ── UI font ──────────────────────────────────────────────────────────────
       ui_font_family = ".SystemUIFont";
       ui_font_fallbacks = [
         "JetBrainsMono Nerd Font"
@@ -33,17 +37,23 @@
       ui_font_weight = 500;
       ui_font_size = 13;
 
+      # ── Pane / layout ────────────────────────────────────────────────────────
       active_pane_modifiers = {
         border_size = 0.8;
         inactive_opacity = 1.0;
       };
 
+      # ── Editor behaviour ─────────────────────────────────────────────────────
       use_system_path_prompts = true;
       use_system_prompts = true;
       current_line_highlight = "gutter";
       auto_signature_help = false;
       use_system_window_tabs = false;
+      formatter = "language_server";
+      tab_size = 2;
+      auto_update = false; # updates are managed externally via Homebrew
 
+      # ── Title bar ────────────────────────────────────────────────────────────
       title_bar = {
         show_branch_icon = true;
         show_branch_name = true;
@@ -54,6 +64,7 @@
         show_menus = false;
       };
 
+      # ── Scrollbar ────────────────────────────────────────────────────────────
       scrollbar = {
         axes = {
           horizontal = false;
@@ -61,14 +72,17 @@
         };
       };
 
+      # ── Gutter ───────────────────────────────────────────────────────────────
       gutter = {
         min_line_number_digits = 2;
       };
 
+      # ── Indent guides ────────────────────────────────────────────────────────
       indent_guides = {
         coloring = "indent_aware";
       };
 
+      # ── Search ───────────────────────────────────────────────────────────────
       search = {
         button = true;
         whole_word = false;
@@ -78,6 +92,7 @@
         center_on_match = false;
       };
 
+      # ── Inlay hints ──────────────────────────────────────────────────────────
       inlay_hints = {
         enabled = true;
         show_type_hints = false;
@@ -96,12 +111,14 @@
         };
       };
 
+      # ── Panels ───────────────────────────────────────────────────────────────
       collaboration_panel = {
         button = false;
         dock = "left";
         default_width = 240;
       };
 
+      # ── AI agent ─────────────────────────────────────────────────────────────
       agent = {
         default_profile = "write";
         default_model = {
@@ -114,6 +131,7 @@
         model_parameters = [ ];
       };
 
+      # ── Tab bar ──────────────────────────────────────────────────────────────
       tab_bar = {
         show = true;
         show_nav_history_buttons = true;
@@ -133,16 +151,13 @@
         enable_preview_file_from_code_navigation = true;
       };
 
-      formatter = "language_server";
-      tab_size = 2;
-
+      # ── Telemetry ────────────────────────────────────────────────────────────
       telemetry = {
         diagnostics = false;
         metrics = false;
       };
 
-      auto_update = false;
-
+      # ── Diagnostics ──────────────────────────────────────────────────────────
       diagnostics = {
         inline = {
           enabled = true;
@@ -153,8 +168,10 @@
         };
       };
 
+      # ── Edit predictions (AI completions) ────────────────────────────────────
       edit_predictions = {
         provider = "zed";
+        # Never send secrets or credentials to the prediction backend.
         disabled_globs = [
           "**/.env*"
           "**/*.pem"
@@ -175,6 +192,7 @@
         };
       };
 
+      # ── Status bar ───────────────────────────────────────────────────────────
       status_bar = {
         "experimental.show" = true;
         active_language_button = true;
@@ -182,11 +200,13 @@
         line_endings_button = true;
       };
 
+      # ── Integrated terminal ──────────────────────────────────────────────────
       terminal = {
         blinking = "on";
         cursor_shape = "bar";
         button = false;
         line_height = "comfortable";
+        # Auto-activate Python virtual environments found in common directories.
         detect_venv = {
           on = {
             directories = [
@@ -201,10 +221,12 @@
         };
       };
 
+      # ── Completions ──────────────────────────────────────────────────────────
       completions = {
         words_min_length = 1;
       };
 
+      # ── Per-language overrides ───────────────────────────────────────────────
       languages = {
         C = {
           format_on_save = "on";
@@ -226,18 +248,20 @@
           };
         };
         "Git Commit" = {
+          # Enforce the 72-character subject-line convention.
           allow_rewrap = "anywhere";
           soft_wrap = "editor_width";
           preferred_line_length = 72;
         };
         Go = {
-          hard_tabs = true;
+          hard_tabs = true; # gofmt requires tabs
           code_actions_on_format = {
             "source.organizeImports" = true;
           };
           language_servers = [ "gopls" ];
         };
         JavaScript = {
+          # Prefer vtsls over the default typescript-language-server.
           language_servers = [
             "!typescript-language-server"
             "vtsls"
@@ -284,9 +308,11 @@
         };
       };
 
+      # ── Language model providers ─────────────────────────────────────────────
+      # API keys are read from the system keychain at runtime; never hardcode them.
       language_models = {
         anthropic = {
-          api_url = "https://api.aipaibox.com";
+          api_url = "https://api.aipaibox.com"; # reverse-proxy for China access
         };
         bedrock = { };
         deepseek = {
@@ -326,14 +352,17 @@
         "zed.dev" = { };
       };
 
+      # ── LSP overrides ────────────────────────────────────────────────────────
       lsp = {
         clangd = {
           initialization_options = {
+            # Default to C++23 for files without a compile_commands.json.
             fallbackFlags = [ "-std=c++23" ];
           };
         };
       };
 
+      # ── DAP (debug adapter) ──────────────────────────────────────────────────
       dap = {
         CodeLLDB = {
           env = {
