@@ -12,6 +12,7 @@
 let
   inherit (lib) mkEnableOption mkOption types;
   cfg = config.my.darwin.homebrew;
+  roleApps = config.my.darwin.appBundles;
 in
 {
   options.my.darwin.homebrew = {
@@ -30,10 +31,22 @@ in
       description = "Additional Homebrew casks to install on this host.";
     };
 
+    excludeCasks = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      description = "Role-derived Homebrew casks to exclude on this host.";
+    };
+
     extraMasApps = mkOption {
       type = types.attrsOf types.int;
       default = { };
       description = "Additional Mac App Store apps to install on this host (name → Apple ID).";
+    };
+
+    excludeMasApps = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      description = "Role-derived Mac App Store app names to exclude on this host.";
     };
   };
 
@@ -66,21 +79,9 @@ in
 
       brews = cfg.extraBrews;
 
-      # Base casks present on every macOS host.
-      casks = [
-        "keka"
-        "ghostty"
-        "google-chrome"
-        "app-cleaner"
-        "clash-verge-rev"
-        "cc-switch"
-        "sf-symbols"
-        "font-sf-pro"
-        "font-sf-mono"
-      ]
-      ++ cfg.extraCasks;
+      casks = builtins.filter (cask: !(builtins.elem cask cfg.excludeCasks)) roleApps.casks ++ cfg.extraCasks;
 
-      masApps = cfg.extraMasApps;
+      masApps = roleApps.masApps // cfg.extraMasApps;
     };
   };
 }

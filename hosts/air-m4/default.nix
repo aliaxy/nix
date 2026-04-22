@@ -17,9 +17,18 @@
   };
 
   # Host-specific option values.
-  # These are merged with the base lists defined in the darwin modules.
+  # These are merged with the reusable base lists defined in the darwin modules.
   my = {
     darwin = {
+      roles = {
+        essentials = true;
+        development = true;
+        productivity = true;
+        communication = true;
+        office = true;
+        iWork = true;
+      };
+
       dock.extraPersistentApps = [
         "/System/Applications/Reminders.app"
         "/System/Applications/iPhone Mirroring.app"
@@ -34,28 +43,8 @@
 
       homebrew = {
         enableRosetta = true; # Apple Silicon: install the Intel prefix for Rosetta 2
-        extraCasks = [
-          "aerospace"
-          "typora"
-          "notion"
-          "sublime-text"
-          "zed"
-          "antigravity"
-          "orbstack"
-          "qq"
-          "wechat"
-          "wechatwork"
-          "feishu"
-          "tencent-meeting"
-          "microsoft-word"
-          "microsoft-excel"
-          "microsoft-powerpoint"
+        excludeCasks = [
         ];
-        extraMasApps = {
-          "Pages" = 361309726;
-          "Keynote" = 361285480;
-          "Numbers" = 361304891;
-        };
       };
     };
   };
