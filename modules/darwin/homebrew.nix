@@ -68,6 +68,8 @@ in
 
       # Base casks present on every macOS host.
       casks = [
+        "keka"
+        "ghostty"
         "google-chrome"
         "app-cleaner"
         "clash-verge-rev"

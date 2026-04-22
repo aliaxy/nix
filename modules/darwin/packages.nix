@@ -3,8 +3,6 @@
 {
   environment.systemPackages = with pkgs; [
     mas # Mac App Store CLI
-    keka # Archive manager
-    ghostty-bin # Terminal emulator (system-wide binary)
   ];
 
   fonts.packages = [

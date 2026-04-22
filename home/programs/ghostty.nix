@@ -1,10 +1,10 @@
 # Ghostty terminal emulator — managed by Home Manager, installed via Homebrew cask.
-{ pkgs, ... }:
+{ ... }:
 {
   programs.ghostty = {
     enable = true;
     enableFishIntegration = true;
-    package = pkgs.ghostty-bin;
+    package = null; # installed via Homebrew cask, not Nix
 
     settings = {
       language = "en";
