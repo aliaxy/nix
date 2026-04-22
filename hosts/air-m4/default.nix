@@ -23,7 +23,7 @@
       dock.extraPersistentApps = [
         "/System/Applications/Reminders.app"
         "/System/Applications/iPhone Mirroring.app"
-        "/Applications/Nix Apps/Ghostty.app"
+        "/Applications/Ghostty.app"
         "/Applications/Google Chrome.app"
         "/Applications/Notion.app"
         "/Applications/Sublime Text.app"

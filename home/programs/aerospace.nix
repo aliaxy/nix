@@ -117,6 +117,10 @@
           "workspace E"
           "exec-and-forget open -a Feishu"
         ];
+        alt-u = [
+          "workspace U"
+          "exec-and-forget open -a 'App Cleaner 9'"
+        ];
         alt-i = [
           "workspace I"
           "exec-and-forget open -a 'Microsoft Word'"
@@ -184,6 +188,10 @@
         alt-shift-e = [
           "move-node-to-workspace E"
           "workspace E"
+        ];
+        alt-shift-u = [
+          "move-node-to-workspace U"
+          "workspace U"
         ];
         alt-shift-i = [
           "move-node-to-workspace I"

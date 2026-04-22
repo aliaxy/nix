@@ -51,7 +51,7 @@ in
 
       onActivation = {
         autoUpdate = false;
-        upgrade = true;
+        upgrade = false;
         # Remove packages that are no longer declared.
         cleanup = "zap";
       };
