@@ -34,6 +34,10 @@
         truncation_length = 4;
         style = "bold lavender";
       };
+
+      nix_shell = {
+        symbol = "❄️ ";
+      };
     };
   };
 }

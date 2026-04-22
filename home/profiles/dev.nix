@@ -4,7 +4,6 @@
   home.packages = with pkgs; [
     nil # Nix language server (used by editors via LSP)
     nixd # Alternative Nix language server with better diagnostics
-    fnm # Fast Node.js version manager
     rustup # Rust toolchain installer (manages rustc, cargo, etc.)
   ];
 
@@ -36,6 +35,12 @@
     enable = true;
     enableFishIntegration = true;
     nix-direnv.enable = true;
+
+    config = {
+      global = {
+        hide_env_diff = true;
+      };
+    };
   };
 
   programs.go = {

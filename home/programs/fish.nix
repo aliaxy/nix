@@ -5,7 +5,6 @@
     enable = true;
     interactiveShellInit = ''
       set fish_greeting # suppress the default greeting
-      fnm env --use-on-cd --shell fish | source
     '';
 
     shellAliases = {
