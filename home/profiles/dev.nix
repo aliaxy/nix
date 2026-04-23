@@ -4,7 +4,6 @@
   home.packages = with pkgs; [
     nil # Nix language server (used by editors via LSP)
     nixd # Alternative Nix language server with better diagnostics
-    rustup # Rust toolchain installer (manages rustc, cargo, etc.)
   ];
 
   programs.ssh = {
@@ -83,8 +82,6 @@
 
   # Rust and Go registry mirrors for faster resolution in China.
   home.sessionVariables = {
-    RUSTUP_DIST_SERVER = "https://rsproxy.cn";
-    RUSTUP_UPDATE_ROOT = "https://rsproxy.cn/rustup";
     GOPROXY = "https://goproxy.cn,direct";
   };
 }

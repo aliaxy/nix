@@ -35,8 +35,20 @@
         style = "bold lavender";
       };
 
+      username = {
+        show_always = true;
+        format = "[$user]($style)@";
+        style_user = "bold blue";
+      };
+
+      hostname = {
+        ssh_only = false;
+        format = "[$hostname]($style) ";
+        style = "bold teal";
+      };
+
       nix_shell = {
-        symbol = "❄️ ";
+        heuristic = true;
       };
     };
   };

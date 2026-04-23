@@ -7,7 +7,6 @@
   lib,
   pkgs,
   username,
-  hostname,
   self,
   ...
 }:
@@ -55,7 +54,6 @@ in
       shell = pkgs.fish;
     };
 
-    networking.hostName = hostname;
     time.timeZone = cfg.timeZone;
 
     # Required by nix-darwin for multi-user setups.
