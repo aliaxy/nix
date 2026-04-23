@@ -9,7 +9,6 @@ Use Nix commands from the repository root:
 - `nix flake show` checks exported outputs and attribute names.
 - `nix build .#darwinConfigurations.air-m4.system` builds the active macOS system closure without switching.
 - `darwin-rebuild switch --flake .#air-m4` applies the `air-m4` host configuration.
-- `nix eval .#darwinConfigurations.air-m4.config.my.darwin.timeZone --raw` is a quick way to validate option values during review.
 
 If your shell is managed by this repo, `drb` is the shortcut for rebuilding the current Darwin host.
 

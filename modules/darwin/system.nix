@@ -1,7 +1,7 @@
 # modules/darwin/system.nix — macOS system preferences
 #
-# Defines my.darwin.* options for timezone, Dock, and user settings.
-# Wires them into nix-darwin's system.defaults and networking.
+# Defines my.darwin.* options for Dock and user settings.
+# Wires them into nix-darwin's system.defaults.
 {
   config,
   lib,
@@ -16,13 +16,6 @@ let
 in
 {
   options.my.darwin = {
-    timeZone = mkOption {
-      type = types.str;
-      default = "Asia/Shanghai";
-      description = "System time zone.";
-      example = "America/New_York";
-    };
-
     dock = {
       position = mkOption {
         type = types.enum [
@@ -53,8 +46,6 @@ in
       home = "/Users/${username}";
       shell = pkgs.fish;
     };
-
-    time.timeZone = cfg.timeZone;
 
     # Required by nix-darwin for multi-user setups.
     system.primaryUser = username;
