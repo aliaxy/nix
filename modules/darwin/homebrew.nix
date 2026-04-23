@@ -13,6 +13,15 @@ let
   inherit (lib) mkEnableOption mkOption types;
   cfg = config.my.darwin.homebrew;
   roleApps = config.my.darwin.appBundles;
+  mkCask =
+    name:
+    if builtins.elem name cfg.nonGreedyCasks then
+      {
+        inherit name;
+        greedy = false;
+      }
+    else
+      name;
 in
 {
   options.my.darwin.homebrew = {
@@ -29,6 +38,12 @@ in
       type = types.listOf types.str;
       default = [ ];
       description = "Additional Homebrew casks to install on this host.";
+    };
+
+    nonGreedyCasks = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      description = "Homebrew casks that should opt out of the global greedy upgrade behavior on this host.";
     };
 
     excludeCasks = mkOption {
@@ -64,7 +79,7 @@ in
 
       onActivation = {
         autoUpdate = false;
-        upgrade = false;
+        upgrade = true;
         # Remove packages that are no longer declared.
         cleanup = "zap";
       };
@@ -79,7 +94,9 @@ in
 
       brews = cfg.extraBrews;
 
-      casks = builtins.filter (cask: !(builtins.elem cask cfg.excludeCasks)) roleApps.casks ++ cfg.extraCasks;
+      casks =
+        map mkCask (builtins.filter (cask: !(builtins.elem cask cfg.excludeCasks)) roleApps.casks)
+        ++ map mkCask cfg.extraCasks;
 
       masApps = roleApps.masApps // cfg.extraMasApps;
     };
