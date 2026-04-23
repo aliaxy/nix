@@ -39,7 +39,6 @@
         "7"
         "8"
         "9"
-        "10"
       ];
 
       on-mode-changed = [ ];
@@ -91,7 +90,6 @@
         alt-a = "exec-and-forget open -a 'Activity Monitor'";
         alt-f = "exec-and-forget open -a Finder";
         alt-s = "exec-and-forget open -a 'System Settings'";
-        alt-z = "exec-and-forget open -a Zed";
 
         # ── Workspace switch (numeric) ────────────────────────────────────────
         alt-1 = "workspace 1";
@@ -103,6 +101,7 @@
         alt-7 = "workspace 7";
         alt-8 = "workspace 8";
         alt-9 = "workspace 9";
+        alt-0 = "workspace 10";
 
         # ── Workspace switch (lettered, pinned apps) ──────────────────────────
         alt-q = [
@@ -132,6 +131,10 @@
         alt-p = [
           "workspace P"
           "exec-and-forget open -a 'Microsoft PowerPoint'"
+        ];
+        alt-z = [
+          "workspace Z"
+          "exec-and-forget open -a Zed"
         ];
         alt-v = [
           "workspace V"
@@ -175,6 +178,10 @@
           "move-node-to-workspace 9"
           "workspace 9"
         ];
+        alt-shift-0 = [
+          "move-node-to-workspace 10"
+          "workspace 10"
+        ];
 
         # ── Move window to workspace (lettered) ───────────────────────────────
         alt-shift-q = [
@@ -205,9 +212,9 @@
           "move-node-to-workspace P"
           "workspace P"
         ];
-        alt-shift-a = [
-          "move-node-to-workspace A"
-          "workspace A"
+        alt-shift-z = [
+          "move-node-to-workspace Z"
+          "workspace Z"
         ];
         alt-shift-v = [
           "move-node-to-workspace V"
@@ -291,6 +298,10 @@
         {
           "if".app-id = "com.tencent.WeWorkMac";
           run = [ "layout floating" ];
+        }
+        {
+          "if".app-id = "dev.zed.Zed";
+          run = [ "layout accordion vertical" ];
         }
       ];
     };
