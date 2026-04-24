@@ -20,7 +20,7 @@
   # These are merged with the reusable base lists defined in the darwin modules.
   my = {
     darwin = {
-      roles = {
+      suites = {
         essentials = true;
         development = true;
         productivity = true;

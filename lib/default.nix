@@ -28,7 +28,7 @@
         (../hosts + "/${hostname}")
         # Shared Nix daemon settings
         ../modules/common/nix.nix
-        # Reusable macOS GUI app bundles and role toggles
+        # Reusable macOS GUI app bundles and suite toggles
         ../modules/darwin/apps.nix
         # System-level packages, fonts, and shell registration
         ../modules/darwin/packages.nix

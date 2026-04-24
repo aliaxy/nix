@@ -1,7 +1,7 @@
 # modules/darwin/apps.nix
 #
 # Reusable GUI app bundles for macOS hosts.
-# Hosts opt into high-level roles instead of duplicating long cask lists in
+# Hosts opt into high-level suites instead of duplicating long cask lists in
 # every host file.
 {
   config,
@@ -10,10 +10,10 @@
 }:
 let
   inherit (lib) mkEnableOption mkOption types;
-  roleCfg = config.my.darwin.roles;
+  suiteCfg = config.my.darwin.suites;
   homebrewCfg = config.my.darwin.homebrew;
-  roleMasApps = lib.mkMerge [
-    (lib.optionalAttrs roleCfg.iWork {
+  suiteMasApps = lib.mkMerge [
+    (lib.optionalAttrs suiteCfg.iWork {
       "Pages" = 361309726;
       "Keynote" = 361285480;
       "Numbers" = 361304891;
@@ -22,7 +22,7 @@ let
 in
 {
   options = {
-    my.darwin.roles = {
+    my.darwin.suites = {
       essentials = mkEnableOption "shared desktop essentials (browser, terminal, fonts, utilities)";
       development = mkEnableOption "GUI development tools (window manager, editors, containers)";
       productivity = mkEnableOption "writing and knowledge-work apps";
@@ -36,14 +36,14 @@ in
         type = types.listOf types.str;
         internal = true;
         default = [ ];
-        description = "Resolved Homebrew casks enabled by the selected Darwin roles.";
+        description = "Resolved Homebrew casks enabled by the selected Darwin suites.";
       };
 
       masApps = mkOption {
         type = types.attrsOf types.int;
         internal = true;
         default = { };
-        description = "Resolved Mac App Store apps enabled by the selected Darwin roles.";
+        description = "Resolved Mac App Store apps enabled by the selected Darwin suites.";
       };
     };
   };
@@ -51,7 +51,7 @@ in
   config.my.darwin.appBundles = {
     casks = lib.unique (
       lib.flatten [
-        (lib.optionals roleCfg.essentials [
+        (lib.optionals suiteCfg.essentials [
           "keka"
           "ghostty"
           "google-chrome"
@@ -62,25 +62,25 @@ in
           "font-sf-pro"
           "font-sf-mono"
         ])
-        (lib.optionals roleCfg.development [
+        (lib.optionals suiteCfg.development [
           "sublime-text"
           "zed"
           "antigravity"
           "orbstack"
         ])
-        (lib.optionals roleCfg.productivity [
+        (lib.optionals suiteCfg.productivity [
           "aerospace"
           "notion"
           "typora"
         ])
-        (lib.optionals roleCfg.communication [
+        (lib.optionals suiteCfg.communication [
           "qq"
           "wechat"
           "wechatwork"
           "feishu"
           "tencent-meeting"
         ])
-        (lib.optionals roleCfg.office [
+        (lib.optionals suiteCfg.office [
           "microsoft-word"
           "microsoft-excel"
           "microsoft-powerpoint"
@@ -88,6 +88,6 @@ in
       ]
     );
 
-    masApps = lib.filterAttrs (name: _: !(builtins.elem name homebrewCfg.excludeMasApps)) roleMasApps;
+    masApps = lib.filterAttrs (name: _: !(builtins.elem name homebrewCfg.excludeMasApps)) suiteMasApps;
   };
 }

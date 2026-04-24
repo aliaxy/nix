@@ -31,8 +31,8 @@ let
     }
   );
 
-  # role casks are plain strings; extraCasks may be strings or attrsets.
-  # Build attrset maps keyed by name so that extraCasks overrides role casks
+  # suite casks are plain strings; extraCasks may be strings or attrsets.
+  # Build attrset maps keyed by name so that extraCasks overrides suite casks
   # with the same name via //.
   roleCaskAttrs = builtins.listToAttrs (
     map (name: {
