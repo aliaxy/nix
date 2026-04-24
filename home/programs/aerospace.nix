@@ -288,6 +288,10 @@
           run = [ "layout floating" ];
         }
         {
+          "if".app-id = "com.apple.weather";
+          run = [ "layout floating" ];
+        }
+        {
           "if".app-id = "com.tencent.qq";
           run = [ "layout floating" ];
         }

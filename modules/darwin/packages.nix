@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     mas # Mac App Store CLI
+    ascii-image-converter # ASCII art converter
   ];
 
   fonts.packages = [

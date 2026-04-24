@@ -348,7 +348,7 @@
           api_url = "https://openrouter.ai/api/v1";
         };
         openai = {
-          api_url = "https://api.openai.com/v1";
+          api_url = "https://api.aipaibox.com/v1";
         };
         openai_compatible = { };
         opencode = {
