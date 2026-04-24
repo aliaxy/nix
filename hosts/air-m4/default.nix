@@ -43,10 +43,19 @@
 
       homebrew = {
         enableRosetta = true; # Apple Silicon: install the Intel prefix for Rosetta 2
-        nonGreedyCasks = [
-          "microsoft-word"
-          "microsoft-excel"
-          "microsoft-powerpoint"
+        extraCasks = [
+          {
+            name = "microsoft-word";
+            greedy = false;
+          }
+          {
+            name = "microsoft-excel";
+            greedy = false;
+          }
+          {
+            name = "microsoft-powerpoint";
+            greedy = false;
+          }
         ];
       };
     };

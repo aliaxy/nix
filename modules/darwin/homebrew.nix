@@ -13,15 +13,40 @@ let
   inherit (lib) mkEnableOption mkOption types;
   cfg = config.my.darwin.homebrew;
   roleApps = config.my.darwin.appBundles;
-  mkCask =
-    name:
-    if builtins.elem name cfg.nonGreedyCasks then
-      {
-        inherit name;
-        greedy = false;
-      }
-    else
-      name;
+
+  caskType = types.coercedTo types.str (name: { inherit name; }) (
+    types.submodule {
+      options = {
+        name = mkOption {
+          type = types.str;
+          description = "The name of the cask to install.";
+        };
+        greedy = mkOption {
+          type = types.nullOr types.bool;
+          default = true;
+          description = "Whether to always upgrade this cask regardless of versioning.";
+        };
+
+      };
+    }
+  );
+
+  # role casks are plain strings; extraCasks may be strings or attrsets.
+  # Build attrset maps keyed by name so that extraCasks overrides role casks
+  # with the same name via //.
+  roleCaskAttrs = builtins.listToAttrs (
+    map (name: {
+      inherit name;
+      value = name;
+    }) (builtins.filter (c: !(builtins.elem c cfg.excludeCasks)) roleApps.casks)
+  );
+  extraCaskAttrs = builtins.listToAttrs (
+    map (c: {
+      name = c.name;
+      value = c;
+    }) cfg.extraCasks
+  );
+  mergedCasks = builtins.attrValues (roleCaskAttrs // extraCaskAttrs);
 in
 {
   options.my.darwin.homebrew = {
@@ -35,15 +60,13 @@ in
     };
 
     extraCasks = mkOption {
-      type = types.listOf types.str;
+      type = types.listOf caskType;
       default = [ ];
-      description = "Additional Homebrew casks to install on this host.";
-    };
-
-    nonGreedyCasks = mkOption {
-      type = types.listOf types.str;
-      default = [ ];
-      description = "Homebrew casks that should opt out of the global greedy upgrade behavior on this host.";
+      description = ''
+        Additional Homebrew casks to install on this host.
+        Accepts plain strings or attrsets matching nix-darwin's homebrew.casks schema.
+        Attrset entries with the same name as a role cask override it.
+      '';
     };
 
     excludeCasks = mkOption {
@@ -94,9 +117,7 @@ in
 
       brews = cfg.extraBrews;
 
-      casks =
-        map mkCask (builtins.filter (cask: !(builtins.elem cask cfg.excludeCasks)) roleApps.casks)
-        ++ map mkCask cfg.extraCasks;
+      casks = mergedCasks;
 
       masApps = roleApps.masApps // cfg.extraMasApps;
     };
