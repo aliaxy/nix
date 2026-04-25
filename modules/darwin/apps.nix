@@ -23,12 +23,12 @@ in
 {
   options = {
     my.darwin.suites = {
-      essentials = mkEnableOption "shared desktop essentials (browser, terminal, fonts, utilities)";
-      development = mkEnableOption "GUI development tools (window manager, editors, containers)";
+      essentials   = mkEnableOption "shared desktop essentials (browser, terminal, fonts, utilities)";
+      development  = mkEnableOption "GUI development tools (window manager, editors, containers)";
       productivity = mkEnableOption "writing and knowledge-work apps";
       communication = mkEnableOption "chat and meeting apps";
-      office = mkEnableOption "Microsoft Office desktop apps";
-      iWork = mkEnableOption "Apple iWork apps from the Mac App Store";
+      office       = mkEnableOption "Microsoft Office desktop apps";
+      iWork        = mkEnableOption "Apple iWork apps from the Mac App Store";
     };
 
     my.darwin.appBundles = {
@@ -69,16 +69,12 @@ in
           "orbstack"
         ])
         (lib.optionals suiteCfg.productivity [
-          "aerospace"
           "notion"
           "typora"
         ])
         (lib.optionals suiteCfg.communication [
           "qq"
           "wechat"
-          "wechatwork"
-          "feishu"
-          "tencent-meeting"
         ])
         (lib.optionals suiteCfg.office [
           "microsoft-word"

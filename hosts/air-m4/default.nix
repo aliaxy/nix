@@ -44,6 +44,10 @@
       homebrew = {
         enableRosetta = true; # Apple Silicon: install the Intel prefix for Rosetta 2
         extraCasks = [
+          "aerospace"
+          "feishu"
+          "tencent-meeting"
+          "wechatwork"
           {
             name = "microsoft-word";
             greedy = false;
