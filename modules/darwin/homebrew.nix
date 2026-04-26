@@ -12,7 +12,7 @@
 let
   inherit (lib) mkEnableOption mkOption types;
   cfg = config.my.darwin.homebrew;
-  roleApps = config.my.darwin.appBundles;
+  suiteApps = config.my.darwin.appBundles;
 
   caskType = types.coercedTo types.str (name: { inherit name; }) (
     types.submodule {
@@ -26,7 +26,6 @@ let
           default = true;
           description = "Whether to always upgrade this cask regardless of versioning.";
         };
-
       };
     }
   );
@@ -34,11 +33,11 @@ let
   # suite casks are plain strings; extraCasks may be strings or attrsets.
   # Build attrset maps keyed by name so that extraCasks overrides suite casks
   # with the same name via //.
-  roleCaskAttrs = builtins.listToAttrs (
+  suiteCaskAttrs = builtins.listToAttrs (
     map (name: {
       inherit name;
       value = name;
-    }) (builtins.filter (c: !(builtins.elem c cfg.excludeCasks)) roleApps.casks)
+    }) (builtins.filter (c: !(builtins.elem c cfg.excludeCasks)) suiteApps.casks)
   );
   extraCaskAttrs = builtins.listToAttrs (
     map (c: {
@@ -46,7 +45,7 @@ let
       value = c;
     }) cfg.extraCasks
   );
-  mergedCasks = builtins.attrValues (roleCaskAttrs // extraCaskAttrs);
+  mergedCasks = builtins.attrValues (suiteCaskAttrs // extraCaskAttrs);
 in
 {
   options.my.darwin.homebrew = {
@@ -65,14 +64,14 @@ in
       description = ''
         Additional Homebrew casks to install on this host.
         Accepts plain strings or attrsets matching nix-darwin's homebrew.casks schema.
-        Attrset entries with the same name as a role cask override it.
+        Attrset entries with the same name as a suite cask override it.
       '';
     };
 
     excludeCasks = mkOption {
       type = types.listOf types.str;
       default = [ ];
-      description = "Role-derived Homebrew casks to exclude on this host.";
+      description = "Suite-derived Homebrew casks to exclude on this host.";
     };
 
     extraMasApps = mkOption {
@@ -84,7 +83,7 @@ in
     excludeMasApps = mkOption {
       type = types.listOf types.str;
       default = [ ];
-      description = "Role-derived Mac App Store app names to exclude on this host.";
+      description = "Suite-derived Mac App Store app names to exclude on this host.";
     };
   };
 
@@ -119,7 +118,7 @@ in
 
       casks = mergedCasks;
 
-      masApps = roleApps.masApps // cfg.extraMasApps;
+      masApps = suiteApps.masApps // cfg.extraMasApps;
     };
   };
 }
