@@ -32,8 +32,8 @@
       # ── Window ──────────────────────────────────────────────────────────────
       window-decoration = true;
       window-title-font-family = ""; # inherit from font-family
-      window-padding-x = 12;
-      window-padding-y = 10;
+      window-padding-x = 5;
+      window-padding-y = 5;
       window-padding-balance = true; # keep padding symmetric across splits
       window-step-resize = true; # snap resize to cell boundaries
       window-save-state = "default";
@@ -42,7 +42,7 @@
 
       # ── macOS ────────────────────────────────────────────────────────────────
       macos-icon = "official";
-      macos-titlebar-style = "tabs"; # show tabs in the native title bar
+      macos-titlebar-style = "hidden"; # show tabs in the native title bar
     };
   };
 }
