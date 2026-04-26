@@ -1,18 +1,17 @@
 # Nix System Configuration
 
-A highly modular, flake-based Nix configuration for managing macOS (via `nix-darwin`) and Linux/NixOS systems. It strictly separates system-level hardware/OS configurations from user-level application setups (via `home-manager`).
+A modular, flake-based Nix configuration for managing macOS via `nix-darwin` with Home Manager integration. It separates system-level host configuration from user-level application setup.
 
 ## 📂 Repository Structure
 
 The configuration is organized into a clean, layered architecture to maximize reusability across different machines and operating systems:
 
 - **`flake.nix`**: The main entry point. It defines inputs and exports host configurations using custom builder functions.
-- **`lib/`**: Contains custom helper functions like `mkDarwinSystem` and `mkNixosSystem` to abstract away boilerplate when defining new hosts.
-- **`hosts/`**: Machine-specific configurations (e.g., `air-m4`, `nixos-desktop`, `wsl`). Each folder represents a unique physical or virtual machine.
+- **`lib/`**: Contains the custom `mkDarwinSystem` helper used to assemble host configurations.
+- **`hosts/`**: Machine-specific configurations. Each folder represents one host, such as `air-m4`.
 - **`modules/`**: System-level configurations (root/admin level).
   - `common/`: Cross-platform OS settings (e.g., enabling Nix flakes).
   - `darwin/`: macOS-specific settings (Homebrew, Dock, Finder, dscl shell configuration).
-  - `nixos/`: Linux/NixOS-specific settings (Bootloader, Networking, Desktop Environments).
 - **`home/`**: User-level configurations managed entirely by Home Manager.
   - `default.nix`: The entry point for Home Manager, importing profiles.
   - `profiles/`: Bundled "suites" of applications that can be imported per host.
@@ -20,7 +19,7 @@ The configuration is organized into a clean, layered architecture to maximize re
     - `dev.nix`: Development environment (Git, Go, SSH, uv, Rustup, AI tools).
     - `desktop.nix`: GUI applications and window managers (Ghostty, Zed, AeroSpace).
   - `programs/`: Complex, single-app configurations extracted for better readability.
-- **`themes/`**: Centralized theming variables (e.g., Catppuccin flavor and accent) shared across multiple applications.
+- `catppuccin.nix`: Centralized theme settings shared across supported Home Manager programs.
 
 ## 🚀 Getting Started
 
@@ -38,7 +37,7 @@ nix run nix-darwin -- switch --flake .#air-m4
 ## 🛠️ Architecture Highlights
 
 - **Opt-in Profiles**: Instead of forcing all packages on every machine, user environments are composed using profiles. A headless Linux server can simply import `base.nix` and `dev.nix`, completely ignoring macOS GUI tools.
-- **Dynamic Variables**: `hostname` and `username` are passed down through the module system via `specialArgs`, avoiding hardcoded paths and making the setup easily adaptable for new machines or users.
+- **Dynamic Variables**: `hostname` and `username` are passed down through the module system via `specialArgs`, avoiding hardcoded paths and making the setup adaptable for new Darwin hosts.
 - **Declarative Everything**: 
   - Mac apps and casks are managed via `nix-homebrew`.
   - System preferences are managed via `nix-darwin`.
