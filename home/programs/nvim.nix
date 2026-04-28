@@ -21,12 +21,4 @@
       fd # fast file finder used by telescope.nvim
     ];
   };
-
-  # Recursively link the entire config/ directory into ~/.config/nvim/.
-  # Using recursive = true creates per-file symlinks so that lazy.nvim can
-  # write lock files and state alongside the read-only Nix store paths.
-  xdg.configFile."nvim" = {
-    source = ./config;
-    recursive = true;
-  };
 }

@@ -40,6 +40,7 @@
           "feishu"
           "tencent-meeting"
           "wechatwork"
+          "codex-app"
           {
             name = "microsoft-word";
             greedy = false;
