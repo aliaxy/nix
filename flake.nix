@@ -20,7 +20,6 @@
     # supported Home Manager programs (bat, starship, ghostty, eza, yazi …).
     catppuccin.url = "github:catppuccin/nix";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
-
   };
 
   outputs =
