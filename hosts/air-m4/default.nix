@@ -41,6 +41,7 @@
           "tencent-meeting"
           "wechatwork"
           "codex-app"
+          "vibe-island"
           {
             name = "microsoft-word";
             greedy = false;
