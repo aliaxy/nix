@@ -8,7 +8,7 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    withPython3 = false;
+    withPython3 = true;
     withRuby = false;
 
     viAlias = true;
@@ -19,6 +19,18 @@
     extraPackages = with pkgs; [
       ripgrep # required by telescope.nvim / fzf-lua for live grep
       fd # fast file finder used by telescope.nvim
+      doq
+      tree-sitter
+      lua51Packages.luarocks
     ];
+
+    initLua = ''
+      require("core")
+    '';
+  };
+
+  xdg.configFile."nvim" = {
+    source = ./config;
+    recursive = true;
   };
 }
