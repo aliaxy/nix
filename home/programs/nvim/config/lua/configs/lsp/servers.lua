@@ -1,10 +1,10 @@
 local settings = require("core.settings")
-local global = require("core.global")
+local system = require("utils.system")
 local capabilities = require("configs.lsp.capabilities")
 
 local function enable(name, config)
   local cmd = config.cmd and config.cmd[1]
-  if cmd and not global.executable(cmd) then
+  if cmd and not system.executable(cmd) then
     return false
   end
 
@@ -29,7 +29,7 @@ if settings.lsp_servers.lua == "lua_ls" then
           checkThirdParty = false,
           library = {
             vim.env.VIMRUNTIME,
-            global.config_dir,
+            system.config_dir,
           },
         },
         telemetry = { enable = false },

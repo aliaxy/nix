@@ -19,8 +19,6 @@ map("t", "<C-w>k", "<cmd>wincmd k<cr>", { desc = "Focus upper window" })
 map("t", "<C-w>l", "<cmd>wincmd l<cr>", { desc = "Focus right window" })
 
 -- Buffers.
-map("n", "<leader>bc", "<cmd>bdelete<cr>", { desc = "Close buffer" })
-map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete buffer" })
 map("n", "<leader>bn", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "<leader>bp", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
 

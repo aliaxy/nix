@@ -1,8 +1,8 @@
 -- Install lazy.nvim under Neovim's data directory.
-local global = require("core.global")
+local system = require("utils.system")
 local settings = require("core.settings")
 
-local lazypath = vim.fs.joinpath(global.data_dir, "lazy", "lazy.nvim")
+local lazypath = system.path_join(system.data_dir, "lazy", "lazy.nvim")
 local lazy_url = settings.use_ssh and "git@github.com:folke/lazy.nvim.git" or "https://github.com/folke/lazy.nvim.git"
 local url_format = settings.use_ssh and "git@github.com:%s.git" or "https://github.com/%s.git"
 
@@ -61,7 +61,7 @@ require("lazy").setup({
   },
 
   -- macOS handles higher clone/install concurrency comfortably.
-  concurrency = global.is_macos and 20 or nil,
+  concurrency = system.is_macos and 20 or nil,
 
   -- Disable unused built-in runtime plugins for a smaller startup surface.
   performance = {

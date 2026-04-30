@@ -1,10 +1,10 @@
-local global = require("core.global")
+local system = require("utils.system")
 local settings = require("core.settings")
 
 local function first_available(names)
   local available = {}
   for _, name in ipairs(names) do
-    if global.executable(name) then
+    if system.executable(name) then
       table.insert(available, name)
     end
   end

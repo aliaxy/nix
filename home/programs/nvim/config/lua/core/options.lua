@@ -1,5 +1,4 @@
 local opt = vim.opt
-local global = require("core.global")
 local settings = require("core.settings")
 
 -- Reload files automatically when they are changed outside Neovim.
@@ -15,7 +14,7 @@ opt.backspace = { "indent", "eol", "start" }
 -- opt.backup = false
 
 -- Candidate backup directory if persistent backups are enabled later.
--- opt.backupdir = { vim.fs.joinpath(global.cache_dir, "backup//"), "." }
+-- opt.backupdir = { require("utils.system").path_join(require("utils.system").cache_dir, "backup//"), "." }
 
 -- Paths where backup files should never be written.
 -- opt.backupskip = { "/tmp/*", "$TMPDIR/*", "$TMP/*", "$TEMP/*", "*/shm/*", "/private/var/*", ".vault.vim" }
@@ -48,7 +47,7 @@ opt.cursorline = true
 opt.diffopt = { "filler", "iwhite", "internal", "linematch:60", "algorithm:patience" }
 
 -- Candidate swap directory if swap files are re-enabled later.
--- opt.directory = { vim.fs.joinpath(global.cache_dir, "swap//") }
+-- opt.directory = { require("utils.system").path_join(require("utils.system").cache_dir, "swap//") }
 
 -- Show as much of the last screen line as possible.
 -- opt.display = "lastline"
@@ -179,7 +178,7 @@ opt.smarttab = true
 opt.smoothscroll = true
 
 -- Custom spellfile if spell checking is configured later.
--- opt.spellfile = vim.fs.joinpath(global.config_dir, "spell", "en.utf-8.add")
+-- opt.spellfile = require("utils.system").path_join(require("utils.system").config_dir, "spell", "en.utf-8.add")
 
 -- Open horizontal splits below and vertical splits to the right.
 opt.splitbelow = true
@@ -213,7 +212,7 @@ opt.ttimeout = true
 opt.ttimeoutlen = 0
 
 -- Candidate undo directory if undo files need a dedicated location later.
--- opt.undodir = vim.fs.joinpath(global.cache_dir, "undo//")
+-- opt.undodir = require("utils.system").path_join(require("utils.system").cache_dir, "undo//")
 
 -- Persist undo history across sessions.
 opt.undofile = true

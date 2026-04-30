@@ -19,35 +19,18 @@ M.cache_dir = vim.fs.normalize(vim.fn.stdpath("cache"))
 M.data_dir = vim.fs.normalize(vim.fn.stdpath("data"))
 M.state_dir = vim.fs.normalize(vim.fn.stdpath("state"))
 
+--- Join path segments using Neovim's normalized filesystem helper.
+---@param ... string Path segments.
+---@return string path Normalized joined path.
+function M.path_join(...)
+  return vim.fs.normalize(vim.fs.joinpath(...))
+end
+
 --- Return true when an executable can be found in PATH.
 ---@param name string Executable name to search for, such as "git" or "stylua".
----@return boolean found True if the executable exists in PATH.
+---@return boolean found True if the executable exists and can be executed.
 function M.executable(name)
-  local path_env = vim.env.PATH
-  if not path_env or path_env == "" then
-    return false
-  end
-
-  -- Windows may resolve executables through PATHEXT, e.g. foo.exe or foo.cmd.
-  local separator = M.is_windows and ";" or ":"
-  local extensions = { "" }
-  if M.is_windows then
-    extensions = vim.split(vim.env.PATHEXT or ".EXE;.CMD;.BAT;.COM", ";", { plain = true, trimempty = true })
-    table.insert(extensions, 1, "")
-  end
-
-  -- Resolve candidates with libuv so the check stays shell-independent.
-  for dir in vim.gsplit(path_env, separator, { plain = true, trimempty = true }) do
-    for _, extension in ipairs(extensions) do
-      local candidate = vim.fs.joinpath(dir, name .. extension)
-      local stat = vim.uv.fs_stat(candidate)
-      if stat and stat.type == "file" then
-        return true
-      end
-    end
-  end
-
-  return false
+  return vim.fn.executable(name) == 1
 end
 
 return M
