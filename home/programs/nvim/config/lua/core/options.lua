@@ -108,8 +108,8 @@ opt.infercase = true
 -- Keep jump list behavior stack-like and preserve view where possible.
 opt.jumpoptions = { "stack", "view" }
 
--- Global statusline; defer until a statusline plugin is configured.
--- opt.laststatus = 3
+-- Use one global statusline; lualine owns the actual content.
+opt.laststatus = 3
 
 -- Show invisible characters.
 opt.list = true

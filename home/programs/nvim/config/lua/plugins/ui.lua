@@ -30,6 +30,13 @@ return {
     end,
   },
   {
+    "nvim-lualine/lualine.nvim",
+    event = { "BufReadPost", "BufAdd", "BufNewFile" },
+    opts = function()
+      return require("configs.ui.lualine")
+    end,
+  },
+  {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
