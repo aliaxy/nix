@@ -23,6 +23,13 @@ return {
     end,
   },
   {
+    "lewis6991/gitsigns.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = function()
+      return require("configs.ui.gitsigns")
+    end,
+  },
+  {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
