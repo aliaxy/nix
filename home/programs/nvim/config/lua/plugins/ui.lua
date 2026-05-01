@@ -12,6 +12,17 @@ return {
     end,
   },
   {
+    "akinsho/bufferline.nvim",
+    event = { "BufReadPre", "BufAdd", "BufNewFile" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = function()
+      return require("configs.ui.bufferline")
+    end,
+    config = function(_, opts)
+      require("bufferline").setup(opts)
+    end,
+  },
+  {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
