@@ -52,6 +52,7 @@ return {
   integrations = {
     -- Active integrations for plugins used by this config.
     blink_cmp = true,
+    dropbar = { enabled = true, color_mode = true },
     gitsigns = true,
     mini = { enabled = true },
     native_lsp = {
@@ -81,7 +82,6 @@ return {
     -- dap = true,
     -- dap_ui = true,
     -- diffview = true,
-    -- dropbar = { enabled = true, color_mode = true },
     -- fidget = true,
     -- flash = true,
     -- fzf = true,

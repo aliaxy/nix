@@ -45,6 +45,14 @@ return {
     end,
   },
   {
+    "Bekaboo/dropbar.nvim",
+    lazy = false,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = function()
+      return require("configs.ui.dropbar")()
+    end,
+  },
+  {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
