@@ -1,9 +1,12 @@
-# Development profile — VCS, language toolchains, and package mirrors.
-{ config, pkgs, ... }:
+# Development profile — VCS and tooling.
+# Language toolchains (go, python, rust) are managed per-project via nix-direnv.
+# Network mirrors are in mirrors.nix.
+{ pkgs, ... }:
 {
+  imports = [ ./mirrors.nix ];
   home.packages = with pkgs; [
-    nil # Nix language server (used by editors via LSP)
-    nixd # Alternative Nix language server with better diagnostics
+    nil
+    nixd
   ];
 
   programs.ssh = {
@@ -42,46 +45,6 @@
     };
   };
 
-  programs.go = {
-    enable = true;
-    env = {
-      GOPATH = "${config.home.homeDirectory}/go";
-      GOBIN = "${config.home.homeDirectory}/go/bin";
-    };
-  };
-
-  # PyPI mirror via Tsinghua TUNA for faster package downloads in China.
-  programs.uv = {
-    enable = true;
-    settings = {
-      index = [
-        {
-          url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple/";
-          default = true;
-        }
-      ];
-    };
-  };
-
   programs.codex.enable = true;
   programs.claude-code.enable = true;
-
-  # Cargo/Rustup mirror via rsproxy for faster downloads in China.
-  home.file.".cargo/config.toml".text = ''
-    [source.crates-io]
-    replace-with = 'rsproxy-sparse'
-    [source.rsproxy]
-    registry = "https://rsproxy.cn/crates.io-index"
-    [source.rsproxy-sparse]
-    registry = "sparse+https://rsproxy.cn/index/"
-    [registries.rsproxy]
-    index = "https://rsproxy.cn/crates.io-index"
-    [net]
-    git-fetch-with-cli = true
-  '';
-
-  # Rust and Go registry mirrors for faster resolution in China.
-  home.sessionVariables = {
-    GOPROXY = "https://goproxy.cn,direct";
-  };
 }
