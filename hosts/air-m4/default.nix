@@ -41,6 +41,7 @@
           "tencent-meeting"
           "wechatwork"
           "codex-app"
+          "claude"
           {
             name = "microsoft-word";
             greedy = false;
