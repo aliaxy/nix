@@ -37,6 +37,14 @@ return {
     end,
   },
   {
+    "folke/edgy.nvim",
+    event = { "CursorHold", "CursorHoldI" },
+    keys = require("keymaps.ui.edgy"),
+    opts = function()
+      return require("configs.ui.edgy")
+    end,
+  },
+  {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
