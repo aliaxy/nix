@@ -63,6 +63,5 @@
   my.home.profiles = {
     base = true;
     dev = true;
-    desktop = true;
   };
 }

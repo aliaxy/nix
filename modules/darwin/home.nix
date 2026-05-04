@@ -18,9 +18,8 @@ let
 in
 {
   options.my.home.profiles = {
-    base = mkEnableOption "base CLI profile (shell, editor, core CLI tools)";
-    dev = mkEnableOption "developer toolchain profile (git, go, rust, python, AI tools)";
-    desktop = mkEnableOption "desktop GUI profile (terminal, editor, window manager)";
+    base = mkEnableOption "base CLI and desktop profile (shell, editor, GUI apps)";
+    dev = mkEnableOption "developer toolchain profile (git, direnv, AI tools, mirrors)";
   };
 
   config = {
@@ -35,7 +34,6 @@ in
       ../../home
     ]
     ++ lib.optionals cfg.base [ ../../home/profiles/base.nix ]
-    ++ lib.optionals cfg.dev [ ../../home/profiles/dev.nix ]
-    ++ lib.optionals cfg.desktop [ ../../home/profiles/desktop.nix ];
+    ++ lib.optionals cfg.dev [ ../../home/profiles/dev.nix ];
   };
 }
