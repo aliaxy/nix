@@ -20,6 +20,10 @@
     # supported Home Manager programs (bat, starship, ghostty, eza, yazi …).
     catppuccin.url = "github:catppuccin/nix";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
+
+    # sops-nix: declarative secrets management via SOPS + age encryption.
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =

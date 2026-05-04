@@ -1,0 +1,8 @@
+keys:
+  - &air-m4 age15jpf99e06nt05u4s8pkflxushzphskt5s57wsnskkwntxtz5pdgqxztcwy
+
+creation_rules:
+  - path_regex: secrets/.*\.yaml$
+    key_groups:
+      - age:
+          - *air-m4

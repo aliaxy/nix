@@ -3,7 +3,10 @@
 # Network mirrors are in mirrors.nix.
 { pkgs, ... }:
 {
-  imports = [ ./mirrors.nix ];
+  imports = [
+    ./mirrors.nix
+    ./sops.nix
+  ];
   home.packages = with pkgs; [
     nil
     nixd
