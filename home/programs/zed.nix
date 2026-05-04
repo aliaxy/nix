@@ -69,7 +69,6 @@
 
       # ── Title bar ────────────────────────────────────────────────────────────
       title_bar = {
-        show_branch_icon = true;
         show_branch_name = true;
         show_project_items = true;
         show_onboarding_banner = true;
@@ -320,50 +319,6 @@
             allowed = true;
           };
         };
-      };
-
-      # ── Language model providers ─────────────────────────────────────────────
-      # API keys are read from the system keychain at runtime; never hardcode them.
-      language_models = {
-        anthropic = {
-          api_url = "https://api.aipaibox.com"; # reverse-proxy for China access
-        };
-        bedrock = { };
-        deepseek = {
-          api_url = "https://api.deepseek.com/v1";
-        };
-        google = {
-          api_url = "https://generativelanguage.googleapis.com";
-        };
-        lmstudio = {
-          api_url = "http://localhost:1234/api/v0";
-        };
-        mistral = {
-          api_url = "https://api.mistral.ai/v1";
-        };
-        ollama = {
-          api_url = "http://localhost:11434";
-        };
-        open_router = {
-          api_url = "https://openrouter.ai/api/v1";
-        };
-        openai = {
-          api_url = "https://api.aipaibox.com/v1";
-        };
-        openai_compatible = { };
-        opencode = {
-          api_url = "https://opencode.ai/zen";
-        };
-        vercel = {
-          api_url = "https://api.v0.dev/v1";
-        };
-        vercel_ai_gateway = {
-          api_url = "https://ai-gateway.vercel.sh/v1";
-        };
-        x_ai = {
-          api_url = "https://api.x.ai/v1";
-        };
-        "zed.dev" = { };
       };
 
       # ── LSP overrides ────────────────────────────────────────────────────────
