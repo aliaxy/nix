@@ -6,12 +6,4 @@
 
   # Allow unfree/proprietary packages project-wide
   nixpkgs.config.allowUnfree = true;
-
-  nixpkgs.overlays = [
-    (final: prev: {
-      direnv = prev.direnv.overrideAttrs (old: {
-        doCheck = false;
-      });
-    })
-  ];
 }
