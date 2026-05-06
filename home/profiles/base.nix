@@ -1,5 +1,5 @@
 # Base profile — core CLI and desktop environment shared across all hosts.
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [
     ../programs/nvim/nvim.nix
@@ -8,6 +8,7 @@
     ../programs/yazi.nix
     ../programs/ghostty.nix
     ../programs/zed.nix
+  ] ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
     ../programs/aerospace.nix
   ];
 

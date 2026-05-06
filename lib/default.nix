@@ -28,6 +28,8 @@
         (../hosts + "/${hostname}")
         # Shared Nix daemon settings
         ../modules/common/nix.nix
+        # Home Manager base config and opt-in profile selection
+        ../modules/common/home.nix
         # Reusable macOS GUI app bundles and suite toggles
         ../modules/darwin/apps.nix
         # System-level packages, fonts, and shell registration
@@ -36,8 +38,6 @@
         ../modules/darwin/system.nix
         # Homebrew management via nix-homebrew
         ../modules/darwin/homebrew.nix
-        # Home Manager base config and opt-in profile selection
-        ../modules/darwin/home.nix
         # Third-party modules
         inputs.nix-homebrew.darwinModules.nix-homebrew
         inputs.home-manager.darwinModules.home-manager
