@@ -25,6 +25,20 @@
         description = "Rebuild and switch the ${hostname} nix-darwin configuration";
         body = "sudo darwin-rebuild switch --flake ~/nix#${hostname}";
       };
+
+      mkdev = {
+        description = "Init a nix dev shell template and wire up direnv";
+        body = ''
+          if test (count $argv) -eq 0
+              echo "Usage: mkdev <lang>"
+              echo "Available: go rust python node c"
+              return 1
+          end
+          nix flake init -t ~/nix#$argv[1]
+          echo "use flake" > .envrc
+          direnv allow
+        '';
+      };
     };
   };
 }
