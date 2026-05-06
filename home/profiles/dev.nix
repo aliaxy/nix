@@ -7,9 +7,11 @@
     ./mirrors.nix
     ./sops.nix
   ];
+
   home.packages = with pkgs; [
     nil
     nixd
+    nodejs
   ];
 
   programs.ssh = {
