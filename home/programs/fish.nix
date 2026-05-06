@@ -35,8 +35,7 @@
               return 1
           end
           nix flake init -t ~/nix#$argv[1]; or return 1
-          echo "use flake" > .envrc; or return 1
-          direnv allow; or return 1
+          echo "use flake" > .envrc
         '';
       };
     };
