@@ -24,43 +24,53 @@
     # sops-nix: declarative secrets management via SOPS + age encryption.
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # flake-parts: module-based flake composition.
+    flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
   outputs =
-    inputs@{ self, ... }:
-    let
-      # Import builder functions (mkDarwinSystem) from lib/
-      lib = import ./lib { inherit inputs self; };
-    in
-    {
-      # Build and switch with:
-      #   darwin-rebuild switch --flake .#air-m4
-      darwinConfigurations."air-m4" = lib.mkDarwinSystem {
-        hostname = "air-m4";
-        username = "aliaxy";
-      };
+    inputs@{ flake-parts, self, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
 
-      templates = {
-        go = {
-          path = ./templates/go;
-          description = "Go dev shell — go, gopls, golangci-lint, delve";
+      flake =
+        let
+          lib = import ./lib { inherit inputs self; };
+        in
+        {
+          # Build and switch with:
+          #   darwin-rebuild switch --flake .#air-m4
+          darwinConfigurations."air-m4" = lib.mkDarwinSystem {
+            hostname = "air-m4";
+            username = "aliaxy";
+          };
+
+          templates = {
+            go = {
+              path = ./templates/go;
+              description = "Go dev shell — go, gopls, golangci-lint, delve";
+            };
+            rust = {
+              path = ./templates/rust;
+              description = "Rust dev shell — rustc, cargo, rust-analyzer, clippy, cargo-watch";
+            };
+            python = {
+              path = ./templates/python;
+              description = "Python dev shell — uv, ruff, pyright";
+            };
+            node = {
+              path = ./templates/node;
+              description = "Node.js dev shell — nodejs_22, pnpm, typescript-language-server";
+            };
+            c = {
+              path = ./templates/c;
+              description = "C/C++ dev shell — clang, cmake, ninja, clangd, bear";
+            };
+          };
         };
-        rust = {
-          path = ./templates/rust;
-          description = "Rust dev shell — rustc, cargo, rust-analyzer, clippy, cargo-watch";
-        };
-        python = {
-          path = ./templates/python;
-          description = "Python dev shell — uv, ruff, pyright";
-        };
-        node = {
-          path = ./templates/node;
-          description = "Node.js dev shell — nodejs_22, pnpm, typescript-language-server";
-        };
-        c = {
-          path = ./templates/c;
-          description = "C/C++ dev shell — clang, cmake, ninja, clangd, bear";
-        };
-      };
     };
 }
