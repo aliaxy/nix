@@ -18,6 +18,7 @@
       cat = "bat";
       jy = "fastfetch";
       ngc = "nix-collect-garbage -d";
+      da = "direnv allow";
     };
 
     functions = {
