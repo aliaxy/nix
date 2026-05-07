@@ -45,6 +45,20 @@ return {
     end,
   },
   {
+    "nvim-tree/nvim-tree.lua",
+    cmd = {
+      "NvimTreeToggle",
+      "NvimTreeOpen",
+      "NvimTreeFindFile",
+      "NvimTreeFindFileToggle",
+      "NvimTreeRefresh",
+    },
+    keys = require("keymaps.ui.nvim-tree"),
+    opts = function()
+      return require("configs.ui.nvim-tree")
+    end,
+  },
+  {
     "Bekaboo/dropbar.nvim",
     lazy = false,
     dependencies = { "nvim-tree/nvim-web-devicons" },
