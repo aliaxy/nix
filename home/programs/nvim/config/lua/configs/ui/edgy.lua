@@ -33,14 +33,13 @@ return {
     end,
   },
   left = {
-    -- Enable after adding a file tree plugin.
-    -- {
-    --   ft = "NvimTree",
-    --   pinned = true,
-    --   collapsed = false,
-    --   size = { height = 0.6, width = 0.15 },
-    --   open = "NvimTreeOpen",
-    -- },
+    {
+      ft = "NvimTree",
+      pinned = true,
+      collapsed = false,
+      size = { height = 0.6, width = 0.15 },
+      open = "NvimTreeOpen",
+    },
 
     -- Enable after adding trouble.nvim symbols.
     -- {

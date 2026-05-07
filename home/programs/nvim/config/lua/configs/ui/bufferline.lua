@@ -1,3 +1,7 @@
+local icons = {
+  ui = require("utils.icons").get("ui"),
+}
+
 local options = {
   -- Behavior ---------------------------------------------------------------
 
@@ -44,11 +48,11 @@ local options = {
     -- style = "underline",
     -- style = "none",
   },
-  buffer_close_icon = "󰅖",
-  modified_icon = "●",
-  close_icon = "",
-  left_trunc_marker = "",
-  right_trunc_marker = "",
+  buffer_close_icon = icons.ui.Close,
+  modified_icon = icons.ui.BigCircle,
+  close_icon = icons.ui.Close_alt,
+  left_trunc_marker = icons.ui.Left,
+  right_trunc_marker = icons.ui.Right,
   separator_style = "thin",
   -- separator_style = "thick",
   -- separator_style = "slant",

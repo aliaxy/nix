@@ -1,6 +1,12 @@
 return function()
-  local _, utils = pcall(require, "dropbar.utils")
-  local _, sources = pcall(require, "dropbar.sources")
+  local icons = {
+    ui = require("utils.icons").get("ui"),
+  }
+  local ok_utils, utils = pcall(require, "dropbar.utils")
+  local ok_sources, sources = pcall(require, "dropbar.sources")
+  if not ok_utils or not ok_sources then
+    return {}
+  end
 
   -- Show only the leaf filename before appending semantic breadcrumbs.
   sources.symbols = {
@@ -49,7 +55,7 @@ return function()
       enable = true,
       ui = {
         bar = { separator = "  " },
-        menu = { indicator = "" },
+        menu = { indicator = icons.ui.ArrowClosed },
       },
     },
   }

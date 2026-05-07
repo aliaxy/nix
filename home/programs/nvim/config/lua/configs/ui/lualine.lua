@@ -1,4 +1,5 @@
 local settings = require("core.settings")
+local icon_sets = require("utils.icons")
 local system = require("utils.system")
 
 local lsp_state = { progress = "" }
@@ -41,30 +42,11 @@ vim.api.nvim_create_autocmd("LspProgress", {
 })
 
 local icons = {
-  aichat = {
-    Copilot = "",
-  },
-  diagnostics = {
-    Error = "",
-    Warning = "",
-    Information = "",
-    Hint = "󰌶",
-  },
-  git = {
-    Add = "",
-    Branch = "",
-    Mod = "",
-    Remove = "",
-  },
-  misc = {
-    LspAvailable = "󱜙",
-    NoActiveLsp = "󱚧",
-    PyEnv = "󰢩",
-  },
-  ui = {
-    FolderWithHeart = "󱃪",
-    Tab = "",
-  },
+  aichat = icon_sets.get("aichat"),
+  diagnostics = icon_sets.get("diagnostics"),
+  git = icon_sets.get("git"),
+  misc = icon_sets.get("misc"),
+  ui = icon_sets.get("ui"),
 }
 
 local function has_catppuccin()
@@ -369,7 +351,7 @@ return {
         "diff",
         symbols = {
           added = icons.git.Add,
-          modified = icons.git.Mod,
+          modified = icons.git.Mod_alt,
           removed = icons.git.Remove,
         },
         source = diff_source,
