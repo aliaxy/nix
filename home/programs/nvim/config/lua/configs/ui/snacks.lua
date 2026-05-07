@@ -1,5 +1,36 @@
 local settings = require("core.settings")
-local system = require("utils.system")
+local icon_sets = require("utils.icons")
+
+local icons = {
+  ui = icon_sets.get("ui"),
+}
+
+local dashboard_icons = {
+  documents = icon_sets.get("documents", true),
+  git = icon_sets.get("git", true),
+  misc = icon_sets.get("misc", true),
+  ui = icon_sets.get("ui", true),
+}
+
+local function dashboard_footer()
+  local stats = require("lazy.stats").stats()
+  local ms = math.floor(stats.startuptime * 100 + 0.5) / 100
+  local version = vim.version()
+
+  -- Show the useful parts of nvimdots' alpha footer without copying its wording.
+  return {
+    align = "center",
+    padding = 1,
+    text = {
+      { " neovim ",                                                        hl = "footer" },
+      { ("v%d.%d.%d"):format(version.major, version.minor, version.patch), hl = "special" },
+      { " loaded ",                                                        hl = "footer" },
+      { stats.loaded .. "/" .. stats.count,                                hl = "special" },
+      { " plugins in ",                                                    hl = "footer" },
+      { ms .. "ms",                                                        hl = "special" },
+    },
+  }
+end
 
 return {
   -- Keep very large or minified files responsive by disabling expensive features.
@@ -22,18 +53,45 @@ return {
     preset = {
       header = table.concat(settings.dashboard_header, "\n"),
       keys = {
-        { icon = " ", key = "f", desc = "Find file", action = function() Snacks.picker.files() end },
-        { icon = "󰱼 ", key = "g", desc = "Grep text", action = function() Snacks.picker.grep() end },
-        { icon = " ", key = "r", desc = "Recent files", action = function() Snacks.picker.recent() end },
-        { icon = " ", key = "c", desc = "Config", action = function() Snacks.picker.files({ cwd = system.config_dir }) end },
-        { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
-        { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+        {
+          icon = dashboard_icons.misc.Neovim,
+          key = "s",
+          desc = "smart find",
+          action = function()
+            Snacks.picker.smart()
+          end,
+        },
+        {
+          icon = dashboard_icons.documents.Word,
+          key = "g",
+          desc = "grep text",
+          action = function()
+            Snacks.picker.grep()
+          end,
+        },
+        {
+          icon = dashboard_icons.ui.FolderWithHeart,
+          key = "p",
+          desc = "projects",
+          action = function()
+            Snacks.picker.projects()
+          end,
+        },
+        {
+          icon = dashboard_icons.documents.Files,
+          key = "r",
+          desc = "recent files",
+          action = function()
+            Snacks.picker.recent()
+          end,
+        },
+        { icon = dashboard_icons.ui.SignOut, key = "q", desc = "quit", action = ":qa" },
       },
     },
     sections = {
       { section = "header" },
-      { section = "keys",   gap = 1, padding = 1 },
-      { section = "startup" },
+      { section = "keys",  gap = 1, padding = 1 },
+      dashboard_footer,
     },
   },
 
@@ -89,7 +147,7 @@ return {
   -- completion disabled so blink.cmp does not take over simple prompts.
   input = {
     enabled = true,
-    icon = " ",
+    icon = icons.ui.Pencil .. " ",
     icon_hl = "SnacksInputIcon",
     icon_pos = "left",
     prompt_pos = "title",
@@ -122,7 +180,7 @@ return {
   picker = {
     enabled = true,
     ui_select = true,
-    prompt = " ",
+    prompt = icons.ui.ChevronRight .. " ",
     focus = "input",
     show_delay = 500,
     limit_live = 10000,

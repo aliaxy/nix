@@ -54,7 +54,6 @@ return {
     blink_cmp = true,
     dropbar = { enabled = true, color_mode = true },
     gitsigns = true,
-    mini = { enabled = true },
     native_lsp = {
       enabled = true,
       virtual_text = {
@@ -70,6 +69,7 @@ return {
         information = { "underline" },
       },
     },
+    nvimtree = true,
     snacks = true,
     treesitter = true,
 
@@ -128,6 +128,15 @@ return {
         Pmenu = { fg = cp.overlay2, bg = transparent_background and cp.none or cp.base },
         PmenuBorder = { fg = cp.surface1, bg = transparent_background and cp.none or cp.base },
         PmenuSel = { bg = cp.green, fg = cp.base },
+
+        -- Dashboard groups used by snacks.nvim. The palette follows the
+        -- nvimdots alpha direction while keeping Snacks as the renderer.
+        SnacksDashboardHeader = { fg = cp.blue },
+        SnacksDashboardIcon = { fg = cp.green },
+        SnacksDashboardDesc = { fg = cp.green },
+        SnacksDashboardKey = { fg = cp.pink, style = { "italic" } },
+        SnacksDashboardFooter = { fg = cp.yellow },
+        SnacksDashboardSpecial = { fg = cp.yellow },
 
         -- Treesitter tweaks from nvimdots. `clear_style` removes extra
         -- bold/italic styling while keeping the color override.
