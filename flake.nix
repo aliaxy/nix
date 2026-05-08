@@ -67,7 +67,7 @@
             };
             node = {
               path = ./templates/node;
-              description = "Node.js dev shell — nodejs_22, pnpm, typescript-language-server";
+              description = "Node.js dev shell — nodejs_22, pnpm";
             };
             c = {
               path = ./templates/c;
