@@ -7,7 +7,6 @@
     ../programs/starship.nix
     ../programs/yazi.nix
     ../programs/ghostty.nix
-    ../programs/zed.nix
     ../programs/aerospace.nix
   ];
 

@@ -6,13 +6,19 @@
   imports = [
     ./mirrors.nix
     ./sops.nix
+    ../programs/zed.nix
   ];
 
   home.packages = with pkgs; [
     nil
     nixd
     nodejs
+    openspec
   ];
+
+  home.sessionVariables = {
+    OPENSPEC_TELEMETRY = 0;
+  };
 
   programs.ssh = {
     enable = true;
