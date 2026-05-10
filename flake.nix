@@ -10,10 +10,7 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     # nix-homebrew: declarative Homebrew tap/cask/brew management via nix-darwin.
-    nix-homebrew = {
-      url = "github:zhaofengli/nix-homebrew";
-      inputs.brew-src.url = "github:Homebrew/brew/master";
-    };
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
     # home-manager: user-level dotfiles and program configuration.
     home-manager.url = "github:nix-community/home-manager";
