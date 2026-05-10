@@ -141,6 +141,10 @@
             "workspace V"
             "exec-and-forget open -a 'Clash Verge'"
           ];
+          alt-n = [
+            "workspace N"
+            "exec-and-forget open -a Notion"
+          ];
 
           # ── Move window to workspace (numeric) ────────────────────────────────
           alt-shift-1 = [
@@ -220,6 +224,10 @@
           alt-shift-v = [
             "move-node-to-workspace V"
             "workspace V"
+          ];
+          alt-shift-n = [
+            "move-node-to-workspace N"
+            "workspace N"
           ];
 
           # ── Window controls ───────────────────────────────────────────────────
