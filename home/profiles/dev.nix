@@ -5,7 +5,7 @@
 {
   imports = [
     ./mirrors.nix
-    #    ./sops.nix
+    ./sops.nix
     ../programs/zed.nix
   ];
 
