@@ -5,7 +5,7 @@
 {
   imports = [
     ./mirrors.nix
-    ./sops.nix
+    #    ./sops.nix
     ../programs/zed.nix
   ];
 
@@ -56,6 +56,6 @@
     };
   };
 
-  programs.codex.enable = true;
+  #programs.codex.enable = true;
   programs.claude-code.enable = true;
 }

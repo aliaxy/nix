@@ -21,10 +21,6 @@
     catppuccin.url = "github:catppuccin/nix";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
 
-    # sops-nix: declarative secrets management via SOPS + age encryption.
-    sops-nix.url = "github:Mic92/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-
     # flake-parts: module-based flake composition.
     flake-parts.url = "github:hercules-ci/flake-parts";
   };

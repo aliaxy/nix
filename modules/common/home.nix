@@ -30,7 +30,7 @@ in
 
     home-manager.users.${username}.imports = [
       ../../home
-      inputs.sops-nix.homeManagerModules.sops
+      #inputs.sops-nix.homeManagerModules.sops
     ]
     ++ lib.optionals cfg.base [ ../../home/profiles/base.nix ]
     ++ lib.optionals cfg.dev [ ../../home/profiles/dev.nix ];
