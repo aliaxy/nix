@@ -53,12 +53,10 @@ in
       lib.flatten [
         (lib.optionals suiteCfg.essentials [
           "keka"
-          "ghostty"
           "google-chrome"
           "app-cleaner"
           "clash-verge-rev"
           "surge"
-          "cc-switch"
           "sf-symbols"
           "font-sf-pro"
           "font-sf-mono"
@@ -66,7 +64,6 @@ in
         (lib.optionals suiteCfg.development [
           "sublime-text"
           "zed"
-          "antigravity"
           "orbstack"
         ])
         (lib.optionals suiteCfg.productivity [

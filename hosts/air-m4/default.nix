@@ -24,7 +24,7 @@
       dock.extraPersistentApps = [
         "/System/Applications/Reminders.app"
         "/System/Applications/iPhone Mirroring.app"
-        "/Applications/Ghostty.app"
+        "/Users/aliaxy/Applications/Home Manager Apps/Ghostty.app"
         "/Applications/Google Chrome.app"
         "/Applications/Notion.app"
         "/Applications/Sublime Text.app"
@@ -36,7 +36,6 @@
       homebrew = {
         enableRosetta = true; # Apple Silicon: install the Intel prefix for Rosetta 2
         extraCasks = [
-          "aerospace"
           "feishu"
           "tencent-meeting"
           "wechatwork"

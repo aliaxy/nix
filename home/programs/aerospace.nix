@@ -6,15 +6,14 @@
   config = lib.mkIf pkgs.stdenv.isDarwin {
     programs.aerospace = {
       enable = true;
-      launchd.enable = false;
-      package = null; # installed via Homebrew cask, not Nix
+      launchd.enable = true;
 
       settings = {
         config-version = 2;
 
         after-login-command = [ ];
         after-startup-command = [ ];
-        start-at-login = false;
+        start-at-login = true;
 
         # Normalisation keeps the workspace tree tidy by collapsing redundant
         # container nesting automatically.
@@ -145,6 +144,10 @@
             "workspace N"
             "exec-and-forget open -a Notion"
           ];
+          alt-m = [
+            "workspace M"
+            "exec-and-forget open -a Mail"
+          ];
 
           # ── Move window to workspace (numeric) ────────────────────────────────
           alt-shift-1 = [
@@ -228,6 +231,10 @@
           alt-shift-n = [
             "move-node-to-workspace N"
             "workspace N"
+          ];
+          alt-shift-m = [
+            "move-node-to-workspace M"
+            "workspace M"
           ];
 
           # ── Window controls ───────────────────────────────────────────────────
