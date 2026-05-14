@@ -35,7 +35,7 @@
       window-padding-x = 5;
       window-padding-y = 5;
       window-padding-balance = true; # keep padding symmetric across splits
-      window-step-resize = true; # snap resize to cell boundaries
+      window-step-resize = false; # snap resize to cell boundaries
       window-save-state = "default";
       window-colorspace = "display-p3"; # wide-gamut colour on Apple displays
       window-padding-color = "extend"; # extend terminal background into padding
@@ -43,6 +43,8 @@
       # ── macOS ────────────────────────────────────────────────────────────────
       macos-icon = "official";
       macos-titlebar-style = "hidden"; # show tabs in the native title bar
+
+      unfocused-split-opacity = 0.9;
     };
   };
 }
