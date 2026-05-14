@@ -44,6 +44,28 @@
     enableFishIntegration = true;
   };
 
+  programs.gh = {
+    enable = true;
+
+    settings = {
+      git_protocol = "ssh";
+      editor = "nvim";
+
+      aliases = {
+        co = "pr checkout";
+        pv = "pr view";
+        pl = "pr list";
+        il = "issue list";
+        rv = "repo view";
+      };
+    };
+
+    gitCredentialHelper = {
+      enable = true;
+      hosts = [ "https://github.com" ];
+    };
+  };
+
   programs.direnv = {
     enable = true;
     enableFishIntegration = true;
