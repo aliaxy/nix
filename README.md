@@ -16,8 +16,8 @@ The configuration is organized into a clean, layered architecture to maximize re
   - `default.nix`: The entry point for Home Manager, importing profiles.
   - `profiles/`: Bundled "suites" of applications that can be imported per host.
     - `base.nix`: Core CLI utilities (Fish, Starship, eza, bat, zoxide, fastfetch, yazi).
-    - `dev.nix`: Development environment (Git, Go, SSH, uv, Rustup, AI tools).
-    - `desktop.nix`: GUI applications and window managers (Ghostty, Zed, AeroSpace).
+    - `dev.nix`: Development environment (Git, GitHub CLI, SSH, direnv, Nix language servers, AI tools).
+    - `mirrors.nix`: Language and package-manager mirror settings.
   - `programs/`: Complex, single-app configurations extracted for better readability.
 - `catppuccin.nix`: Centralized theme settings shared across supported Home Manager programs.
 
@@ -41,4 +41,5 @@ nix run nix-darwin -- switch --flake .#air-m4
 - **Declarative Everything**: 
   - Mac apps and casks are managed via `nix-homebrew`.
   - System preferences are managed via `nix-darwin`.
-  - Dev tools, CLI apps, and dotfiles are managed via `home-manager` native programs (e.g., `programs.uv`, `programs.go`).
+  - Dev tools, CLI apps, editor settings, and dotfiles are managed via `home-manager` native programs.
+  - Project language toolchains are provided through per-project flake templates instead of the global user profile.

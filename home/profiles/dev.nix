@@ -4,9 +4,8 @@
 { pkgs, ... }:
 {
   imports = [
-    ./mirrors.nix
-    ./sops.nix
     ../programs/zed.nix
+    ./mirrors.nix
   ];
 
   home.packages = with pkgs; [
