@@ -13,6 +13,7 @@
       "toml"
       "dockerfile"
       "make"
+      "golangci-lint"
 
       # Web
       "html"
@@ -269,7 +270,10 @@
           code_actions_on_format = {
             "source.organizeImports" = true;
           };
-          language_servers = [ "gopls" ];
+          language_servers = [
+            "gopls"
+            "golangci-lint"
+          ];
         };
         JavaScript = {
           # Prefer vtsls over the default typescript-language-server.
@@ -325,6 +329,25 @@
           initialization_options = {
             # Default to C++23 for files without a compile_commands.json.
             fallbackFlags = [ "-std=c++23" ];
+          };
+        };
+        gopls = {
+          initialization_options = {
+            gofumpt = true;
+          };
+        };
+        golangci-lint = {
+          initialization_options = {
+            command = [
+              "golangci-lint"
+              "run"
+              "--enable"
+              "revive"
+              "--output.json.path"
+              "stdout"
+              "--show-stats=false"
+              "--output.text.path="
+            ];
           };
         };
       };
