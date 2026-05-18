@@ -82,9 +82,19 @@
             "workspace 1"
             "exec-and-forget open -a Ghostty"
           ];
-          alt-c = [
+
+          alt-g = [
             "workspace 2"
             "exec-and-forget open -a 'Google Chrome'"
+          ];
+
+          alt-x = [
+            "workspace 3"
+            "exec-and-forget open -a Codex"
+          ];
+          alt-c = [
+            "workspace 4"
+            "exec-and-forget open -a Claude"
           ];
 
           alt-a = "exec-and-forget open -a 'Activity Monitor'";
