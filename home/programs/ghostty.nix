@@ -43,6 +43,7 @@
       # ── macOS ────────────────────────────────────────────────────────────────
       macos-icon = "official";
       macos-titlebar-style = "hidden"; # show tabs in the native title bar
+      macos-option-as-alt = true;
 
       unfocused-split-opacity = 0.9;
     };
