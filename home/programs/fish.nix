@@ -18,6 +18,9 @@
       cat = "bat";
       jy = "fastfetch";
       ngc = "nix-collect-garbage -d";
+      nfu = "nix flake update";
+      nfl = "nix flake lock";
+      nfc = "nix flake check";
       da = "direnv allow";
     };
 
