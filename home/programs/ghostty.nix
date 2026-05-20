@@ -46,6 +46,14 @@
       macos-option-as-alt = true;
 
       unfocused-split-opacity = 0.9;
+
+      keybind = [
+        "ctrl+alt+h=goto_split:left"
+        "ctrl+alt+j=goto_split:bottom"
+        "ctrl+alt+k=goto_split:top"
+        "ctrl+alt+l=goto_split:right"
+      ];
+
     };
   };
 }
