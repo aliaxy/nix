@@ -6,7 +6,7 @@ configuration repository. Keep changes declarative, small, and easy to verify.
 ## Overview
 
 This repository is a flake-based macOS configuration for `nix-darwin`, Home
-Manager, `nix-homebrew`, Catppuccin, and SOPS-managed secrets.
+Manager, `nix-homebrew`, Catppuccin, and project dev-shell templates.
 
 The active host is `air-m4`, owned by user `aliaxy`, and built through
 `lib.mkDarwinSystem`. Host-specific choices live under `hosts/air-m4/`; shared
@@ -45,7 +45,6 @@ nix/
 ├── home/default.nix          # Home Manager entry point and shared imports
 ├── home/profiles/            # Opt-in user profiles such as base and dev
 ├── home/programs/            # Larger per-program Home Manager modules
-├── secrets/                  # SOPS/age encrypted secrets declarations
 └── templates/                # Flake templates for project dev shells
 ```
 
@@ -66,7 +65,7 @@ nix/
   user, and the Fish login shell activation script.
 - `home/profiles/base.nix` is for core CLI and everyday user environment.
 - `home/profiles/dev.nix` is for developer tools, Git, SSH, direnv, AI tools,
-  OpenSpec, mirrors, and SOPS.
+  OpenSpec, and mirrors.
 
 ## Editing Rules
 
@@ -97,6 +96,7 @@ nix/
   `darwinConfigurations.<hostname>` entry in `flake.nix`.
 - Add a dev-shell template: create `templates/<language>/flake.nix` and expose
   it from `flake.nix`.
+- Update shell shortcuts: edit `home/programs/fish.nix`.
 
 ## Homebrew and App Suite Rules
 
@@ -110,8 +110,9 @@ nix/
 ## Secrets and Local State
 
 - Never commit decrypted secrets.
-- Keep encrypted files in `secrets/*.age` and wire them through SOPS modules.
-- Treat `.sops.yaml` and SOPS option wiring as security-sensitive.
+- This repository currently has no SOPS wiring or tracked `secrets/` directory.
+  If secrets are reintroduced, keep encrypted material only and document the
+  new wiring before use.
 - Do not commit generated caches or personal local state.
 - `openspec/` may contain project specs if the user chooses to track them, but
   do not add or commit untracked OpenSpec artifacts without explicit approval.
