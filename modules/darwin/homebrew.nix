@@ -111,7 +111,6 @@ in
 
       taps = [
         "nikitabobko/tap"
-        "farion1231/ccswitch"
       ];
 
       brews = cfg.extraBrews;
