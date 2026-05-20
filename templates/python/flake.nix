@@ -20,9 +20,11 @@
         {
           devShells.default = pkgs.mkShell {
             packages = with pkgs; [
-              (python3.withPackages (ps: with ps; [
-                # add project dependencies here
-              ]))
+              (python3.withPackages (
+                ps: with ps; [
+                  # add project dependencies here
+                ]
+              ))
               uv
               ruff
               pyright

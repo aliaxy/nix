@@ -25,6 +25,15 @@
               gotools
               golangci-lint
               delve
+              gofumpt
+              revive
+
+              # gRPC / Protobuf tooling
+              protobuf
+              grpcurl
+              buf
+              protoc-gen-go
+              protoc-gen-go-grpc
             ];
           };
         };
