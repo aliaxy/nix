@@ -41,6 +41,7 @@
           "wechatwork"
           "codex-app"
           "claude"
+          "antigravity"
           {
             name = "microsoft-word";
             greedy = false;
