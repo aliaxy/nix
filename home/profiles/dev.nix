@@ -19,6 +19,10 @@
     OPENSPEC_TELEMETRY = 0;
   };
 
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ];
+
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
