@@ -34,6 +34,7 @@
   formatter = "language_server";
   tab_size = 2;
   auto_update = false; # updates are managed externally via Homebrew
+  always_treat_brackets_as_autoclosed = true;
 
   # ── Title bar ────────────────────────────────────────────────────────────
   title_bar = {
