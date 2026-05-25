@@ -65,6 +65,8 @@ in
           "sublime-text"
           "zed"
           "orbstack"
+          "antigravity"
+          "antigravity-cli"
         ])
         (lib.optionals suiteCfg.productivity [
           "notion"
