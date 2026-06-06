@@ -5,26 +5,11 @@
 # Available accents : blue | flamingo | green | lavender | maroon | mauve |
 #                     peach | pink | red | rosewater | sapphire | sky | teal | yellow
 { ... }:
-let
-  base = {
-    enable = true;
-    flavor = "macchiato";
-  };
-in
 {
   catppuccin = {
-    bat = base;
-    lazygit = base;
-    ghostty = base;
-    starship = base;
-    eza = base // {
-      accent = "lavender";
-    };
-    yazi = base // {
-      accent = "lavender";
-    };
-    zed = base // {
-      icons = base;
-    };
+    enable = true;
+    autoEnable = true;
+    flavor = "macchiato";
+    accent = "lavender";
   };
 }

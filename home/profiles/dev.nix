@@ -13,6 +13,7 @@
     nixd
     nodejs
     openspec
+    lazysql
   ];
 
   home.sessionVariables = {
