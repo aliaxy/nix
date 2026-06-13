@@ -30,11 +30,14 @@
         "/Applications/App Cleaner 9.app"
       ];
 
+      dock.autohide = false;
+
       homebrew = {
         enableRosetta = true;
         extraCasks = [
           "codex-app"
           "claude"
+          "app-cleaner"
         ];
       };
     };
@@ -44,5 +47,4 @@
     base = true;
     dev = true;
   };
-
 }

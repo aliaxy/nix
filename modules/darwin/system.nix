@@ -33,6 +33,12 @@ in
         description = "Dock icon size in pixels.";
       };
 
+      autohide = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Whether the Dock automatically hides when not in use.";
+      };
+
       extraPersistentApps = mkOption {
         type = types.listOf types.str;
         default = [ ];
@@ -71,7 +77,7 @@ in
       };
 
       dock = {
-        autohide = true;
+        autohide = cfg.dock.autohide;
         orientation = cfg.dock.position;
         tilesize = cfg.dock.tileSize;
         persistent-apps = [
