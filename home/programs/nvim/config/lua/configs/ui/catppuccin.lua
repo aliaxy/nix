@@ -30,7 +30,7 @@ return {
   term_colors = true,
 
   -- Keep Catppuccin's compiled theme cache in Neovim's cache directory.
-  compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
+  compile_path = vim.fn.stdpath("cache") .. "/catppuccin-nvim",
 
   -- Syntax style choices copied from nvimdots. These affect only text
   -- styling, not plugin behavior.
