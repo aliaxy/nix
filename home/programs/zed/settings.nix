@@ -94,6 +94,18 @@
   };
 
   # ── Panels ───────────────────────────────────────────────────────────────
+  project_panel = {
+    dock = "left";
+  };
+
+  git_panel = {
+    dock = "left";
+  };
+
+  outline_panel = {
+    dock = "right";
+  };
+
   collaboration_panel = {
     button = false;
     dock = "left";
@@ -102,6 +114,7 @@
 
   # ── AI agent ─────────────────────────────────────────────────────────────
   agent = {
+    dock = "right";
     default_profile = "write";
     default_model = {
       effort = "medium";
