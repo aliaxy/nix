@@ -45,6 +45,13 @@
             username = "aliaxy";
           };
 
+          # Build and switch with:
+          #   darwin-rebuild switch --flake .#mbp-m1pro
+          darwinConfigurations."mbp-m1pro" = lib.mkDarwinSystem {
+            hostname = "mbp-m1pro";
+            username = "aliaxy";
+          };
+
           templates = {
             go = {
               path = ./templates/go;
