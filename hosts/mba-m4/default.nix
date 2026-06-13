@@ -1,4 +1,4 @@
-# MacBook Air M-series — host-specific configuration.
+# MacBook Air M4 — host-specific configuration.
 # All shared modules are loaded by mkDarwinSystem in lib/; only values that
 # differ per machine belong here.
 { ... }:

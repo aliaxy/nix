@@ -39,9 +39,9 @@
         in
         {
           # Build and switch with:
-          #   darwin-rebuild switch --flake .#air-m4
-          darwinConfigurations."air-m4" = lib.mkDarwinSystem {
-            hostname = "air-m4";
+          #   darwin-rebuild switch --flake .#mba-m4
+          darwinConfigurations."mba-m4" = lib.mkDarwinSystem {
+            hostname = "mba-m4";
             username = "aliaxy";
           };
 
