@@ -1,8 +1,8 @@
 # modules/common/home.nix — Home Manager base config and opt-in profile selection.
 #
-# Defines my.home.profiles.* options and wires them to home-manager.
-# The home-manager module API is identical on Darwin and NixOS, so this
-# module is shared across all platforms.
+# Defines my.home.profiles.* and my.home.programs.* options and wires them to
+# home-manager. Programs default to enabled; hosts can set individual ones to
+# false to skip them.
 {
   config,
   lib,
@@ -13,12 +13,44 @@
 }:
 let
   inherit (lib) mkEnableOption;
-  cfg = config.my.home.profiles;
+  cfg = config.my.home;
 in
 {
-  options.my.home.profiles = {
-    base = mkEnableOption "base CLI and desktop profile (shell, editor, GUI apps)";
-    dev = mkEnableOption "developer toolchain profile (git, direnv, AI tools, mirrors)";
+  options.my.home = {
+    profiles = {
+      base = mkEnableOption "base CLI and desktop profile (shell, editor, GUI apps)";
+      dev = mkEnableOption "developer toolchain profile (git, direnv, AI tools, mirrors)";
+    };
+
+    programs = {
+      nvim = mkEnableOption "Neovim" // {
+        default = true;
+      };
+      fish = mkEnableOption "Fish shell" // {
+        default = true;
+      };
+      starship = mkEnableOption "Starship prompt" // {
+        default = true;
+      };
+      yazi = mkEnableOption "Yazi file manager" // {
+        default = true;
+      };
+      ghostty = mkEnableOption "Ghostty terminal" // {
+        default = true;
+      };
+      aerospace = mkEnableOption "Aerospace tiling window manager" // {
+        default = false;
+      };
+      zed = mkEnableOption "Zed editor" // {
+        default = true;
+      };
+    };
+
+    extraPackages = lib.mkOption {
+      type = lib.types.listOf lib.types.package;
+      default = [ ];
+      description = "Host-specific home packages to install alongside the shared profiles.";
+    };
   };
 
   config = {
@@ -31,7 +63,25 @@ in
     home-manager.users.${username}.imports = [
       ../../home
     ]
-    ++ lib.optionals cfg.base [ ../../home/profiles/base.nix ]
-    ++ lib.optionals cfg.dev [ ../../home/profiles/dev.nix ];
+    ++ lib.optionals cfg.profiles.base [
+      ../../home/profiles/base.nix
+      ../../home/programs/nvim
+      ../../home/programs/fish.nix
+      ../../home/programs/starship.nix
+      ../../home/programs/yazi.nix
+      ../../home/programs/ghostty.nix
+    ]
+    ++ lib.optionals (cfg.profiles.base && cfg.programs.aerospace) [
+      ../../home/programs/aerospace.nix
+    ]
+    ++ lib.optionals cfg.profiles.dev [
+      ../../home/profiles/dev.nix
+    ]
+    ++ lib.optionals (cfg.profiles.dev && cfg.programs.zed) [
+      ../../home/programs/zed
+    ]
+    ++ lib.optionals (cfg.extraPackages != [ ]) [
+      { home.packages = cfg.extraPackages; }
+    ];
   };
 }

@@ -1,15 +1,8 @@
-# Base profile — core CLI and desktop environment shared across all hosts.
+# Base profile — core CLI environment shared across all hosts.
+# Program imports (nvim, fish, starship, etc.) are managed via my.home.programs
+# options in modules/common/home.nix so individual programs can be toggled per host.
 { ... }:
 {
-  imports = [
-    ../programs/nvim
-    ../programs/fish.nix
-    ../programs/starship.nix
-    ../programs/yazi.nix
-    ../programs/ghostty.nix
-    ../programs/aerospace.nix
-  ];
-
   # bat: syntax-highlighted cat replacement
   programs.bat.enable = true;
 

@@ -4,7 +4,6 @@
 { pkgs, ... }:
 {
   imports = [
-    ../programs/zed
     ./mirrors.nix
   ];
 

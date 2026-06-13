@@ -64,4 +64,6 @@
     base = true;
     dev = true;
   };
+
+  my.home.programs.aerospace = true;
 }
