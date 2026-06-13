@@ -41,6 +41,7 @@
           "wechatwork"
           "codex-app"
           "claude"
+          "capcut"
           {
             name = "microsoft-word";
           #  greedy = false;
