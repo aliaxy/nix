@@ -44,15 +44,15 @@
           "capcut"
           {
             name = "microsoft-word";
-          #  greedy = false;
+            #  greedy = false;
           }
           {
             name = "microsoft-excel";
-          #  greedy = false;
+            #  greedy = false;
           }
           {
             name = "microsoft-powerpoint";
-          #  greedy = false;
+            #  greedy = false;
           }
         ];
       };
