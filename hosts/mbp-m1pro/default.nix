@@ -23,7 +23,9 @@
         "/System/Applications/iPhone Mirroring.app"
         "/Users/aliaxy/Applications/Home Manager Apps/Ghostty.app"
         "/Applications/Google Chrome.app"
-        "/Applications/Notion.app"
+        "/Applications/Codex.app"
+        "/Applications/Claude.app"
+        "/Applications/Antigravity.app"
         "/Applications/Sublime Text.app"
         "/Applications/Zed.app"
         "/Applications/Orbstack.app"
@@ -34,6 +36,10 @@
 
       homebrew = {
         enableRosetta = true;
+        extraBrews = [
+          "ollama"
+        ];
+
         extraCasks = [
           "codex-app"
           "claude"
