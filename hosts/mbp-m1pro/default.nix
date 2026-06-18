@@ -1,7 +1,7 @@
 # MacBook Pro M1 Pro — host-specific configuration.
 # All shared modules are loaded by mkDarwinSystem in lib/; only values that
 # differ per machine belong here.
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./hardware.nix
@@ -17,6 +17,11 @@
         office = false;
         iWork = false;
       };
+
+      extraSystemPackages = with pkgs; [
+        python314Packages.mlx-lm
+        llama-cpp
+      ];
 
       dock.extraPersistentApps = [
         "/System/Applications/Reminders.app"
@@ -36,10 +41,6 @@
 
       homebrew = {
         enableRosetta = true;
-        extraBrews = [
-          "ollama"
-        ];
-
         extraCasks = [
           "codex-app"
           "claude"
@@ -53,4 +54,6 @@
     base = true;
     dev = true;
   };
+
+  my.home.services.ollama = true;
 }
