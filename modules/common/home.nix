@@ -22,6 +22,10 @@ in
       dev = mkEnableOption "developer toolchain profile (git, direnv, AI tools, mirrors)";
     };
 
+    services = {
+      ollama = mkEnableOption "Ollama local LLM service";
+    };
+
     programs = {
       nvim = mkEnableOption "Neovim" // {
         default = true;
@@ -79,6 +83,9 @@ in
     ]
     ++ lib.optionals (cfg.profiles.dev && cfg.programs.zed) [
       ../../home/programs/zed
+    ]
+    ++ lib.optionals cfg.services.ollama [
+      { services.ollama.enable = true; }
     ]
     ++ lib.optionals (cfg.extraPackages != [ ]) [
       { home.packages = cfg.extraPackages; }
