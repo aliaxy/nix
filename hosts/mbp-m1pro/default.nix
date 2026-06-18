@@ -18,11 +18,6 @@
         iWork = false;
       };
 
-      extraSystemPackages = with pkgs; [
-        python314Packages.mlx-lm
-        llama-cpp
-      ];
-
       dock.extraPersistentApps = [
         "/System/Applications/Reminders.app"
         "/System/Applications/iPhone Mirroring.app"
@@ -54,6 +49,4 @@
     base = true;
     dev = true;
   };
-
-  my.home.services.ollama = true;
 }
