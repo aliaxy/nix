@@ -125,6 +125,10 @@
           "workspace E"
           "exec-and-forget open -a Feishu"
         ];
+        alt-t = [
+          "workspace T"
+          "exec-and-forget open -a Telegram"
+        ];
         alt-u = [
           "workspace U"
           "exec-and-forget open -a 'App Cleaner 9'"
@@ -212,6 +216,10 @@
         alt-shift-e = [
           "move-node-to-workspace E"
           "workspace E"
+        ];
+        alt-shift-t = [
+          "move-node-to-workspace T"
+          "workspace T"
         ];
         alt-shift-u = [
           "move-node-to-workspace U"
