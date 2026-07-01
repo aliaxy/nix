@@ -38,6 +38,7 @@
 
         extraBrews = [
           "mole"
+          "ccusage"
         ];
 
         extraCasks = [
@@ -47,20 +48,23 @@
           "codex-app"
           "claude"
           "telegram"
-
           {
             name = "microsoft-word";
-            # greedy = false;
+            greedy = false;
           }
           {
             name = "microsoft-excel";
-            # greedy = false;
+            greedy = false;
           }
           {
             name = "microsoft-powerpoint";
-            # greedy = false;
+            greedy = false;
           }
         ];
+
+        extraMasApps = {
+          "Xcode" = 497799835;
+        };
       };
     };
   };
