@@ -54,9 +54,8 @@ in
         (lib.optionals suiteCfg.essentials [
           "keka"
           "google-chrome"
-          # "app-cleaner"
+          "app-cleaner"
           "clash-verge-rev"
-          "surge"
           "sf-symbols"
           "font-sf-pro"
           "font-sf-mono"
