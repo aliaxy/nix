@@ -14,6 +14,8 @@
   # Languages
   "lua"
   "fish"
+  "swift"
+  "package-swift-lsp"
 
   # Data
   "sql"

@@ -89,4 +89,11 @@
       allowed = true;
     };
   };
+
+  Swift = {
+    enable_language_server = true;
+    language_servers = [ "sourcekit-lsp" ];
+    formatter = "language_server";
+    format_on_save = "on";
+  };
 }
