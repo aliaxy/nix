@@ -39,6 +39,7 @@
         extraBrews = [
           "mole"
           "ccusage"
+          "vapor"
         ];
 
         extraCasks = [
