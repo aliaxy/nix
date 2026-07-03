@@ -151,7 +151,7 @@
         ];
         alt-v = [
           "workspace V"
-          "exec-and-forget open -a 'Clash Verge'"
+          # "exec-and-forget open -a 'Clash Verge'"
         ];
         alt-n = [
           "workspace N"
