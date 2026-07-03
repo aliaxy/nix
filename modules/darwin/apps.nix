@@ -54,6 +54,7 @@ in
         (lib.optionals suiteCfg.essentials [
           "keka"
           "google-chrome"
+          "cleanshot"
           "app-cleaner"
           "clash-verge-rev"
           "sf-symbols"
