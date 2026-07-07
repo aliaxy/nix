@@ -40,6 +40,7 @@
           "mole"
           "ccusage"
           "vapor"
+          "cc-switch-cli"
         ];
 
         extraCasks = [
