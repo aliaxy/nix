@@ -63,6 +63,8 @@
     };
     language_servers = [
       "!basedpyright"
+      "!pyright"
+      "!pylsp"
       "ruff"
       "ty"
       "..."
