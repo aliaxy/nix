@@ -18,6 +18,9 @@
         iWork = false;
       };
 
+      extraSystemPackages = with pkgs; [
+      ];
+
       dock.extraPersistentApps = [
         "/System/Applications/Reminders.app"
         "/System/Applications/iPhone Mirroring.app"
@@ -36,10 +39,14 @@
 
       homebrew = {
         enableRosetta = true;
+        extraBrews = [
+          "xcodes"
+        ];
         extraCasks = [
           "codex-app"
           "claude"
-          "app-cleaner"
+          "telegram"
+          "steam"
         ];
       };
     };
