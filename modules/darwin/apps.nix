@@ -56,7 +56,6 @@ in
           "google-chrome"
           "cleanshot"
           "app-cleaner"
-          "clash-verge-rev"
           "sf-symbols"
           "font-sf-pro"
           "font-sf-mono"
