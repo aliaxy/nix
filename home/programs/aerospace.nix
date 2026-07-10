@@ -89,7 +89,7 @@
 
         alt-x = [
           "workspace 3"
-          "exec-and-forget open -a Codex"
+          "exec-and-forget open -a ChatGPT"
         ];
         alt-c = [
           "workspace 4"
