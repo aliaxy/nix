@@ -3,7 +3,8 @@
 {
   programs.starship = {
     enable = true;
-    package = inputs.nixpkgs-stable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.starship;
+    # Pin to the stable channel to avoid breaking changes.
+    # package = inputs.nixpkgs-stable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.starship;
     enableFishIntegration = true;
     settings = {
       # Don't print a blank line before each prompt.
