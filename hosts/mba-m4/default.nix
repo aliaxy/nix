@@ -1,7 +1,7 @@
 # MacBook Air M4 — host-specific configuration.
 # All shared modules are loaded by mkDarwinSystem in lib/; only values that
 # differ per machine belong here.
-{ username, ... }:
+{ pkgs, username, ... }:
 {
   imports = [
     # Platform identity and nix-darwin state version
@@ -31,6 +31,10 @@
         "/Applications/Zed.app"
         "/Applications/Orbstack.app"
         "/Applications/App Cleaner 9.app"
+      ];
+
+      extraSystemPackages = with pkgs; [
+        grok-build
       ];
 
       homebrew = {
