@@ -79,6 +79,7 @@
     };
   };
 
-  #programs.codex.enable = true;
+  programs.codex.enable = true;
   programs.claude-code.enable = true;
+  programs.antigravity-cli.enable = true;
 }
