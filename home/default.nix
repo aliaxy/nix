@@ -1,5 +1,9 @@
 # Home Manager entry point — imported by every host via home-manager.users.<name>
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     # Register the Catppuccin Home Manager module so catppuccin.* options are available
     inputs.catppuccin.homeModules.catppuccin
@@ -11,4 +15,10 @@
   # It pins the state schema version and prevents silent breakage on incompatible releases.
   # See: https://nix-community.github.io/home-manager/release-notes.html
   home.stateVersion = "25.11";
+
+  # Baseline user CLI available on every host (independent of base/dev profiles).
+  home.packages = with pkgs; [
+    mas # Mac App Store CLI
+    ascii-image-converter # ASCII art converter
+  ];
 }

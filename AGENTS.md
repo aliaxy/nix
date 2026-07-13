@@ -94,10 +94,14 @@ nix/
   overrides in `hosts/<hostname>/default.nix` under `my.darwin.homebrew`.
 - Change Dock, Finder, shell, or macOS defaults: edit
   `modules/darwin/system.nix` or host-specific Dock values.
+- Add CLI tools for every host (always imported): edit `home/default.nix`
+  `home.packages`.
 - Add CLI tools for everyone using the base profile: edit `home/profiles/base.nix`.
 - Add developer-only tools: edit `home/profiles/dev.nix`.
 - Add host-only user packages: set `my.home.extraPackages` in
   `hosts/<hostname>/default.nix` (Home Manager `home.packages`).
+- Add system-only concerns (fonts, `/etc/shells`, etc.): edit
+  `modules/darwin/packages.nix` — not user CLIs.
 - Add a larger app configuration: create or update `home/programs/<name>.nix`
   and import it from the relevant profile.
 - Add a new host: create `hosts/<hostname>/`, then add a

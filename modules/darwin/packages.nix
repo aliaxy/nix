@@ -1,10 +1,6 @@
-# System-level packages, fonts, and shell registration for macOS hosts.
+# System-level fonts and shell registration for macOS hosts.
+# User CLIs belong in home/default.nix or profiles, not here.
 {pkgs, ...}: {
-  environment.systemPackages = with pkgs; [
-    mas # Mac App Store CLI
-    ascii-image-converter # ASCII art converter
-  ];
-
   fonts.packages = [
     pkgs.nerd-fonts.jetbrains-mono
   ];
