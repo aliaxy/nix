@@ -62,7 +62,7 @@ in {
         ../../home/profiles/dev.nix
         ../../home/programs/zed
       ]
-      ++ lib.optionals (cfg.extraPackages != []) [
+      ++ [
         {home.packages = cfg.extraPackages;}
       ];
   };

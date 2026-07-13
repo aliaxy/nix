@@ -1,11 +1,7 @@
 # MacBook Pro M1 Pro — host-specific configuration.
 # All shared modules are loaded by mkDarwinSystem in lib/; only values that
 # differ per machine belong here.
-{
-  pkgs,
-  username,
-  ...
-}: {
+{username, ...}: {
   imports = [
     ./hardware.nix
   ];
@@ -20,9 +16,6 @@
         office = false;
         iWork = false;
       };
-
-      extraSystemPackages = with pkgs; [
-      ];
 
       dock.extraPersistentApps = [
         "/System/Applications/Reminders.app"
@@ -50,10 +43,10 @@
         ];
       };
     };
-  };
 
-  my.home.profiles = {
-    base = true;
-    dev = true;
+    home.profiles = {
+      base = true;
+      dev = true;
+    };
   };
 }

@@ -57,10 +57,12 @@ nix/
 - `lib/default.nix` assembles each Darwin host with shared modules and passes
   `inputs`, `self`, `hostname`, and `username` through `specialArgs`.
 - `hosts/<hostname>/default.nix` contains only host-specific values: enabled
-  suites, Dock additions, Homebrew overrides, and Home Manager profile choices.
-- `modules/common/home.nix` defines `my.home.profiles.*` and wires Home Manager
-  imports. Base always pulls nvim/fish/starship/yazi/ghostty; dev pulls Zed.
-  Only `my.home.programs.aerospace` is an optional host toggle.
+  suites, Dock additions, Homebrew overrides, Home Manager profile choices,
+  and optional `my.home.extraPackages`.
+- `modules/common/home.nix` defines `my.home.profiles.*`,
+  `my.home.extraPackages`, and wires Home Manager imports. Base always pulls
+  nvim/fish/starship/yazi/ghostty; dev pulls Zed. Only
+  `my.home.programs.aerospace` is an optional host toggle.
 - `modules/darwin/apps.nix` defines high-level GUI suites and resolves app
   bundles.
 - `modules/darwin/homebrew.nix` merges suite casks with host-specific casks,
@@ -94,6 +96,8 @@ nix/
   `modules/darwin/system.nix` or host-specific Dock values.
 - Add CLI tools for everyone using the base profile: edit `home/profiles/base.nix`.
 - Add developer-only tools: edit `home/profiles/dev.nix`.
+- Add host-only user packages: set `my.home.extraPackages` in
+  `hosts/<hostname>/default.nix` (Home Manager `home.packages`).
 - Add a larger app configuration: create or update `home/programs/<name>.nix`
   and import it from the relevant profile.
 - Add a new host: create `hosts/<hostname>/`, then add a

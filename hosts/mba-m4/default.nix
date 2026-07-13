@@ -36,10 +36,6 @@
         "/Applications/App Cleaner 9.app"
       ];
 
-      extraSystemPackages = with pkgs; [
-        grok-build
-      ];
-
       homebrew = {
         enableRosetta = true; # Apple Silicon: install the Intel prefix for Rosetta 2
 
@@ -73,13 +69,16 @@
         };
       };
     };
-  };
 
-  # Opt-in Home Manager profiles for this host
-  my.home.profiles = {
-    base = true;
-    dev = true;
+    home = {
+      profiles = {
+        base = true;
+        dev = true;
+      };
+      programs.aerospace = true;
+      extraPackages = with pkgs; [
+        grok-build
+      ];
+    };
   };
-
-  my.home.programs.aerospace = true;
 }
