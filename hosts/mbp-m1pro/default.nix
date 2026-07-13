@@ -43,9 +43,6 @@
           "xcodes"
         ];
         extraCasks = [
-          "codex-app"
-          "claude"
-          "telegram"
           "steam"
         ];
       };

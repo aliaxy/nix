@@ -51,9 +51,6 @@
           "feishu"
           "tencent-meeting"
           "wechatwork"
-          "codex-app"
-          "claude"
-          "telegram"
           {
             name = "microsoft-word";
             greedy = false;

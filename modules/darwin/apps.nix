@@ -59,13 +59,14 @@ in
           "sf-symbols"
           "font-sf-pro"
           "font-sf-mono"
+          "chatgpt"
+          "claude"
+          "antigravity"
         ])
         (lib.optionals suiteCfg.development [
           "sublime-text"
           "zed"
           "orbstack"
-          "antigravity"
-          "antigravity-cli"
         ])
         (lib.optionals suiteCfg.productivity [
           "notion"
@@ -74,6 +75,7 @@ in
         (lib.optionals suiteCfg.communication [
           "qq"
           "wechat"
+          "telegram"
         ])
         (lib.optionals suiteCfg.office [
           "microsoft-word"
