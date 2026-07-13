@@ -26,55 +26,68 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs =
-    inputs@{ flake-parts, self, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
+  outputs = inputs @ {
+    flake-parts,
+    self,
+    ...
+  }:
+    flake-parts.lib.mkFlake {inherit inputs;} {
       systems = [
         "aarch64-darwin"
         "x86_64-darwin"
       ];
 
-      flake =
-        let
-          lib = import ./lib { inherit inputs self; };
-        in
-        {
-          # Build and switch with:
-          #   darwin-rebuild switch --flake .#mba-m4
-          darwinConfigurations."mba-m4" = lib.mkDarwinSystem {
-            hostname = "mba-m4";
-            username = "aliaxy";
-          };
+      # Repo-local tooling for editing this flake / modules (via nix-direnv).
+      perSystem = {pkgs, ...}: {
+        formatter = pkgs.alejandra;
 
-          # Build and switch with:
-          #   darwin-rebuild switch --flake .#mbp-m1pro
-          darwinConfigurations."mbp-m1pro" = lib.mkDarwinSystem {
-            hostname = "mbp-m1pro";
-            username = "aliaxy";
-          };
+        devShells.default = pkgs.mkShell {
+          packages = with pkgs; [
+            nil
+            nixd
+          ];
+        };
+      };
 
-          templates = {
-            go = {
-              path = ./templates/go;
-              description = "Go dev shell — go, gopls, golangci-lint, delve";
-            };
-            rust = {
-              path = ./templates/rust;
-              description = "Rust dev shell — rustc, cargo, rust-analyzer, clippy, cargo-watch";
-            };
-            python = {
-              path = ./templates/python;
-              description = "Python dev shell — uv, ruff, pyright";
-            };
-            node = {
-              path = ./templates/node;
-              description = "Node.js dev shell — nodejs_22, pnpm";
-            };
-            c = {
-              path = ./templates/c;
-              description = "C/C++ dev shell — clang, cmake, ninja, clangd, bear";
-            };
+      flake = let
+        lib = import ./lib {inherit inputs self;};
+      in {
+        # Build and switch with:
+        #   darwin-rebuild switch --flake .#mba-m4
+        darwinConfigurations."mba-m4" = lib.mkDarwinSystem {
+          hostname = "mba-m4";
+          username = "aliaxy";
+        };
+
+        # Build and switch with:
+        #   darwin-rebuild switch --flake .#mbp-m1pro
+        darwinConfigurations."mbp-m1pro" = lib.mkDarwinSystem {
+          hostname = "mbp-m1pro";
+          username = "aliaxy";
+        };
+
+        templates = {
+          go = {
+            path = ./templates/go;
+            description = "Go dev shell — go, gopls, golangci-lint, delve";
+          };
+          rust = {
+            path = ./templates/rust;
+            description = "Rust dev shell — rustc, cargo, rust-analyzer, clippy, cargo-watch";
+          };
+          python = {
+            path = ./templates/python;
+            description = "Python dev shell — uv, ruff, pyright";
+          };
+          node = {
+            path = ./templates/node;
+            description = "Node.js dev shell — nodejs_22, pnpm";
+          };
+          c = {
+            path = ./templates/c;
+            description = "C/C++ dev shell — clang, cmake, ninja, clangd, bear";
           };
         };
+      };
     };
 }

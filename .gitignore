@@ -1,6 +1,7 @@
 .luarc.json
 .claude
 .DS_Store
+.direnv/
 task_plan.md
 findings.md
 progress.md

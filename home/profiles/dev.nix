@@ -8,8 +8,6 @@
   ];
 
   home.packages = with pkgs; [
-    nil
-    nixd
     nodejs
     openspec
     lazysql
