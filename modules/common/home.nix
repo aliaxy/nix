@@ -1,8 +1,8 @@
 # modules/common/home.nix — Home Manager base config and opt-in profile selection.
 #
-# Defines my.home.profiles.* and my.home.programs.* options and wires them to
-# home-manager. Programs default to enabled; hosts can set individual ones to
-# false to skip them.
+# Profiles pull in their programs as a unit. Large program configs live under
+# home/programs/ for readability, not as independent opt-in features.
+# Only aerospace is host-toggleable (default off).
 {
   config,
   lib,
@@ -23,26 +23,8 @@ in
     };
 
     programs = {
-      nvim = mkEnableOption "Neovim" // {
-        default = true;
-      };
-      fish = mkEnableOption "Fish shell" // {
-        default = true;
-      };
-      starship = mkEnableOption "Starship prompt" // {
-        default = true;
-      };
-      yazi = mkEnableOption "Yazi file manager" // {
-        default = true;
-      };
-      ghostty = mkEnableOption "Ghostty terminal" // {
-        default = true;
-      };
       aerospace = mkEnableOption "Aerospace tiling window manager" // {
         default = false;
-      };
-      zed = mkEnableOption "Zed editor" // {
-        default = true;
       };
     };
 
@@ -65,6 +47,7 @@ in
     ]
     ++ lib.optionals cfg.profiles.base [
       ../../home/profiles/base.nix
+      # Split files for long configs — always part of base, not individual toggles.
       ../../home/programs/nvim
       ../../home/programs/fish.nix
       ../../home/programs/starship.nix
@@ -76,8 +59,6 @@ in
     ]
     ++ lib.optionals cfg.profiles.dev [
       ../../home/profiles/dev.nix
-    ]
-    ++ lib.optionals (cfg.profiles.dev && cfg.programs.zed) [
       ../../home/programs/zed
     ]
     ++ lib.optionals (cfg.extraPackages != [ ]) [
