@@ -1,7 +1,7 @@
 # MacBook Pro M1 Pro — host-specific configuration.
 # All shared modules are loaded by mkDarwinSystem in lib/; only values that
 # differ per machine belong here.
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 {
   imports = [
     ./hardware.nix
@@ -24,7 +24,7 @@
       dock.extraPersistentApps = [
         "/System/Applications/Reminders.app"
         "/System/Applications/iPhone Mirroring.app"
-        "/Users/aliaxy/Applications/Home Manager Apps/Ghostty.app"
+        "/Users/${username}/Applications/Home Manager Apps/Ghostty.app"
         "/Applications/Google Chrome.app"
         "/Applications/Codex.app"
         "/Applications/Claude.app"
