@@ -4,6 +4,7 @@
   inputs = {
     # Core package set — track the rolling unstable branch for latest software.
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     # nix-darwin: macOS system configuration (Homebrew, defaults, activation scripts).
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";

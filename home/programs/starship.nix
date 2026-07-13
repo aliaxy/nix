@@ -1,8 +1,9 @@
 # Starship — cross-shell prompt configuration.
-{ lib, ... }:
+{ inputs, pkgs, lib, ... }:
 {
   programs.starship = {
     enable = true;
+    package = inputs.nixpkgs-stable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.starship;
     enableFishIntegration = true;
     settings = {
       # Don't print a blank line before each prompt.
