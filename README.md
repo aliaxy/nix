@@ -54,7 +54,7 @@ When the managed `fish` shell is active, `drb` is a shortcut for rebuilding and 
 ## 🛠️ Architecture Highlights
 
 - **Opt-in App Suites**: macOS GUI apps are grouped into suites (`essentials`, `development`, `productivity`, `communication`, `office`, `iWork`). Each host opts in by setting `my.darwin.suites.<name> = true`.
-- **Per-host Program Toggles**: Individual Home Manager programs (nvim, fish, starship, yazi, ghostty, aerospace, zed) can be enabled or disabled per host via `my.home.programs.<name>`. Programs default to enabled; `aerospace` defaults to disabled.
+- **Profiles + split program files**: Enabling `my.home.profiles.base` always includes nvim, fish, starship, yazi, and ghostty (configs are split under `home/programs/` because they are long, not because they are optional). Enabling `dev` also includes Zed. Only **Aerospace** is a real per-host toggle via `my.home.programs.aerospace` (default off).
 - **Extra Packages per Host**: Hosts can add machine-specific Home Manager packages via `my.home.extraPackages`.
 - **Dynamic Variables**: `hostname` and `username` are passed down through the module system via `specialArgs`, avoiding hardcoded paths and making the setup adaptable for new Darwin hosts.
 - **Declarative Everything**:

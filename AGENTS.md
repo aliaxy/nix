@@ -8,26 +8,27 @@ configuration repository. Keep changes declarative, small, and easy to verify.
 This repository is a flake-based macOS configuration for `nix-darwin`, Home
 Manager, `nix-homebrew`, Catppuccin, and project dev-shell templates.
 
-The active host is `air-m4`, owned by user `aliaxy`, and built through
-`lib.mkDarwinSystem`. Host-specific choices live under `hosts/air-m4/`; shared
-Darwin and Home Manager behavior lives in reusable modules.
+Hosts are `mba-m4` (MacBook Air M4, primary) and `mbp-m1pro` (MacBook Pro M1
+Pro), owned by user `aliaxy`, and built through `lib.mkDarwinSystem`.
+Host-specific choices live under `hosts/<hostname>/`; shared Darwin and Home
+Manager behavior lives in reusable modules.
 
 ## Build, Check, and Apply Commands
 
 Run commands from the repository root.
 
 - `nix flake show`: inspect exported outputs and catch basic flake issues.
-- `nix build .#darwinConfigurations.air-m4.system`: build the active macOS
+- `nix build .#darwinConfigurations.mba-m4.system`: build the active macOS
   system closure without switching.
-- `darwin-rebuild switch --flake .#air-m4`: apply the active host
+- `darwin-rebuild switch --flake .#mba-m4`: apply the active host
   configuration.
 - `drb`: shell shortcut for rebuilding the current Darwin host, when the
   managed shell is active.
 
 For focused option checks, prefer `nix eval` before a full build, for example:
 
-- `nix eval .#darwinConfigurations.air-m4.config.my.darwin.dock.position --raw`
-- `nix eval .#darwinConfigurations.air-m4.config.my.home.profiles.dev --json`
+- `nix eval .#darwinConfigurations.mba-m4.config.my.darwin.dock.position --raw`
+- `nix eval .#darwinConfigurations.mba-m4.config.my.home.profiles.dev --json`
 
 If the sandbox cannot connect to the Nix daemon, report that limitation instead
 of claiming the build was verified.
@@ -39,7 +40,8 @@ nix/
 ├── flake.nix                 # Flake inputs, host exports, dev-shell templates
 ├── flake.lock                # Locked input revisions
 ├── lib/default.nix           # mkDarwinSystem host builder
-├── hosts/air-m4/             # Active host values and hardware settings
+├── hosts/mba-m4/             # MacBook Air M4 host values
+├── hosts/mbp-m1pro/          # MacBook Pro M1 Pro host values
 ├── modules/common/           # Cross-platform Nix and Home Manager wiring
 ├── modules/darwin/           # macOS system, Homebrew, apps, packages
 ├── home/default.nix          # Home Manager entry point and shared imports
@@ -50,13 +52,15 @@ nix/
 
 ## Configuration Model
 
-- `flake.nix` exports `darwinConfigurations.air-m4` and project templates.
+- `flake.nix` exports `darwinConfigurations.mba-m4`,
+  `darwinConfigurations.mbp-m1pro`, and project templates.
 - `lib/default.nix` assembles each Darwin host with shared modules and passes
   `inputs`, `self`, `hostname`, and `username` through `specialArgs`.
 - `hosts/<hostname>/default.nix` contains only host-specific values: enabled
   suites, Dock additions, Homebrew overrides, and Home Manager profile choices.
 - `modules/common/home.nix` defines `my.home.profiles.*` and wires Home Manager
-  imports for the selected user.
+  imports. Base always pulls nvim/fish/starship/yazi/ghostty; dev pulls Zed.
+  Only `my.home.programs.aerospace` is an optional host toggle.
 - `modules/darwin/apps.nix` defines high-level GUI suites and resolves app
   bundles.
 - `modules/darwin/homebrew.nix` merges suite casks with host-specific casks,
@@ -85,7 +89,7 @@ nix/
 ## Common Change Locations
 
 - Add or remove GUI apps: update suites in `modules/darwin/apps.nix`, or host
-  overrides in `hosts/air-m4/default.nix` under `my.darwin.homebrew`.
+  overrides in `hosts/<hostname>/default.nix` under `my.darwin.homebrew`.
 - Change Dock, Finder, shell, or macOS defaults: edit
   `modules/darwin/system.nix` or host-specific Dock values.
 - Add CLI tools for everyone using the base profile: edit `home/profiles/base.nix`.
@@ -137,9 +141,9 @@ the change, then escalate as needed.
 1. Run `git diff --check` for whitespace and patch hygiene.
 2. Run `nix flake show` for output-level validation.
 3. Use `nix eval` for changed host options or profile toggles.
-4. Run `nix build .#darwinConfigurations.air-m4.system` before claiming the
+4. Run `nix build .#darwinConfigurations.mba-m4.system` before claiming the
    active system builds.
-5. Only run `darwin-rebuild switch --flake .#air-m4` when the user wants the
+5. Only run `darwin-rebuild switch --flake .#mba-m4` when the user wants the
    configuration applied.
 
 For visible desktop changes, mention that manual inspection may still be needed
