@@ -33,6 +33,11 @@
       # smart-enter: enters a directory on <Enter> if the hovered item is a
       # directory, otherwise opens the file with the default opener.
       smart-enter = pkgs.yaziPlugins.smart-enter;
+      starship = pkgs.yaziPlugins.starship;
     };
+
+    initLua = ''
+      require("starship"):setup()
+    '';
   };
 }
