@@ -40,7 +40,7 @@
   );
   extraCaskAttrs = builtins.listToAttrs (
     map (c: {
-      name = c.name;
+      inherit (c) name;
       value = c;
     })
     cfg.extraCasks
@@ -91,7 +91,7 @@ in {
       enable = true;
       user = username;
       autoMigrate = true;
-      enableRosetta = cfg.enableRosetta;
+      inherit (cfg) enableRosetta;
     };
 
     homebrew = {

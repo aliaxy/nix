@@ -1,0 +1,3 @@
+# Home Manager / nix-darwin modules often keep dotted top-level keys
+# (programs.foo, programs.bar) for readability; skip that style lint.
+disabled = ["repeated_keys"]

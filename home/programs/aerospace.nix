@@ -1,7 +1,7 @@
 # AeroSpace tiling window manager + JankyBorders focus-aware window borders.
 # AeroSpace is installed via Homebrew cask; launchd integration is disabled
 # because AeroSpace manages its own login-item registration.
-{...}: {
+_: {
   programs.aerospace = {
     enable = true;
     launchd.enable = true;

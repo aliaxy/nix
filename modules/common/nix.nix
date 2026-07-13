@@ -1,5 +1,5 @@
 # Common Nix settings shared across all platforms and hosts.
-{...}: {
+_: {
   # Enable flakes and the unified CLI (nix-command)
   nix.settings.experimental-features = "nix-command flakes";
 
