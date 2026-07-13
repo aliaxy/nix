@@ -1,8 +1,7 @@
 # AeroSpace tiling window manager + JankyBorders focus-aware window borders.
 # AeroSpace is installed via Homebrew cask; launchd integration is disabled
 # because AeroSpace manages its own login-item registration.
-{ ... }:
-{
+{...}: {
   programs.aerospace = {
     enable = true;
     launchd.enable = true;
@@ -10,8 +9,8 @@
     settings = {
       config-version = 2;
 
-      after-login-command = [ ];
-      after-startup-command = [ ];
+      after-login-command = [];
+      after-startup-command = [];
       start-at-login = true;
 
       # Normalisation keeps the workspace tree tidy by collapsing redundant
@@ -24,7 +23,7 @@
       default-root-container-orientation = "auto";
 
       # Warp the mouse to the centre of the newly focused monitor.
-      on-focused-monitor-changed = [ "move-mouse monitor-lazy-center" ];
+      on-focused-monitor-changed = ["move-mouse monitor-lazy-center"];
       automatically-unhide-macos-hidden-apps = false;
 
       # Named workspaces: 1-9 for general use, lettered for pinned apps.
@@ -40,7 +39,7 @@
         "9"
       ];
 
-      on-mode-changed = [ ];
+      on-mode-changed = [];
 
       key-mapping.preset = "qwerty";
 
@@ -263,8 +262,8 @@
         alt-shift-semicolon = "mode service";
 
         # Suppress macOS default hide-window shortcuts to avoid conflicts.
-        cmd-h = [ ];
-        cmd-alt-h = [ ];
+        cmd-h = [];
+        cmd-alt-h = [];
       };
 
       # ── Service mode ────────────────────────────────────────────────────────
@@ -310,35 +309,35 @@
       on-window-detected = [
         {
           "if".app-id = "com.apple.finder";
-          run = [ "layout floating" ];
+          run = ["layout floating"];
         }
         {
           "if".app-id = "com.apple.systempreferences";
-          run = [ "layout floating" ];
+          run = ["layout floating"];
         }
         {
           "if".app-id = "com.apple.ActivityMonitor";
-          run = [ "layout floating" ];
+          run = ["layout floating"];
         }
         {
           "if".app-id = "com.apple.weather";
-          run = [ "layout floating" ];
+          run = ["layout floating"];
         }
         {
           "if".app-id = "com.tencent.qq";
-          run = [ "layout floating" ];
+          run = ["layout floating"];
         }
         {
           "if".app-id = "com.tencent.xinWeChat";
-          run = [ "layout floating" ];
+          run = ["layout floating"];
         }
         {
           "if".app-id = "com.tencent.WeWorkMac";
-          run = [ "layout floating" ];
+          run = ["layout floating"];
         }
         {
           "if".app-id = "dev.zed.Zed";
-          run = [ "layout accordion vertical" ];
+          run = ["layout accordion vertical"];
         }
       ];
     };

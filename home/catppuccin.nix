@@ -4,8 +4,7 @@
 # Available flavors : latte | frappe | macchiato | mocha
 # Available accents : blue | flamingo | green | lavender | maroon | mauve |
 #                     peach | pink | red | rosewater | sapphire | sky | teal | yellow
-{ ... }:
-{
+{...}: {
   catppuccin = {
     enable = true;
     autoEnable = true;

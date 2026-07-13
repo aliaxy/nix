@@ -2,7 +2,7 @@
   clangd = {
     initialization_options = {
       # Default to C++23 for files without a compile_commands.json.
-      fallbackFlags = [ "-std=c++23" ];
+      fallbackFlags = ["-std=c++23"];
     };
   };
 

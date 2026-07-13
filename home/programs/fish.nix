@@ -1,6 +1,9 @@
 # Fish shell: interactive init, aliases, and host-specific functions
-{ hostname, pkgs, ... }:
 {
+  hostname,
+  pkgs,
+  ...
+}: {
   programs.fish = {
     enable = true;
     interactiveShellInit = ''

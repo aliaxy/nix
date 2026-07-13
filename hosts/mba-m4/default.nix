@@ -1,8 +1,11 @@
 # MacBook Air M4 — host-specific configuration.
 # All shared modules are loaded by mkDarwinSystem in lib/; only values that
 # differ per machine belong here.
-{ pkgs, username, ... }:
 {
+  pkgs,
+  username,
+  ...
+}: {
   imports = [
     # Platform identity and nix-darwin state version
     ./hardware.nix

@@ -6,36 +6,33 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs =
-    inputs@{ flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
+  outputs = inputs @ {flake-parts, ...}:
+    flake-parts.lib.mkFlake {inherit inputs;} {
       systems = [
         "x86_64-linux"
         "aarch64-linux"
         "x86_64-darwin"
         "aarch64-darwin"
       ];
-      perSystem =
-        { pkgs, ... }:
-        {
-          devShells.default = pkgs.mkShell {
-            packages = with pkgs; [
-              go
-              gopls
-              gotools
-              golangci-lint
-              delve
-              gofumpt
-              revive
+      perSystem = {pkgs, ...}: {
+        devShells.default = pkgs.mkShell {
+          packages = with pkgs; [
+            go
+            gopls
+            gotools
+            golangci-lint
+            delve
+            gofumpt
+            revive
 
-              # gRPC / Protobuf tooling
-              protobuf
-              grpcurl
-              buf
-              protoc-gen-go
-              protoc-gen-go-grpc
-            ];
-          };
+            # gRPC / Protobuf tooling
+            protobuf
+            grpcurl
+            buf
+            protoc-gen-go
+            protoc-gen-go-grpc
+          ];
         };
+      };
     };
 }

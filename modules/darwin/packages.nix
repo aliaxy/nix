@@ -4,14 +4,12 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   inherit (lib) mkOption types;
-in
-{
+in {
   options.my.darwin.extraSystemPackages = mkOption {
     type = types.listOf types.package;
-    default = [ ];
+    default = [];
     description = "Host-specific packages added to environment.systemPackages.";
   };
 
@@ -29,6 +27,6 @@ in
 
     # Register fish so nix-darwin adds it to /etc/shells.
     programs.fish.enable = true;
-    environment.shells = [ pkgs.fish ];
+    environment.shells = [pkgs.fish];
   };
 }

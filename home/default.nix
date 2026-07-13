@@ -1,6 +1,5 @@
 # Home Manager entry point — imported by every host via home-manager.users.<name>
-{ inputs, ... }:
-{
+{inputs, ...}: {
   imports = [
     # Register the Catppuccin Home Manager module so catppuccin.* options are available
     inputs.catppuccin.homeModules.catppuccin

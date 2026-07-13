@@ -1,6 +1,5 @@
 # Yazi — terminal file manager with shell integration and plugin support.
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.yazi = {
     enable = true;
     enableFishIntegration = true;

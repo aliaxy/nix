@@ -3,8 +3,7 @@
 # Installs Neovim via Home Manager and symlinks the Lua config tree into
 # ~/.config/nvim/ using xdg.configFile.  Plugins are managed at runtime
 # by lazy.nvim and are never stored in the Nix store.
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.neovim = {
     enable = true;
     defaultEditor = true;

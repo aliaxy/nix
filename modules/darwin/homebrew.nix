@@ -8,13 +8,12 @@
   lib,
   username,
   ...
-}:
-let
+}: let
   inherit (lib) mkEnableOption mkOption types;
   cfg = config.my.darwin.homebrew;
   suiteApps = config.my.darwin.appBundles;
 
-  caskType = types.coercedTo types.str (name: { inherit name; }) (
+  caskType = types.coercedTo types.str (name: {inherit name;}) (
     types.submodule {
       options = {
         name = mkOption {
@@ -43,24 +42,24 @@ let
     map (c: {
       name = c.name;
       value = c;
-    }) cfg.extraCasks
+    })
+    cfg.extraCasks
   );
   mergedCasks = builtins.attrValues (suiteCaskAttrs // extraCaskAttrs);
-in
-{
+in {
   options.my.darwin.homebrew = {
     # Enable Rosetta 2 so Homebrew can install x86_64 casks on Apple Silicon.
     enableRosetta = mkEnableOption "Rosetta support for Apple Silicon Macs";
 
     extraBrews = mkOption {
       type = types.listOf types.str;
-      default = [ ];
+      default = [];
       description = "Additional Homebrew formulae to install on this host.";
     };
 
     extraCasks = mkOption {
       type = types.listOf caskType;
-      default = [ ];
+      default = [];
       description = ''
         Additional Homebrew casks to install on this host.
         Accepts plain strings or attrsets matching nix-darwin's homebrew.casks schema.
@@ -70,19 +69,19 @@ in
 
     excludeCasks = mkOption {
       type = types.listOf types.str;
-      default = [ ];
+      default = [];
       description = "Suite-derived Homebrew casks to exclude on this host.";
     };
 
     extraMasApps = mkOption {
       type = types.attrsOf types.int;
-      default = { };
+      default = {};
       description = "Additional Mac App Store apps to install on this host (name → Apple ID).";
     };
 
     excludeMasApps = mkOption {
       type = types.listOf types.str;
-      default = [ ];
+      default = [];
       description = "Suite-derived Mac App Store app names to exclude on this host.";
     };
   };

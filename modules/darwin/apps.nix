@@ -7,8 +7,7 @@
   config,
   lib,
   ...
-}:
-let
+}: let
   inherit (lib) mkEnableOption mkOption types;
   suiteCfg = config.my.darwin.suites;
   homebrewCfg = config.my.darwin.homebrew;
@@ -19,8 +18,7 @@ let
       "Numbers" = 361304891;
     })
   ];
-in
-{
+in {
   options = {
     my.darwin.suites = {
       essentials = mkEnableOption "shared desktop essentials (browser, terminal, fonts, utilities)";
@@ -35,14 +33,14 @@ in
       casks = mkOption {
         type = types.listOf types.str;
         internal = true;
-        default = [ ];
+        default = [];
         description = "Resolved Homebrew casks enabled by the selected Darwin suites.";
       };
 
       masApps = mkOption {
         type = types.attrsOf types.int;
         internal = true;
-        default = { };
+        default = {};
         description = "Resolved Mac App Store apps enabled by the selected Darwin suites.";
       };
     };

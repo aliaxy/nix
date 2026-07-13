@@ -1,8 +1,7 @@
 # Development profile — VCS and tooling.
 # Language toolchains (go, python, rust) are managed per-project via nix-direnv.
 # Network mirrors are in mirrors.nix.
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./mirrors.nix
   ];
@@ -63,7 +62,7 @@
 
     gitCredentialHelper = {
       enable = true;
-      hosts = [ "https://github.com" ];
+      hosts = ["https://github.com"];
     };
   };
 

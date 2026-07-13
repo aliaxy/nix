@@ -122,8 +122,8 @@
       model = "gpt-5.4";
       enable_thinking = true;
     };
-    favorite_models = [ ];
-    model_parameters = [ ];
+    favorite_models = [];
+    model_parameters = [];
   };
 
   # ── Tab bar ──────────────────────────────────────────────────────────────

@@ -1,8 +1,7 @@
 # Base profile — core CLI environment shared across all hosts.
 # Long program configs (nvim, fish, starship, yazi, ghostty) are split under
 # home/programs/ and always imported with this profile from modules/common/home.nix.
-{ ... }:
-{
+{...}: {
   # bat: syntax-highlighted cat replacement
   programs.bat.enable = true;
 
@@ -24,13 +23,13 @@
   programs.zoxide = {
     enable = true;
     enableFishIntegration = true;
-    options = [ "--cmd cd" ];
+    options = ["--cmd cd"];
   };
 
   # fastfetch: system information display
   programs.fastfetch = {
     enable = true;
-    settings = { };
+    settings = {};
   };
 
   home.sessionVariables = {

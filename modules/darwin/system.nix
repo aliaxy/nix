@@ -9,12 +9,10 @@
   username,
   self,
   ...
-}:
-let
+}: let
   inherit (lib) mkOption types;
   cfg = config.my.darwin;
-in
-{
+in {
   options.my.darwin = {
     dock = {
       position = mkOption {
@@ -41,7 +39,7 @@ in
 
       extraPersistentApps = mkOption {
         type = types.listOf types.str;
-        default = [ ];
+        default = [];
         description = "Host-specific app paths appended to the shared Dock entries.";
       };
     };
@@ -80,12 +78,13 @@ in
         autohide = cfg.dock.autohide;
         orientation = cfg.dock.position;
         tilesize = cfg.dock.tileSize;
-        persistent-apps = [
-          "/System/Applications/System Settings.app"
-          "/System/Applications/Messages.app"
-          "/System/Applications/Mail.app"
-        ]
-        ++ cfg.dock.extraPersistentApps;
+        persistent-apps =
+          [
+            "/System/Applications/System Settings.app"
+            "/System/Applications/Messages.app"
+            "/System/Applications/Mail.app"
+          ]
+          ++ cfg.dock.extraPersistentApps;
         # Disable hot corners.
         wvous-tr-corner = 1;
         wvous-tl-corner = 1;

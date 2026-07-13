@@ -1,6 +1,10 @@
 # Starship — cross-shell prompt configuration.
-{ inputs, pkgs, lib, ... }:
 {
+  # inputs,
+  # pkgs,
+  lib,
+  ...
+}: {
   programs.starship = {
     enable = true;
     # Pin to the stable channel to avoid breaking changes.
@@ -16,7 +20,7 @@
       command_timeout = 5000;
 
       # Show the time module on the right side of the prompt.
-      right_format = lib.concatStrings [ "$time" ];
+      right_format = lib.concatStrings ["$time"];
 
       time = {
         disabled = true; # Toggle to true to display the clock.

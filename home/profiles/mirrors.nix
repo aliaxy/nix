@@ -1,8 +1,7 @@
 # China mirror configurations — machine-level network settings, not project-specific.
 # Language toolchains are managed per-project via nix-direnv; these mirrors
 # apply globally so every devShell inherits them automatically.
-{ ... }:
-{
+{...}: {
   # Go module proxy via goproxy.cn.
   home.sessionVariables = {
     GOPROXY = "https://goproxy.cn,direct";

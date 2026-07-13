@@ -1,6 +1,5 @@
 # Ghostty terminal emulator — managed by Home Manager, installed via Homebrew cask.
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.ghostty = {
     enable = true;
     enableFishIntegration = true;
@@ -53,7 +52,6 @@
         "ctrl+alt+k=goto_split:top"
         "ctrl+alt+l=goto_split:right"
       ];
-
     };
   };
 }

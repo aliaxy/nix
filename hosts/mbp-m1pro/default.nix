@@ -1,8 +1,11 @@
 # MacBook Pro M1 Pro — host-specific configuration.
 # All shared modules are loaded by mkDarwinSystem in lib/; only values that
 # differ per machine belong here.
-{ pkgs, username, ... }:
 {
+  pkgs,
+  username,
+  ...
+}: {
   imports = [
     ./hardware.nix
   ];
