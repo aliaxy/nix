@@ -45,6 +45,8 @@
           packages = with pkgs; [
             nil
             nixd
+            deadnix
+            statix
           ];
         };
       };
