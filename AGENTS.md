@@ -125,6 +125,9 @@ nix/
 
 - Do not stage, commit, amend, reset, or revert unless the user explicitly asks.
 - Before committing, show or summarize the intended commit grouping.
+- **Always run `nix fmt .` from the repository root before every commit.**
+  Stage any formatting changes it produces (or include them in the same
+  commit). Do not commit unformatted Nix.
 - Use Conventional Commit subjects, matching the existing history:
   `feat(dev): ...`, `feat(darwin): ...`, `chore(flake): ...`,
   `docs(flake): ...`, `refactor(home): ...`.
@@ -138,12 +141,13 @@ nix/
 There is no dedicated test suite. Validate with the smallest command that proves
 the change, then escalate as needed.
 
-1. Run `git diff --check` for whitespace and patch hygiene.
-2. Run `nix flake show` for output-level validation.
-3. Use `nix eval` for changed host options or profile toggles.
-4. Run `nix build .#darwinConfigurations.mba-m4.system` before claiming the
+1. Run `nix fmt .` so the tree matches the alejandra formatter.
+2. Run `git diff --check` for whitespace and patch hygiene.
+3. Run `nix flake show` for output-level validation.
+4. Use `nix eval` for changed host options or profile toggles.
+5. Run `nix build .#darwinConfigurations.mba-m4.system` before claiming the
    active system builds.
-5. Only run `darwin-rebuild switch --flake .#mba-m4` when the user wants the
+6. Only run `darwin-rebuild switch --flake .#mba-m4` when the user wants the
    configuration applied.
 
 For visible desktop changes, mention that manual inspection may still be needed
