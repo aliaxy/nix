@@ -32,6 +32,7 @@
   auto_signature_help = false;
   use_system_window_tabs = false;
   formatter = "language_server";
+  format_on_save = "on";
   tab_size = 2;
   auto_update = false; # updates are managed externally via Homebrew
   always_treat_brackets_as_autoclosed = true;

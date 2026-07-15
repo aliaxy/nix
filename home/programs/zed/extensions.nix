@@ -1,23 +1,35 @@
 [
-  # Config & DevOps
+  # Nix / config formats
   "nix"
-  "toml"
+  "tombi"
+
+  # DevOps / build files
   "dockerfile"
   "make"
+
+  # Go tooling
   "golangci-lint"
 
-  # Web
+  # Git
+  "git-firefly"
+
+  # Web / markup
   "html"
   "xml"
   "vue"
 
-  # Languages
+  # Shell / scripting
   "lua"
   "fish"
+
+  # Swift
   "swift"
   "package-swift-lsp"
 
-  # Data
+  # Data / databases
   "sql"
   "rainbow-csv"
+
+  # Markdown
+  "rumdl"
 ]

@@ -1,6 +1,5 @@
 {
   C = {
-    format_on_save = "on";
     use_on_type_format = false;
     prettier = {
       allowed = false;
@@ -8,7 +7,6 @@
   };
 
   "C++" = {
-    format_on_save = "on";
     use_on_type_format = false;
     prettier = {
       allowed = false;
@@ -97,5 +95,17 @@
     language_servers = ["sourcekit-lsp"];
     formatter = "language_server";
     format_on_save = "on";
+  };
+
+  Nix = {
+    formatter = {
+      external = {
+        command = "alejandra";
+        arguments = [
+          "--quiet"
+          "--"
+        ];
+      };
+    };
   };
 }
