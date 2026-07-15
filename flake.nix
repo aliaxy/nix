@@ -37,20 +37,6 @@
         "x86_64-darwin"
       ];
 
-      # Repo-local tooling for editing this flake / modules (via nix-direnv).
-      perSystem = {pkgs, ...}: {
-        formatter = pkgs.alejandra;
-
-        devShells.default = pkgs.mkShell {
-          packages = with pkgs; [
-            nil
-            nixd
-            deadnix
-            statix
-          ];
-        };
-      };
-
       flake = let
         lib = import ./lib {inherit inputs self;};
       in {

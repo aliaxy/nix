@@ -8,8 +8,9 @@
 
   home.packages = with pkgs; [
     nodejs
-    openspec
-    lazysql
+    nil
+    nixd
+    alejandra
   ];
 
   home.sessionVariables = {
