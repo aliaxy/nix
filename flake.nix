@@ -37,6 +37,10 @@
         "x86_64-darwin"
       ];
 
+      perSystem = {pkgs, ...}: {
+        formatter = pkgs.alejandra;
+      };
+
       flake = let
         lib = import ./lib {inherit inputs self;};
       in {
