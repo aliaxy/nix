@@ -109,7 +109,14 @@ in {
       greedyCasks = true;
 
       taps = [
-        "nikitabobko/tap"
+        {
+          name = "nikitabobko/tap";
+          trusted = true;
+        }
+        {
+          name = "aliaxy/tap";
+          trusted = true;
+        }
       ];
 
       brews = cfg.extraBrews;
