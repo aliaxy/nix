@@ -13,10 +13,6 @@
     alejandra
   ];
 
-  home.sessionVariables = {
-    OPENSPEC_TELEMETRY = 0;
-  };
-
   home.sessionPath = [
     "$HOME/.local/bin"
   ];

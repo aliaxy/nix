@@ -71,7 +71,7 @@ nix/
   user, and the Fish login shell activation script.
 - `home/profiles/base.nix` is for core CLI and everyday user environment.
 - `home/profiles/dev.nix` is for developer tools, Git, SSH, direnv, AI tools,
-  OpenSpec, and mirrors.
+  and mirrors.
 
 ## Editing Rules
 
@@ -126,8 +126,6 @@ nix/
   If secrets are reintroduced, keep encrypted material only and document the
   new wiring before use.
 - Do not commit generated caches or personal local state.
-- `openspec/` may contain project specs if the user chooses to track them, but
-  do not add or commit untracked OpenSpec artifacts without explicit approval.
 
 ## Git Workflow
 
