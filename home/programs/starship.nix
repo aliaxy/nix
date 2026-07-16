@@ -54,6 +54,9 @@
       };
 
       nix_shell = {
+        symbol = "❄️";
+        impure_msg = " impure";
+        pure_msg = " pure";
         heuristic = true;
       };
     };

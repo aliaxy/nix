@@ -8,6 +8,13 @@
     enable = true;
     interactiveShellInit = ''
       set fish_greeting # suppress the default greeting
+
+      if not set -q HOMEBREW_GITHUB_API_TOKEN; and type -q gh
+        set -l homebrew_github_api_token (gh auth token 2>/dev/null)
+        if test -n "$homebrew_github_api_token"
+          set -gx HOMEBREW_GITHUB_API_TOKEN $homebrew_github_api_token
+        end
+      end
     '';
 
     shellAliases = {
