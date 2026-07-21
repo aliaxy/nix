@@ -53,6 +53,7 @@ in {
           "keka"
           "google-chrome"
           "cleanshot"
+          "qiuchen-appstore"
           "app-cleaner"
           "sf-symbols"
           "font-sf-pro"
