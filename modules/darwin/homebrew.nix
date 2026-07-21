@@ -103,6 +103,17 @@ in {
         upgrade = true;
         # Remove packages that are no longer declared.
         cleanup = "zap";
+
+        # darwin-rebuild activation runs under `env -i` + sudo and does not
+        # inherit the interactive shell. Non-secret HOMEBREW_* flags go here.
+        # Secrets (e.g. HOMEBREW_GITHUB_API_TOKEN for private taps/releases)
+        # must NOT be set here — they land in the world-readable nix store.
+        # Put them in ~/.homebrew/brew.env instead (chmod 600); brew loads it
+        # itself when activation runs `sudo --user=… --set-home brew bundle`.
+        extraEnv = {
+          HOMEBREW_NO_ANALYTICS = "1";
+          HOMEBREW_NO_ENV_HINTS = "1";
+        };
       };
 
       # Always upgrade casks even if they self-report as up-to-date.

@@ -66,7 +66,10 @@ nix/
 - `modules/darwin/apps.nix` defines high-level GUI suites and resolves app
   bundles.
 - `modules/darwin/homebrew.nix` merges suite casks with host-specific casks,
-  taps, brews, and MAS apps.
+  taps, brews, and MAS apps. Activation uses `homebrew.onActivation.extraEnv`
+  for non-secret `HOMEBREW_*` flags. Private-tap tokens belong in
+  `~/.homebrew/brew.env` (`chmod 600`), not in Nix — rebuild activation does
+  not inherit the interactive shell env (`env -i` + sudo).
 - `modules/darwin/system.nix` owns macOS defaults, Dock settings, the primary
   user, and the Fish login shell activation script.
 - `home/profiles/base.nix` is for core CLI and everyday user environment.

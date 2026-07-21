@@ -83,7 +83,10 @@ and switching the current Darwin host. Additional shortcuts include `nfu`
   module system via `specialArgs`, avoiding hardcoded paths and making the setup
   adaptable for new Darwin hosts.
 - **Declarative Everything**:
-  - Mac apps and casks are managed via `nix-homebrew`.
+  - Mac apps and casks are managed via `nix-homebrew`. Private GitHub taps
+    need `HOMEBREW_GITHUB_API_TOKEN` in `~/.homebrew/brew.env` (not in Nix),
+    because `darwin-rebuild` activation does not inherit shell environment
+    variables.
   - System preferences are managed via `nix-darwin`.
   - Dev tools, CLI apps, editor settings, and dotfiles are managed via
     `home-manager` native programs.
