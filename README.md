@@ -1,16 +1,16 @@
 # Nix System Configuration
 
 A modular, flake-based Nix configuration for managing macOS via `nix-darwin`,
-Home Manager, `nix-homebrew`, and reusable project dev-shell templates. It
-separates system-level host configuration from user-level application setup.
+Home Manager, and `nix-homebrew`. It separates system-level host configuration
+from user-level application setup.
 
 ## 📂 Repository Structure
 
 The configuration is organized into a clean, layered architecture to maximize
 reusability across different machines and operating systems:
 
-- **`flake.nix`**: The main entry point. It defines inputs, exports Darwin host
-  configurations, and exposes project templates.
+- **`flake.nix`**: The main entry point. It defines inputs and exports Darwin
+  host configurations.
 - **`lib/`**: Contains the custom `mkDarwinSystem` helper used to assemble host
   configurations.
 - **`hosts/`**: Machine-specific configurations. Each folder represents one host.
@@ -30,8 +30,6 @@ reusability across different machines and operating systems:
     - `mirrors.nix`: Language and package-manager mirror settings.
   - `programs/`: Complex, single-app configurations (nvim, fish, starship,
     yazi, ghostty, aerospace, zed).
-- **`templates/`**: Per-project dev-shell templates for C/C++, Go, Node.js,
-  Python, and Rust.
 - `catppuccin.nix`: Centralized theme settings shared across supported Home
   Manager programs.
 
@@ -92,7 +90,7 @@ and switching the current Darwin host. Additional shortcuts include `nfu`
     `home-manager` native programs.
   - Project language toolchains are provided through per-project flake
     templates instead of the global user profile.
-- **Templates over global toolchains**: Project templates provide focused shells
-  for C/C++, Go, Node.js, Python, and Rust. The Go template includes
-  protobuf/gRPC tooling, Node.js tracks the default `nodejs` package from
-  `nixpkgs`, and Python uses `uv`, `ruff`, and `pyright`.
+- **Templates over global toolchains**: Project dev-shell templates live in
+  [Sonatelle/prelude](https://github.com/Sonatelle/prelude). The `mkdev` fish
+  shortcut initializes a project from a Prelude template
+  (`default`, `go`, `rust`, `python`).

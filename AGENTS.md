@@ -6,7 +6,8 @@ configuration repository. Keep changes declarative, small, and easy to verify.
 ## Overview
 
 This repository is a flake-based macOS configuration for `nix-darwin`, Home
-Manager, `nix-homebrew`, Catppuccin, and project dev-shell templates.
+Manager, `nix-homebrew`, and Catppuccin. Project dev-shell templates live in
+the separate [Sonatelle/prelude](https://github.com/Sonatelle/prelude) repo.
 
 Hosts are `mba-m4` (MacBook Air M4, primary) and `mbp-m1pro` (MacBook Pro M1
 Pro), owned by user `aliaxy`, and built through `lib.mkDarwinSystem`.
@@ -37,7 +38,7 @@ of claiming the build was verified.
 
 ```text
 nix/
-├── flake.nix                 # Flake inputs, host exports, dev-shell templates
+├── flake.nix                 # Flake inputs and host exports
 ├── flake.lock                # Locked input revisions
 ├── lib/default.nix           # mkDarwinSystem host builder
 ├── hosts/mba-m4/             # MacBook Air M4 host values
@@ -46,14 +47,13 @@ nix/
 ├── modules/darwin/           # macOS system, Homebrew, apps, packages
 ├── home/default.nix          # Home Manager entry point and shared imports
 ├── home/profiles/            # Opt-in user profiles such as base and dev
-├── home/programs/            # Larger per-program Home Manager modules
-└── templates/                # Flake templates for project dev shells
+└── home/programs/            # Larger per-program Home Manager modules
 ```
 
 ## Configuration Model
 
-- `flake.nix` exports `darwinConfigurations.mba-m4`,
-  `darwinConfigurations.mbp-m1pro`, and project templates.
+- `flake.nix` exports `darwinConfigurations.mba-m4` and
+  `darwinConfigurations.mbp-m1pro`.
 - `lib/default.nix` assembles each Darwin host with shared modules and passes
   `inputs`, `self`, `hostname`, and `username` through `specialArgs`.
 - `hosts/<hostname>/default.nix` contains only host-specific values: enabled
@@ -109,8 +109,9 @@ nix/
   and import it from the relevant profile.
 - Add a new host: create `hosts/<hostname>/`, then add a
   `darwinConfigurations.<hostname>` entry in `flake.nix`.
-- Add a dev-shell template: create `templates/<language>/flake.nix` and expose
-  it from `flake.nix`.
+- Add a dev-shell template: templates live in the separate
+  [Sonatelle/prelude](https://github.com/Sonatelle/prelude) repository, not
+  here.
 - Update shell shortcuts: edit `home/programs/fish.nix`.
 
 ## Homebrew and App Suite Rules
