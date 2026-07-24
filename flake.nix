@@ -57,29 +57,6 @@
           hostname = "mbp-m1pro";
           username = "aliaxy";
         };
-
-        templates = {
-          go = {
-            path = ./templates/go;
-            description = "Go dev shell — go, gopls, golangci-lint, delve";
-          };
-          rust = {
-            path = ./templates/rust;
-            description = "Rust dev shell — rustc, cargo, rust-analyzer, clippy, cargo-watch";
-          };
-          python = {
-            path = ./templates/python;
-            description = "Python dev shell — uv, ruff, pyright";
-          };
-          node = {
-            path = ./templates/node;
-            description = "Node.js dev shell — nodejs_22, pnpm";
-          };
-          c = {
-            path = ./templates/c;
-            description = "C/C++ dev shell — clang, cmake, ninja, clangd, bear";
-          };
-        };
       };
     };
 }

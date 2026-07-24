@@ -53,15 +53,14 @@
       };
 
       mkdev = {
-        description = "Init a nix dev shell template and wire up direnv";
+        description = "Init a Prelude dev shell template (github:Sonatelle/prelude)";
         body = ''
-          if test (count $argv) -eq 0
-              echo "Usage: mkdev <lang>"
-              echo "Available: go rust python node c"
-              return 1
+          set -l tmpl default
+          if test (count $argv) -gt 0
+              set tmpl $argv[1]
           end
-          nix flake init -t ~/nix#$argv[1]; or return 1
-          echo "use flake" > .envrc
+          # Templates ship their own .envrc; run `direnv allow` after init.
+          nix flake init -t github:Sonatelle/prelude#$tmpl
         '';
       };
     };
