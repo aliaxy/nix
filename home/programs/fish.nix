@@ -9,6 +9,16 @@
     interactiveShellInit = ''
       set fish_greeting # suppress the default greeting
 
+      # fix starship prompt to only have newlines after the first command
+      # https://github.com/starship/starship/issues/560#issuecomment-2409922650
+      function prompt_newline --on-event fish_postexec
+      end
+
+      function starship_transient_prompt_func
+        tput cuu1
+        starship module character
+      end
+
       # Interactive brew only. darwin-rebuild activation does not see this;
       # keep a token in ~/.homebrew/brew.env for private taps during rebuild.
       if not set -q HOMEBREW_GITHUB_API_TOKEN; and type -q gh
