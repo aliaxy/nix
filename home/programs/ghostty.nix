@@ -9,11 +9,13 @@
       language = "en";
 
       # ── Font ────────────────────────────────────────────────────────────────
-      font-family = "JetBrainsMono Nerd Font, PingFang SC";
+      font-family = "JetBrainsMono Nerd Font";
       font-style = "default";
       font-synthetic-style = false; # disable faux bold/italic
       font-feature = "liga"; # enable ligatures
       font-size = 12;
+
+      grapheme-width-method = "legacy";
 
       # Fine-tune cell metrics (0 = no adjustment).
       adjust-cell-width = 0;
