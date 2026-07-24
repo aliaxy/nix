@@ -2,7 +2,7 @@
 # All shared modules are loaded by mkDarwinSystem in lib/; only values that
 # differ per machine belong here.
 {
-  pkgs,
+  # pkgs,
   username,
   ...
 }: {
@@ -76,9 +76,8 @@
         dev = true;
       };
       programs.aerospace = true;
-      extraPackages = with pkgs; [
-        grok-build
-      ];
+      # extraPackages = with pkgs; [
+      # ];
     };
   };
 }

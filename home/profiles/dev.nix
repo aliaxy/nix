@@ -11,6 +11,7 @@
     nil
     nixd
     alejandra
+    grok-build
   ];
 
   home.sessionPath = [
