@@ -12,6 +12,7 @@
 
     # nix-homebrew: declarative Homebrew tap/cask/brew management via nix-darwin.
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    nix-homebrew.inputs.brew-src.url = "github:Homebrew/brew/main";
 
     # home-manager: user-level dotfiles and program configuration.
     home-manager.url = "github:nix-community/home-manager";
