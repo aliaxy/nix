@@ -1,111 +1,479 @@
+# Per-language overrides, file type mappings, Prettier, and debuggers.
+#
+# language_servers merge semantics:
+#   "..."   expands the remaining default servers here
+#   "!name" disables a server
+#   a list without "..." replaces the default set entirely
 {
-  C = {
-    use_on_type_format = false;
-    prettier = {
-      allowed = false;
-    };
-  };
-
-  "C++" = {
-    use_on_type_format = false;
-    prettier = {
-      allowed = false;
-    };
-  };
-
-  CSS = {
-    prettier = {
-      allowed = true;
-    };
-  };
-
-  "Git Commit" = {
-    # Enforce the 72-character subject-line convention.
-    allow_rewrap = "anywhere";
-    soft_wrap = "editor_width";
-    preferred_line_length = 72;
-  };
-
-  Go = {
-    hard_tabs = true; # gofmt requires tabs
-    code_actions_on_format = {
-      "source.organizeImports" = true;
-    };
-    language_servers = [
-      "gopls"
-      "golangci-lint"
-    ];
-  };
-
-  JavaScript = {
-    # Prefer vtsls over the default typescript-language-server.
-    language_servers = [
-      "!typescript-language-server"
-      "vtsls"
-      "..."
-    ];
-    prettier = {
-      allowed = true;
-    };
-  };
-
-  Python = {
-    tab_size = 4;
-    code_actions_on_format = {
-      "source.organizeImports.ruff" = true;
-    };
-    formatter = {
-      language_server = {
-        name = "ruff";
-      };
-    };
-    language_servers = [
-      "!basedpyright"
-      "!pyright"
-      "!pylsp"
-      "ruff"
-      "ty"
-      "..."
-    ];
-  };
-
-  Rust = {
-    tab_size = 4;
-  };
-
-  "Vue.js" = {
-    language_servers = [
-      "vue-language-server"
-      "vtsls"
-      "..."
-    ];
-    prettier = {
-      allowed = true;
-    };
-  };
-
-  YAML = {
-    prettier = {
-      allowed = true;
-    };
-  };
-
-  Swift = {
-    enable_language_server = true;
-    language_servers = ["sourcekit-lsp"];
-    formatter = "language_server";
-    format_on_save = "on";
-  };
-
-  Nix = {
-    formatter = {
-      external = {
-        command = "alejandra";
-        arguments = [
-          "--quiet"
-          "--"
+  # ── Per-language settings ────────────────────────────────────────────────
+  languages = {
+    Astro = {
+      format_on_save = "on";
+      language_servers = [
+        "astro-language-server"
+        "..."
+      ];
+      prettier = {
+        allowed = true;
+        plugins = [
+          "prettier-plugin-astro"
         ];
       };
     };
+
+    Blade = {
+      prettier = {
+        allowed = true;
+      };
+    };
+
+    C = {
+      use_on_type_format = false;
+      prettier = {
+        allowed = false;
+      };
+    };
+
+    "C++" = {
+      use_on_type_format = false;
+      prettier = {
+        allowed = false;
+      };
+    };
+
+    CSharp = {
+      language_servers = [
+        "roslyn"
+        "!csharp-ls"
+        "!omnisharp"
+        "..."
+      ];
+    };
+
+    CSS = {
+      # No "...": replaces the default server set entirely.
+      language_servers = [
+        "biome"
+      ];
+      prettier = {
+        allowed = false;
+      };
+    };
+
+    Dart = {
+      format_on_save = "on";
+      tab_size = 2;
+    };
+
+    Diff = {
+      show_edit_predictions = false;
+      remove_trailing_whitespace_on_save = false;
+      ensure_final_newline_on_save = false;
+    };
+
+    EEx = {
+      format_on_save = "on";
+      language_servers = [
+        "elixir-ls"
+        "!expert"
+        "!dexter"
+        "!next-ls"
+        "!lexical"
+        "..."
+      ];
+    };
+
+    Elixir = {
+      format_on_save = "on";
+      language_servers = [
+        "elixir-ls"
+        "!expert"
+        "!dexter"
+        "!next-ls"
+        "!lexical"
+        "!emmet-language-server"
+        "..."
+      ];
+    };
+
+    Elm = {
+      format_on_save = "on";
+      tab_size = 4;
+    };
+
+    Erlang = {
+      language_servers = [
+        "erlang-ls"
+        "!elp"
+        "..."
+      ];
+    };
+
+    "Git Commit" = {
+      allow_rewrap = "anywhere";
+      soft_wrap = "editor_width";
+      preferred_line_length = 72;
+    };
+
+    Go = {
+      format_on_save = "on";
+      hard_tabs = true; # required by gofmt
+      code_actions_on_format = {
+        "source.organizeImports" = true;
+      };
+      # No "...": replaces the default server set entirely.
+      language_servers = [
+        "gopls"
+        "golangci-lint"
+      ];
+      debuggers = ["Delve"];
+    };
+
+    GraphQL = {
+      format_on_save = "on";
+      prettier = {
+        allowed = true;
+      };
+    };
+
+    HEEx = {
+      format_on_save = "on";
+      language_servers = [
+        "elixir-ls"
+        "!expert"
+        "!dexter"
+        "!next-ls"
+        "!lexical"
+        "..."
+      ];
+    };
+
+    HTML = {
+      language_servers = [
+        "!vscode-html-language-server"
+        "biome"
+      ];
+      prettier = {
+        allowed = true;
+      };
+    };
+
+    "HTML+ERB" = {
+      language_servers = [
+        "herb"
+        "!ruby-lsp"
+        "..."
+      ];
+    };
+
+    Java = {
+      prettier = {
+        allowed = true;
+        plugins = [
+          "prettier-plugin-java"
+        ];
+      };
+    };
+
+    JavaScript = {
+      language_servers = [
+        "!typescript-language-server"
+        "vtsls"
+        "biome"
+        "..."
+      ];
+      code_actions_on_format = {
+        "source.fixAll.biome" = true;
+        "source.organizeImports.biome" = true;
+      };
+      prettier = {
+        allowed = false;
+      };
+    };
+
+    JSON = {
+      prettier = {
+        allowed = true;
+      };
+    };
+
+    JSONC = {
+      prettier = {
+        allowed = true;
+      };
+    };
+
+    "JS+ERB" = {
+      language_servers = [
+        "!ruby-lsp"
+        "..."
+      ];
+    };
+
+    Kotlin = {
+      format_on_save = "on";
+      language_servers = [
+        "!kotlin-language-server"
+        "kotlin-lsp"
+        "..."
+      ];
+    };
+
+    LaTeX = {
+      formatter = "language_server";
+      language_servers = [
+        "texlab"
+        "..."
+      ];
+      prettier = {
+        allowed = true;
+        plugins = [
+          "prettier-plugin-latex"
+        ];
+      };
+    };
+
+    Markdown = {
+      use_on_type_format = false;
+      remove_trailing_whitespace_on_save = false;
+      allow_rewrap = "anywhere";
+      soft_wrap = "editor_width";
+      completions = {
+        words = "disabled";
+      };
+      prettier = {
+        allowed = true;
+      };
+    };
+
+    # Not part of Zed's default schema.
+    Nix = {
+      formatter = {
+        external = {
+          command = "alejandra";
+          arguments = ["--quiet" "--"];
+        };
+      };
+    };
+
+    PHP = {
+      language_servers = [
+        "phpactor"
+        "!intelephense"
+        "!phptools"
+        "!phpantom"
+        "..."
+      ];
+      prettier = {
+        allowed = true;
+        plugins = ["@prettier/plugin-php"];
+        parser = "php";
+      };
+    };
+
+    "Plain Text" = {
+      allow_rewrap = "anywhere";
+      soft_wrap = "editor_width";
+      completions = {
+        words = "disabled";
+      };
+    };
+
+    Proto = {
+      language_servers = [
+        "buf"
+        "!protols"
+        "!protobuf-language-server"
+        "..."
+      ];
+    };
+
+    Python = {
+      # Global tab_size is 2.
+      tab_size = 4;
+      code_actions_on_format = {
+        "source.organizeImports.ruff" = true;
+      };
+      formatter = {
+        language_server = {
+          name = "ruff";
+        };
+      };
+      debuggers = ["Debugpy"];
+      language_servers = [
+        "!basedpyright"
+        "!pyright"
+        "!pylsp"
+        "ruff"
+        "ty"
+        "..."
+      ];
+    };
+
+    Ruby = {
+      language_servers = [
+        "solargraph"
+        "!ruby-lsp"
+        "!rubocop"
+        "!sorbet"
+        "!steep"
+        "!kanayago"
+        "!fuzzy-ruby-server"
+        "..."
+      ];
+    };
+
+    Rust = {
+      # Global tab_size is 2.
+      tab_size = 4;
+      format_on_save = "on";
+      debuggers = ["CodeLLDB"];
+    };
+
+    SCSS = {
+      prettier = {
+        allowed = true;
+      };
+    };
+
+    Starlark = {
+      format_on_save = "on";
+      language_servers = [
+        "starpls"
+        "!buck2-lsp"
+        "!tilt"
+        "..."
+      ];
+    };
+
+    Svelte = {
+      language_servers = [
+        "svelte-language-server"
+        "..."
+      ];
+      prettier = {
+        allowed = true;
+        plugins = [
+          "prettier-plugin-svelte"
+        ];
+      };
+    };
+
+    # Not part of Zed's default schema.
+    Swift = {
+      enable_language_server = true;
+      language_servers = [
+        "sourcekit-lsp"
+      ];
+      formatter = "language_server";
+      format_on_save = "on";
+    };
+
+    SystemVerilog = {
+      language_servers = [
+        "!slang"
+        "..."
+      ];
+      use_on_type_format = false;
+    };
+
+    TSX = {
+      language_servers = [
+        "!typescript-language-server"
+        "vtsls"
+        "..."
+      ];
+      prettier = {
+        allowed = true;
+      };
+    };
+
+    Twig = {
+      prettier = {
+        allowed = true;
+      };
+    };
+
+    TypeScript = {
+      language_servers = [
+        "!typescript-language-server"
+        "vtsls"
+        "biome"
+        "..."
+      ];
+      code_actions_on_format = {
+        "source.fixAll.biome" = true;
+        "source.organizeImports.biome" = true;
+      };
+      prettier = {
+        allowed = false;
+      };
+    };
+
+    "Vue.js" = {
+      language_servers = [
+        "!vue-language-server"
+        "!vtsls"
+        "biome"
+        "..."
+      ];
+      prettier = {
+        allowed = true;
+      };
+    };
+
+    XML = {
+      prettier = {
+        allowed = true;
+        plugins = [
+          "@prettier/plugin-xml"
+        ];
+      };
+    };
+
+    YAML = {
+      prettier = {
+        allowed = true;
+      };
+    };
+
+    Zig = {
+      format_on_save = "on";
+      language_servers = [
+        "zls"
+        "..."
+      ];
+    };
   };
+
+  # ── File type mappings ───────────────────────────────────────────────────
+  # Language name to a list of filename or extension globs.
+  file_types = {
+    JSONC = [
+      "**/.zed/*.json"
+      "**/.vscode/**/*.json"
+      "**/{zed,Zed}/{settings,keymap,tasks,debug}.json"
+      "tsconfig*.json"
+    ];
+    Markdown = [".rules" ".cursorrules" ".windsurfrules" ".clinerules"];
+    "Shell Script" = [".env.*"];
+  };
+
+  # ── Prettier ─────────────────────────────────────────────────────────────
+  # A project's own package.json Prettier config overrides these defaults.
+  prettier = {
+    allowed = false;
+    plugins = [];
+    # A non-empty string forces the parser.
+    parser = "";
+    # Other keys follow the package.json prettier section, e.g.
+    # trailingComma = "es5"; tabWidth = 4; semi = false; singleQuote = true;
+  };
+
+  jsx_tag_auto_close = {
+    enabled = true;
+  };
+
+  # Usually configured per language in languages.<lang>.debuggers.
+  debuggers = [];
 }

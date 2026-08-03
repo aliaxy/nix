@@ -14,9 +14,7 @@
   "git-firefly"
 
   # Web / markup
-  "html"
-  "xml"
-  "vue"
+  "biome"
 
   # Shell / scripting
   "lua"
