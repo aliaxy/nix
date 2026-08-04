@@ -24,6 +24,9 @@
   "swift"
   "package-swift-lsp"
 
+  # Dart
+  "dart"
+
   # Data / databases
   "sql"
   "rainbow-csv"

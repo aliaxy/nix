@@ -68,8 +68,12 @@
     };
 
     Dart = {
-      format_on_save = "on";
-      tab_size = 2;
+      code_actions_on_format = {
+        "source.organizeImports" = true;
+        "source.fixAll" = true;
+      };
+
+      debuggers = ["Dart"];
     };
 
     Diff = {
