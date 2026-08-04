@@ -28,17 +28,28 @@
     };
 
     C = {
+      # The swift extension registers sourcekit-lsp for C, C++ and
+      # Objective-C, so it runs alongside clangd and every diagnostic,
+      # completion and hover arrives twice. "..." keeps clangd.
+      language_servers = ["!sourcekit-lsp" "..."];
+      tab_size = 2;
+      hard_tabs = false;
       use_on_type_format = false;
       prettier = {
         allowed = false;
       };
+      debuggers = ["CodeLLDB"];
     };
 
     "C++" = {
+      language_servers = ["!sourcekit-lsp" "..."];
+      tab_size = 2;
+      hard_tabs = false;
       use_on_type_format = false;
       prettier = {
         allowed = false;
       };
+      debuggers = ["CodeLLDB"];
     };
 
     CSharp = {

@@ -95,9 +95,29 @@
   # ── Per-server configuration ─────────────────────────────────────────────
   lsp = {
     clangd = {
+      # Arguments for the clangd process itself; Zed passes none by default.
+      binary.arguments = [
+        # Complete symbols from scopes not visible at the cursor, inserting
+        # the qualification.
+        "--all-scopes-completion"
+        # Persist a project index on disk for cross-file navigation.
+        "--background-index"
+        # clang-tidy runs inside clangd. Check selection is only possible
+        # through a project .clang-tidy file; without one the default set is
+        # clang-diagnostic-* plus clang-analyzer-*.
+        "--clang-tidy"
+      ];
+
       initialization_options = {
-        # Used for files without a compile_commands.json.
-        fallbackFlags = ["-std=c++23"];
+        # Compiler flags used only when no compile_commands.json is found, so
+        # projects with a build system are unaffected. No -std here: clangd
+        # shares one config across C and C++, and a C++ standard is a driver
+        # error on .c files. These three are valid for both languages.
+        fallbackFlags = [
+          "-Wall"
+          "-Wextra"
+          "-Wshadow"
+        ];
       };
     };
 
