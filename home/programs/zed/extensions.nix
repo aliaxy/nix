@@ -20,6 +20,7 @@
   # Shell / scripting
   "lua"
   "fish"
+  "env"
 
   # Swift
   "swift"
