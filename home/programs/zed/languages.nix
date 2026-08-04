@@ -317,6 +317,11 @@
       ];
     };
 
+    "Rainbow TSV (⭲)" = {
+      remove_trailing_whitespace_on_save = false;
+      show_whitespaces = "all";
+    };
+
     Ruby = {
       language_servers = [
         "solargraph"
