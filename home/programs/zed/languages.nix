@@ -28,12 +28,7 @@
     };
 
     C = {
-      # The swift extension registers sourcekit-lsp for C, C++ and
-      # Objective-C, so it runs alongside clangd and every diagnostic,
-      # completion and hover arrives twice. "..." keeps clangd.
       language_servers = ["!sourcekit-lsp" "..."];
-      tab_size = 2;
-      hard_tabs = false;
       use_on_type_format = false;
       prettier = {
         allowed = false;
@@ -43,8 +38,6 @@
 
     "C++" = {
       language_servers = ["!sourcekit-lsp" "..."];
-      tab_size = 2;
-      hard_tabs = false;
       use_on_type_format = false;
       prettier = {
         allowed = false;
@@ -62,10 +55,13 @@
     };
 
     CSS = {
-      # No "...": replaces the default server set entirely.
       language_servers = [
-        "biome"
+        "tailwindcss-intellisense-css"
+        "!vscode-css-language-server"
+        "!tailwindcss-language-server"
+        "..."
       ];
+
       prettier = {
         allowed = false;
       };
