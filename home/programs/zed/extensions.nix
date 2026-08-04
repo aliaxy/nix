@@ -5,6 +5,7 @@
 
   # DevOps / build files
   "dockerfile"
+  "docker-compose"
   "make"
 
   # Go tooling

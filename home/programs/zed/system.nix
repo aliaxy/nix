@@ -94,10 +94,14 @@
       host = "*";
       path = ["**"];
     }
-    # {
-    #   kind = "npm:install";
-    #   package = "*";
-    # }
+    {
+      kind = "npm:install";
+      package = "dockerfile-language-server-nodejs";
+    }
+    {
+      kind = "npm:install";
+      package = "@microsoft/compose-language-service";
+    }
   ];
 
   # ── Logging ──────────────────────────────────────────────────────────────

@@ -82,6 +82,12 @@
       ensure_final_newline_on_save = false;
     };
 
+    Dockerfile = {
+      language_servers = ["!docker-language-server" "..."];
+
+      debuggers = ["buildx-dockerfile"];
+    };
+
     EEx = {
       format_on_save = "on";
       language_servers = [
