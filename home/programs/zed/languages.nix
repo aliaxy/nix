@@ -126,6 +126,14 @@
       ];
     };
 
+    Fish = {
+      formatter = {
+        external = {
+          command = "fish_indent";
+        };
+      };
+    };
+
     "Git Commit" = {
       allow_rewrap = "anywhere";
       soft_wrap = "editor_width";
