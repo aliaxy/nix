@@ -102,6 +102,10 @@
       kind = "npm:install";
       package = "@microsoft/compose-language-service";
     }
+    {
+      kind = "npm:install";
+      package = "graphql-language-service-cli";
+    }
   ];
 
   # ── Logging ──────────────────────────────────────────────────────────────

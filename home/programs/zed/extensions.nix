@@ -33,6 +33,9 @@
   "sql"
   "rainbow-csv"
 
+  # GraphQL
+  "graphql"
+
   # Markdown
   "rumdl"
 ]

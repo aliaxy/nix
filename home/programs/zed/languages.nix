@@ -153,7 +153,6 @@
     };
 
     GraphQL = {
-      format_on_save = "on";
       prettier = {
         allowed = true;
       };
