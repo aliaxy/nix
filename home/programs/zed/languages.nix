@@ -141,12 +141,10 @@
     };
 
     Go = {
-      format_on_save = "on";
-      hard_tabs = true; # required by gofmt
+      hard_tabs = true;
       code_actions_on_format = {
         "source.organizeImports" = true;
       };
-      # No "...": replaces the default server set entirely.
       language_servers = [
         "gopls"
         "golangci-lint"
