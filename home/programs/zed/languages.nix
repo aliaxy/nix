@@ -171,10 +171,6 @@
     };
 
     HTML = {
-      language_servers = [
-        "!vscode-html-language-server"
-        "biome"
-      ];
       prettier = {
         allowed = true;
       };

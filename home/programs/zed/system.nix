@@ -96,6 +96,10 @@
     }
     {
       kind = "npm:install";
+      package = "@biomejs/biome";
+    }
+    {
+      kind = "npm:install";
       package = "dockerfile-language-server-nodejs";
     }
     {
