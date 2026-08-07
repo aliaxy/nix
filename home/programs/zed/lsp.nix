@@ -142,5 +142,13 @@
         ];
       };
     };
+
+    jdtls = {
+      settings = {
+        lombok_support = true;
+        jdk_auto_download = false;
+        check_updates = "always";
+      };
+    };
   };
 }

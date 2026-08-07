@@ -12,6 +12,9 @@
   # Go tooling
   "golangci-lint"
 
+  # Java
+  "java"
+
   # Git
   "git-firefly"
 

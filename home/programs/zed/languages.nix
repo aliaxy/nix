@@ -185,12 +185,14 @@
     };
 
     Java = {
+      tab_size = 4;
       prettier = {
-        allowed = true;
+        allowed = false;
         plugins = [
           "prettier-plugin-java"
         ];
       };
+      debuggers = ["Java"];
     };
 
     JavaScript = {
