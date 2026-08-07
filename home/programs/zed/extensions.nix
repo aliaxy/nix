@@ -7,6 +7,7 @@
   "dockerfile"
   "docker-compose"
   "make"
+  "ini"
 
   # Go tooling
   "golangci-lint"
