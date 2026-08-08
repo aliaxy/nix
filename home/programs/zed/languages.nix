@@ -205,6 +205,11 @@
         "biome"
         "..."
       ];
+      formatter = {
+        language_server = {
+          name = "biome";
+        };
+      };
       code_actions_on_format = {
         "source.fixAll.biome" = true;
         "source.organizeImports.biome" = true;
@@ -429,6 +434,11 @@
         "biome"
         "..."
       ];
+      formatter = {
+        language_server = {
+          name = "biome";
+        };
+      };
       code_actions_on_format = {
         "source.fixAll.biome" = true;
         "source.organizeImports.biome" = true;
