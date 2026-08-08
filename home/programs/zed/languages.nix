@@ -186,6 +186,9 @@
 
     Java = {
       tab_size = 4;
+      code_actions_on_format = {
+        "source.organizeImports" = true;
+      };
       prettier = {
         allowed = false;
         plugins = [

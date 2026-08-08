@@ -45,7 +45,7 @@
 
   # ── Code lens and code actions ───────────────────────────────────────────
   # "off" | "on" | "menu"
-  code_lens = "menu";
+  code_lens = "on";
 
   inline_code_actions = true;
 
