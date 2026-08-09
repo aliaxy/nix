@@ -150,5 +150,16 @@
         check_updates = "always";
       };
     };
+
+    just-lsp = {
+      initialization_options = {
+        formatting = {
+          indentation = "  ";
+        };
+        rules = {
+          "unused-variables" = "off";
+        };
+      };
+    };
   };
 }
