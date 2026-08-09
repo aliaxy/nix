@@ -20,6 +20,7 @@
 
   # Web / markup
   "biome"
+  "emmet"
 
   # Shell / scripting
   "lua"

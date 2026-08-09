@@ -110,6 +110,10 @@
       kind = "npm:install";
       package = "graphql-language-service-cli";
     }
+    {
+      kind = "npm:install";
+      package = "@olrtg/emmet-language-server";
+    }
   ];
 
   # ── Logging ──────────────────────────────────────────────────────────────
