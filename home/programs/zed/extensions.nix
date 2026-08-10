@@ -16,6 +16,9 @@
   # Java
   "java"
 
+  # Kotlin
+  "kotlin"
+
   # Git
   "git-firefly"
 
