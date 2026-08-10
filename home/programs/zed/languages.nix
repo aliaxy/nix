@@ -284,6 +284,7 @@
     };
 
     Nix = {
+      language_servers = ["!nil" "..."];
       formatter = {
         external = {
           command = "alejandra";

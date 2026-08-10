@@ -8,7 +8,6 @@
 
   home.packages = with pkgs; [
     nodejs
-    nil
     nixd
     alejandra
     grok-build
