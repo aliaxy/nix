@@ -274,7 +274,15 @@
       };
     };
 
-    # Not part of Zed's default schema.
+    Nginx = {
+      formatter = {
+        external = {
+          command = "nginxfmt";
+          arguments = ["-"];
+        };
+      };
+    };
+
     Nix = {
       formatter = {
         external = {

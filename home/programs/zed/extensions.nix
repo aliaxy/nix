@@ -9,6 +9,7 @@
   "make"
   "ini"
   "just"
+  "nginx"
 
   # Go tooling
   "golangci-lint"
