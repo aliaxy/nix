@@ -270,7 +270,7 @@
         words = "disabled";
       };
       prettier = {
-        allowed = true;
+        allowed = false;
       };
     };
 
