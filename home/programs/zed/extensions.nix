@@ -47,4 +47,7 @@
 
   # Markdown
   "rumdl"
+
+  # Logs
+  "log"
 ]
