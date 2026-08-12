@@ -492,9 +492,8 @@
 
     "Vue.js" = {
       language_servers = [
-        "!vue-language-server"
-        "!vtsls"
-        "biome"
+        "vue-language-server"
+        "vtsls"
         "..."
       ];
       prettier = {

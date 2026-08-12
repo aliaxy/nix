@@ -27,6 +27,7 @@
   # Web / markup
   "biome"
   "emmet"
+  "vue"
 
   # Shell / scripting
   "lua"
