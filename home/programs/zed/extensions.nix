@@ -61,4 +61,7 @@
 
   # Nushell
   "nu"
+
+  # Typst
+  "typst"
 ]
