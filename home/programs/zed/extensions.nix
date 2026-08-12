@@ -46,6 +46,9 @@
   # GraphQL
   "graphql"
 
+  # Protocol Buffers
+  "proto"
+
   # Markdown
   "rumdl"
 

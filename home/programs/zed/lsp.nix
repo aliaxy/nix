@@ -151,6 +151,12 @@
       };
     };
 
+    buf = {
+      binary = {
+        arguments = ["lsp" "serve"];
+      };
+    };
+
     just-lsp = {
       initialization_options = {
         formatting = {
