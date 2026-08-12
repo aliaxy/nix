@@ -372,6 +372,21 @@
       debuggers = ["CodeLLDB"];
     };
 
+    "Shell Script" = {
+      formatter = {
+        external = {
+          command = "shfmt";
+          arguments = [
+            "--filename"
+            "{buffer_path}"
+            "-i"
+            "2"
+            "-ci"
+          ];
+        };
+      };
+    };
+
     SCSS = {
       prettier = {
         allowed = true;
