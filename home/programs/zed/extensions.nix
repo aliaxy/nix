@@ -51,4 +51,7 @@
 
   # Logs
   "log"
+
+  # Nushell
+  "nu"
 ]
