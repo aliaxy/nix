@@ -13,6 +13,7 @@
 
   # Go tooling
   "golangci-lint"
+  "templ"
 
   # Java
   "java"
