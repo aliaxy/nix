@@ -43,6 +43,9 @@
   "sql"
   "rainbow-csv"
 
+  # Ruby
+  "ruby"
+
   # GraphQL
   "graphql"
 

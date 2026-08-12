@@ -354,8 +354,8 @@
 
     Ruby = {
       language_servers = [
-        "solargraph"
-        "!ruby-lsp"
+        "!solargraph"
+        "ruby-lsp"
         "!rubocop"
         "!sorbet"
         "!steep"
