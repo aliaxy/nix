@@ -393,6 +393,19 @@
       };
     };
 
+    SQL = {
+      tab_size = 4;
+      formatter = {
+        external = {
+          command = "sqruff";
+          arguments = [
+            "fix"
+            "-"
+          ];
+        };
+      };
+    };
+
     Starlark = {
       format_on_save = "on";
       language_servers = [
