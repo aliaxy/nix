@@ -429,14 +429,19 @@
       };
     };
 
-    # Not part of Zed's default schema.
     Swift = {
-      enable_language_server = true;
       language_servers = [
         "sourcekit-lsp"
+        "package-swift-lsp"
+        "..."
       ];
-      formatter = "language_server";
-      format_on_save = "on";
+      formatter = {
+        external = {
+          command = "swiftformat";
+          arguments = ["--stdinpath" "{buffer_path}" "--indent" "2"];
+        };
+      };
+      debuggers = ["Swift"];
     };
 
     SystemVerilog = {
