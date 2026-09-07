@@ -18,15 +18,6 @@
         tput cuu1
         starship module character
       end
-
-      # Interactive brew only. darwin-rebuild activation does not see this;
-      # keep a token in ~/.homebrew/brew.env for private taps during rebuild.
-      if not set -q HOMEBREW_GITHUB_API_TOKEN; and type -q gh
-        set -l homebrew_github_api_token (gh auth token 2>/dev/null)
-        if test -n "$homebrew_github_api_token"
-          set -gx HOMEBREW_GITHUB_API_TOKEN $homebrew_github_api_token
-        end
-      end
     '';
 
     shellAliases = {
