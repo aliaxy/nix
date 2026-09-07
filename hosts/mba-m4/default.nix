@@ -42,14 +42,15 @@
         extraBrews = [
           "mole"
           "ccusage"
-          "vapor"
-          "cc-switch-cli"
+          "xcode-build-server"
         ];
 
         extraCasks = [
           "feishu"
           "tencent-meeting"
           "wechatwork"
+          "obsidian"
+          "codexbar"
           {
             name = "microsoft-word";
             greedy = false;
