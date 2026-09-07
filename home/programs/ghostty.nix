@@ -1,4 +1,4 @@
-# Ghostty terminal emulator — managed by Home Manager, installed via Homebrew cask.
+# Ghostty terminal emulator — installed and configured by Home Manager.
 {pkgs, ...}: {
   programs.ghostty = {
     enable = true;

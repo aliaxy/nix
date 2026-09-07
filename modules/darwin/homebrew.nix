@@ -132,10 +132,6 @@ in {
 
       taps = [
         {
-          name = "nikitabobko/tap";
-          trusted = true;
-        }
-        {
           name = "aliaxy/tap";
           trusted = true;
         }
