@@ -4,7 +4,6 @@
   inputs = {
     # Core package set — track the rolling unstable branch for latest software.
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     # nix-darwin: macOS system configuration (Homebrew, defaults, activation scripts).
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
@@ -35,11 +34,25 @@
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = [
         "aarch64-darwin"
-        "x86_64-darwin"
       ];
 
-      perSystem = {pkgs, ...}: {
+      perSystem = {
+        pkgs,
+        system,
+        ...
+      }: {
         formatter = pkgs.alejandra;
+
+        # Force-eval each Darwin host without building the system closure.
+        # `nix flake check` then stays a cheap eval instead of a full rebuild.
+        checks = pkgs.lib.optionalAttrs (system == "aarch64-darwin") {
+          eval-mba-m4 = pkgs.runCommand "eval-mba-m4" {} ''
+            echo ${self.darwinConfigurations.mba-m4.config.system.build.toplevel.drvPath} > $out
+          '';
+          eval-mbp-m1pro = pkgs.runCommand "eval-mbp-m1pro" {} ''
+            echo ${self.darwinConfigurations.mbp-m1pro.config.system.build.toplevel.drvPath} > $out
+          '';
+        };
       };
 
       flake = let
