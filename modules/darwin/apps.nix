@@ -10,14 +10,13 @@
 }: let
   inherit (lib) mkEnableOption mkOption types;
   suiteCfg = config.my.darwin.suites;
-  homebrewCfg = config.my.darwin.homebrew;
-  suiteMasApps = lib.mkMerge [
-    (lib.optionalAttrs suiteCfg.iWork {
-      "Pages" = 361309726;
-      "Keynote" = 361285480;
-      "Numbers" = 361304891;
-    })
-  ];
+  # Plain attrset. Host excludeMasApps is applied after extraMasApps merge
+  # in homebrew.nix — same order as excludeCasks.
+  suiteMasApps = lib.optionalAttrs suiteCfg.iWork {
+    "Pages" = 361309726;
+    "Keynote" = 361285480;
+    "Numbers" = 361304891;
+  };
 in {
   options = {
     my.darwin.suites = {
@@ -84,6 +83,6 @@ in {
       ]
     );
 
-    masApps = lib.filterAttrs (name: _: !(builtins.elem name homebrewCfg.excludeMasApps)) suiteMasApps;
+    masApps = suiteMasApps;
   };
 }

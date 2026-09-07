@@ -120,7 +120,8 @@ nix/
 - Host `extraCasks` may be plain strings or attrsets with `name` and `greedy`.
 - Host `extraCasks` override suite casks with the same name.
 - Use `excludeCasks` or `excludeMasApps` for host-specific removals instead of
-  weakening a shared suite.
+  weakening a shared suite. Both apply after extras are merged, so they also
+  drop matching host extras.
 - Keep `nix-homebrew.inputs.brew-src.url` explicit in `flake.nix`.
 
 ## Secrets and Local State

@@ -30,13 +30,19 @@
   );
 
   # suite casks are plain strings; extraCasks may be strings or attrsets.
-  # Build attrset maps keyed by name so that extraCasks overrides suite casks
-  # with the same name via //.
+  # extraCasks override suite casks with the same name via //.
+  # excludeCasks / excludeMasApps run after that merge so extras can be dropped too.
+  caskName = c:
+    if builtins.isAttrs c
+    then c.name
+    else c;
+
   suiteCaskAttrs = builtins.listToAttrs (
     map (name: {
       inherit name;
       value = name;
-    }) (builtins.filter (c: !(builtins.elem c cfg.excludeCasks)) suiteApps.casks)
+    })
+    suiteApps.casks
   );
   extraCaskAttrs = builtins.listToAttrs (
     map (c: {
@@ -45,7 +51,12 @@
     })
     cfg.extraCasks
   );
-  mergedCasks = builtins.attrValues (suiteCaskAttrs // extraCaskAttrs);
+  mergedCasks = builtins.filter (c: !(builtins.elem (caskName c) cfg.excludeCasks)) (
+    builtins.attrValues (suiteCaskAttrs // extraCaskAttrs)
+  );
+  mergedMasApps = lib.filterAttrs (name: _: !(builtins.elem name cfg.excludeMasApps)) (
+    suiteApps.masApps // cfg.extraMasApps
+  );
 in {
   options.my.darwin.homebrew = {
     # Enable Rosetta 2 so Homebrew can install x86_64 casks on Apple Silicon.
@@ -70,7 +81,7 @@ in {
     excludeCasks = mkOption {
       type = types.listOf types.str;
       default = [];
-      description = "Suite-derived Homebrew casks to exclude on this host.";
+      description = "Homebrew casks to drop on this host, from suites or extraCasks.";
     };
 
     extraMasApps = mkOption {
@@ -82,7 +93,7 @@ in {
     excludeMasApps = mkOption {
       type = types.listOf types.str;
       default = [];
-      description = "Suite-derived Mac App Store app names to exclude on this host.";
+      description = "Mac App Store apps to drop on this host, from suites or extraMasApps.";
     };
   };
 
@@ -134,7 +145,7 @@ in {
 
       casks = mergedCasks;
 
-      masApps = suiteApps.masApps // cfg.extraMasApps;
+      masApps = mergedMasApps;
     };
   };
 }
