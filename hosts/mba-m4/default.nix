@@ -51,6 +51,7 @@
           "wechatwork"
           "obsidian"
           "codexbar"
+          "sonatelle/tap/rondo"
           {
             name = "microsoft-word";
             greedy = false;
